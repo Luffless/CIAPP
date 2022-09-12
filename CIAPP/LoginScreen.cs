@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Security.Cryptography;
 
 namespace CIAPP
 {
@@ -17,9 +12,51 @@ namespace CIAPP
             InitializeComponent();
         }
 
-        private void LoginScreen_Load(object sender, EventArgs e)
+        private void Entrar_Click(object sender, EventArgs e)
         {
+            if (!ValidationLogin.LoginEntrada(LoginEntrada.Text))
+            {
+                LoginEntrada.Focus();
+                return;
+            }
 
+            if (!ValidationLogin.SenhaEntrada(Senha.Text))
+            {
+                Senha.Focus();
+                return;
+            }
+
+            var bytes = new UTF8Encoding().GetBytes(LoginEntrada.Text + Senha.Text);
+            var hashbytes = MD5.Create().ComputeHash(bytes);
+            var convert = Convert.ToBase64String(hashbytes);
+
+            if (!ValidationLogin.UsuarioIsValid(convert))
+            {
+                LoginEntrada.Focus();
+                return;
+            }
+
+            Hide();
+
+            new MenuPrincipal().ShowDialog();
+        }
+
+        private void OnKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter || e.KeyCode == Keys.Down)
+            {
+                SelectNextControl(ActiveControl, true, true, true, true);
+                e.Handled = true;
+            }
+        }
+
+        private void OnKeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Up)
+            {
+                SelectNextControl(ActiveControl, false, true, true, true);
+                e.Handled = true;
+            }
         }
     }
 }
