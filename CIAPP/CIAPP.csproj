@@ -91,6 +91,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Content Include="Assets\im_icon.ico" />
     <Content Include="Assets\im_login.png" />
     <Content Include="Assets\im_logo.png" />
   </ItemGroup>
