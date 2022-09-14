@@ -7,6 +7,8 @@ namespace CIAPP
 {
     public partial class LoginScreen : Form
     {
+        private readonly ValidationLogin validacao = new ValidationLogin();
+
         public LoginScreen()
         {
             InitializeComponent();
@@ -14,13 +16,13 @@ namespace CIAPP
 
         private void Entrar_Click(object sender, EventArgs e)
         {
-            if (!ValidationLogin.LoginEntrada(LoginEntrada.Text))
+            if (!validacao.LoginEntrada(LoginEntrada.Text))
             {
                 LoginEntrada.Focus();
                 return;
             }
 
-            if (!ValidationLogin.SenhaEntrada(Senha.Text))
+            if (!validacao.SenhaEntrada(Senha.Text))
             {
                 Senha.Focus();
                 return;
@@ -30,7 +32,7 @@ namespace CIAPP
             var hashbytes = MD5.Create().ComputeHash(bytes);
             var convert = Convert.ToBase64String(hashbytes);
 
-            if (!ValidationLogin.UsuarioIsValid(convert))
+            if (!validacao.UsuarioIsValid(convert))
             {
                 LoginEntrada.Focus();
                 return;

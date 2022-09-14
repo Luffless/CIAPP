@@ -2,7 +2,7 @@
 
 public class ValidationLogin
 {
-    public static bool LoginEntrada(string login)
+    public bool LoginEntrada(string login)
     {
         if (string.IsNullOrWhiteSpace(login))
         {
@@ -13,7 +13,7 @@ public class ValidationLogin
         return true;
     }
 
-    public static bool SenhaEntrada(string senha)
+    public bool SenhaEntrada(string senha)
     {
         if (string.IsNullOrWhiteSpace(senha))
         {
@@ -24,7 +24,7 @@ public class ValidationLogin
         return true;
     }
 
-    public static bool UsuarioIsValid(string hashmd5)
+    public bool UsuarioIsValid(string hashmd5)
     {
         // Validação de que se o usuário existe no banco de dados
         /*
