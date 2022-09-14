@@ -46,6 +46,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\Usuario.cs" />
+    <Compile Include="Usuarios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Usuarios.Designer.cs">
+      <DependentUpon>Usuarios.cs</DependentUpon>
+    </Compile>
     <Compile Include="LoginScreen.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -76,6 +83,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Usuarios.resx">
+      <DependentUpon>Usuarios.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -91,18 +101,24 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Content Include="Assets\im_ciapp.png" />
     <Content Include="Assets\im_alterar_registro.png" />
     <Content Include="Assets\im_cancelar.png" />
     <Content Include="Assets\im_confirmar.png" />
     <Content Include="Assets\im_encerra.png" />
+    <Content Include="Assets\im_entidade.png" />
     <Content Include="Assets\im_excluir_registro.png" />
     <Content Include="Assets\im_icon.ico" />
     <Content Include="Assets\im_incluir_registro.png" />
     <Content Include="Assets\im_login.png" />
     <Content Include="Assets\im_logo.png" />
     <Content Include="Assets\im_pesquisar.png" />
+    <Content Include="Assets\im_prestadores.png" />
     <Content Include="Assets\im_sair.png" />
     <Content Include="Assets\im_voltar.png" />
+    <Content Include="Assets\im_sanduiche.png" />
+    <Content Include="Assets\im_police.png" />
+    <Content Include="Assets\im_usuarios.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
