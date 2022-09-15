@@ -90,6 +90,7 @@
             this.BtnEntidades.TabIndex = 3;
             this.BtnEntidades.Text = "Entidades";
             this.BtnEntidades.UseVisualStyleBackColor = true;
+            this.BtnEntidades.Click += new System.EventHandler(this.BtnEntidades_Click);
             // 
             // BtnUsuarios
             // 
@@ -172,6 +173,7 @@
             this.Name = "MenuPrincipal";
             this.Text = "CIAPP";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Close);
+            this.Load += new System.EventHandler(this.MenuPrincipal_Load);
             this.MenuVertical.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

@@ -6,9 +6,17 @@ namespace CIAPP
 {
     public partial class MenuPrincipal : Form
     {
-        public MenuPrincipal()
+        private readonly string loginLogado;
+
+        public MenuPrincipal(string login)
         {
             InitializeComponent();
+            loginLogado = login;
+        }
+
+        private void MenuPrincipal_Load(object sender, EventArgs e)
+        {
+            //Carregar as informações do usuário logado a partir da variável 'loginLogado'
         }
 
         private void BtnSlide_Click(object sender, EventArgs e)
@@ -50,7 +58,18 @@ namespace CIAPP
 
         private void BtnUsuarios_Click(object sender, EventArgs e)
         {
-            AbrirFormInPainel(new Usuarios());
+            BtnUsuarios.BackColor = Color.FromArgb(45, 45, 48);
+            BtnEntidades.BackColor = Color.FromArgb(25, 25, 112);
+            BtnPrestadores.BackColor = Color.FromArgb(25, 25, 112);
+            AbrirFormInPainel(new Usuarios(this));
+        }
+
+        private void BtnEntidades_Click(object sender, EventArgs e)
+        {
+            BtnUsuarios.BackColor = Color.FromArgb(25, 25, 112);
+            BtnEntidades.BackColor = Color.FromArgb(45, 45, 48);
+            BtnPrestadores.BackColor = Color.FromArgb(25, 25, 112);
+            AbrirFormInPainel(new Entidades(this));
         }
     }
 }
