@@ -42,16 +42,17 @@
             this.label4 = new System.Windows.Forms.Label();
             this.Email = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.Detalhes = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Century Gothic", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(12, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(116, 25);
+            this.label1.Size = new System.Drawing.Size(106, 23);
             this.label1.TabIndex = 0;
             this.label1.Text = "USUÁRIOS";
             // 
@@ -141,6 +142,7 @@
             this.listView.TabIndex = 0;
             this.listView.UseCompatibleStateImageBehavior = false;
             this.listView.View = System.Windows.Forms.View.Details;
+            this.listView.DoubleClick += new System.EventHandler(this.DoubleClick_Click);
             // 
             // label2
             // 
@@ -201,6 +203,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.Email);
             this.groupBox1.Controls.Add(this.Nome);
@@ -215,12 +219,32 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Filtros";
             // 
+            // Detalhes
+            // 
+            this.Detalhes.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.Detalhes.BackColor = System.Drawing.Color.MidnightBlue;
+            this.Detalhes.FlatAppearance.BorderSize = 0;
+            this.Detalhes.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.Detalhes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Detalhes.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Detalhes.ForeColor = System.Drawing.Color.White;
+            this.Detalhes.Image = ((System.Drawing.Image)(resources.GetObject("Detalhes.Image")));
+            this.Detalhes.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.Detalhes.Location = new System.Drawing.Point(858, 267);
+            this.Detalhes.Name = "Detalhes";
+            this.Detalhes.Size = new System.Drawing.Size(180, 40);
+            this.Detalhes.TabIndex = 16;
+            this.Detalhes.Text = "DETALHES";
+            this.Detalhes.UseVisualStyleBackColor = false;
+            this.Detalhes.Click += new System.EventHandler(this.Detalhes_Click);
+            // 
             // Usuarios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(1050, 600);
+            this.Controls.Add(this.Detalhes);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.listView);
             this.Controls.Add(this.Excluir);
@@ -254,5 +278,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox Email;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Button Detalhes;
     }
 }

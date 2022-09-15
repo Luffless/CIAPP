@@ -73,9 +73,9 @@
             this.Senha.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Senha.Location = new System.Drawing.Point(67, 270);
             this.Senha.Name = "Senha";
-            this.Senha.PasswordChar = '*';
             this.Senha.Size = new System.Drawing.Size(233, 26);
             this.Senha.TabIndex = 3;
+            this.Senha.UseSystemPasswordChar = true;
             this.Senha.KeyUp += new System.Windows.Forms.KeyEventHandler(this.OnKeyUp);
             // 
             // Entrar
