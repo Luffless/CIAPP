@@ -82,12 +82,10 @@ namespace CIAPP
             if (manutencao == "Incluir")
             {
                 //Persistência no banco de dados ao realizar inserção
-                //Se o tipo de usuário for 'Entidade' fazer persistência no banco SQLite da entidade do usuário também
             }
             else
             {
                 //Persistência no banco de dados ao realizar edição
-                //Se o tipo de usuário for 'Entidade' fazer persistência no banco SQLite da entidade do usuário também
             }
 
             Close();
