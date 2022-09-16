@@ -34,13 +34,13 @@
             this.BtnFechar = new System.Windows.Forms.Label();
             this.Editar = new System.Windows.Forms.Button();
             this.Excluir = new System.Windows.Forms.Button();
-            this.listView = new System.Windows.Forms.ListView();
+            this.ListView = new System.Windows.Forms.ListView();
             this.label2 = new System.Windows.Forms.Label();
-            this.Nome = new System.Windows.Forms.TextBox();
+            this.NomeFiltro = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.Tipo = new System.Windows.Forms.ComboBox();
+            this.TipoFiltro = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.Email = new System.Windows.Forms.TextBox();
+            this.EmailFiltro = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.Detalhes = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
@@ -128,21 +128,21 @@
             this.Excluir.UseVisualStyleBackColor = false;
             this.Excluir.Click += new System.EventHandler(this.Excluir_Click);
             // 
-            // listView
+            // ListView
             // 
-            this.listView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.ListView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.listView.Font = new System.Drawing.Font("Century Gothic", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.listView.FullRowSelect = true;
-            this.listView.HideSelection = false;
-            this.listView.Location = new System.Drawing.Point(7, 107);
-            this.listView.Name = "listView";
-            this.listView.Size = new System.Drawing.Size(845, 481);
-            this.listView.TabIndex = 0;
-            this.listView.UseCompatibleStateImageBehavior = false;
-            this.listView.View = System.Windows.Forms.View.Details;
-            this.listView.DoubleClick += new System.EventHandler(this.DoubleClick_Click);
+            this.ListView.Font = new System.Drawing.Font("Century Gothic", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ListView.FullRowSelect = true;
+            this.ListView.HideSelection = false;
+            this.ListView.Location = new System.Drawing.Point(7, 107);
+            this.ListView.Name = "ListView";
+            this.ListView.Size = new System.Drawing.Size(845, 481);
+            this.ListView.TabIndex = 0;
+            this.ListView.UseCompatibleStateImageBehavior = false;
+            this.ListView.View = System.Windows.Forms.View.Details;
+            this.ListView.DoubleClick += new System.EventHandler(this.DoubleClick_Click);
             // 
             // label2
             // 
@@ -154,12 +154,12 @@
             this.label2.TabIndex = 9;
             this.label2.Text = "Nome:";
             // 
-            // Nome
+            // NomeFiltro
             // 
-            this.Nome.Location = new System.Drawing.Point(69, 24);
-            this.Nome.Name = "Nome";
-            this.Nome.Size = new System.Drawing.Size(220, 26);
-            this.Nome.TabIndex = 10;
+            this.NomeFiltro.Location = new System.Drawing.Point(69, 24);
+            this.NomeFiltro.Name = "NomeFiltro";
+            this.NomeFiltro.Size = new System.Drawing.Size(220, 26);
+            this.NomeFiltro.TabIndex = 10;
             // 
             // label3
             // 
@@ -171,18 +171,18 @@
             this.label3.TabIndex = 11;
             this.label3.Text = "Tipo:";
             // 
-            // Tipo
+            // TipoFiltro
             // 
-            this.Tipo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.Tipo.FormattingEnabled = true;
-            this.Tipo.Items.AddRange(new object[] {
+            this.TipoFiltro.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.TipoFiltro.FormattingEnabled = true;
+            this.TipoFiltro.Items.AddRange(new object[] {
             "Todos",
             "Fórum",
             "Entidade"});
-            this.Tipo.Location = new System.Drawing.Point(342, 24);
-            this.Tipo.Name = "Tipo";
-            this.Tipo.Size = new System.Drawing.Size(121, 28);
-            this.Tipo.TabIndex = 12;
+            this.TipoFiltro.Location = new System.Drawing.Point(342, 24);
+            this.TipoFiltro.Name = "TipoFiltro";
+            this.TipoFiltro.Size = new System.Drawing.Size(121, 28);
+            this.TipoFiltro.TabIndex = 12;
             // 
             // label4
             // 
@@ -194,23 +194,23 @@
             this.label4.TabIndex = 13;
             this.label4.Text = "E-mail:";
             // 
-            // Email
+            // EmailFiltro
             // 
-            this.Email.Location = new System.Drawing.Point(530, 26);
-            this.Email.Name = "Email";
-            this.Email.Size = new System.Drawing.Size(309, 26);
-            this.Email.TabIndex = 14;
+            this.EmailFiltro.Location = new System.Drawing.Point(530, 26);
+            this.EmailFiltro.Name = "EmailFiltro";
+            this.EmailFiltro.Size = new System.Drawing.Size(309, 26);
+            this.EmailFiltro.TabIndex = 14;
             // 
             // groupBox1
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.Email);
-            this.groupBox1.Controls.Add(this.Nome);
+            this.groupBox1.Controls.Add(this.EmailFiltro);
+            this.groupBox1.Controls.Add(this.NomeFiltro);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.Tipo);
+            this.groupBox1.Controls.Add(this.TipoFiltro);
             this.groupBox1.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(7, 37);
             this.groupBox1.Name = "groupBox1";
@@ -246,7 +246,7 @@
             this.ClientSize = new System.Drawing.Size(1050, 600);
             this.Controls.Add(this.Detalhes);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.listView);
+            this.Controls.Add(this.ListView);
             this.Controls.Add(this.Excluir);
             this.Controls.Add(this.Editar);
             this.Controls.Add(this.BtnFechar);
@@ -270,13 +270,13 @@
         private System.Windows.Forms.Label BtnFechar;
         private System.Windows.Forms.Button Editar;
         private System.Windows.Forms.Button Excluir;
-        private System.Windows.Forms.ListView listView;
+        private System.Windows.Forms.ListView ListView;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox Nome;
+        private System.Windows.Forms.TextBox NomeFiltro;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox Tipo;
+        private System.Windows.Forms.ComboBox TipoFiltro;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox Email;
+        private System.Windows.Forms.TextBox EmailFiltro;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button Detalhes;
     }

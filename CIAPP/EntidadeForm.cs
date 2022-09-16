@@ -69,6 +69,32 @@ namespace CIAPP
             return text;
         }
 
+        private void DataCredenciamento_ValueChanged(object sender, EventArgs e)
+        {
+            DataCredenciamento.CustomFormat = "dd/MM/yyyy";
+        }
+
+        private void DataDescredenciamento_ValueChanged(object sender, EventArgs e)
+        {
+            DataDescredenciamento.CustomFormat = "dd/MM/yyyy";
+        }
+
+        private void DataCredenciamento_KeyDown(object sender, KeyEventArgs e)
+        {
+            if ((e.KeyCode == Keys.Back) || (e.KeyCode == Keys.Delete))
+            {
+                DataCredenciamento.CustomFormat = " ";
+            }
+        }
+
+        private void DataDescredenciamento_KeyDown(object sender, KeyEventArgs e)
+        {
+            if ((e.KeyCode == Keys.Back) || (e.KeyCode == Keys.Delete))
+            {
+                DataDescredenciamento.CustomFormat = " ";
+            }
+        }
+
         private void Salvar_Click(object sender, EventArgs e)
         {
             if (!validacaoEntidade.RazaoSocialEntrada(RazaoSocial.Text))

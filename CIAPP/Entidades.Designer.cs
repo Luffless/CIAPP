@@ -29,8 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Entidades));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.Excluir = new System.Windows.Forms.Button();
             this.Editar = new System.Windows.Forms.Button();
@@ -42,14 +40,8 @@
             this.label4 = new System.Windows.Forms.Label();
             this.BtnFechar = new System.Windows.Forms.Label();
             this.Detalhes = new System.Windows.Forms.Button();
-            this.dataGridView = new System.Windows.Forms.DataGridView();
-            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.RazaoSocial = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Telefone = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DataCredenciamento = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DataDescredenciamento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ListView = new System.Windows.Forms.ListView();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -137,12 +129,15 @@
             // 
             // DataCredenciamentoFiltro
             // 
+            this.DataCredenciamentoFiltro.CustomFormat = " ";
             this.DataCredenciamentoFiltro.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DataCredenciamentoFiltro.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.DataCredenciamentoFiltro.Location = new System.Drawing.Point(681, 26);
             this.DataCredenciamentoFiltro.Name = "DataCredenciamentoFiltro";
             this.DataCredenciamentoFiltro.Size = new System.Drawing.Size(158, 26);
             this.DataCredenciamentoFiltro.TabIndex = 19;
+            this.DataCredenciamentoFiltro.ValueChanged += new System.EventHandler(this.DataCredenciamentoFiltro_ValueChanged);
+            this.DataCredenciamentoFiltro.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DataCredenciamentoFiltro_KeyDown);
             // 
             // label2
             // 
@@ -205,80 +200,21 @@
             this.Detalhes.UseVisualStyleBackColor = false;
             this.Detalhes.Click += new System.EventHandler(this.Detalhes_Click);
             // 
-            // dataGridView
+            // ListView
             // 
-            this.dataGridView.AllowUserToAddRows = false;
-            this.dataGridView.AllowUserToDeleteRows = false;
-            this.dataGridView.AllowUserToResizeRows = false;
-            this.dataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.ListView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridView.BackgroundColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Id,
-            this.RazaoSocial,
-            this.Telefone,
-            this.DataCredenciamento,
-            this.DataDescredenciamento});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dataGridView.Location = new System.Drawing.Point(7, 107);
-            this.dataGridView.MultiSelect = false;
-            this.dataGridView.Name = "dataGridView";
-            this.dataGridView.ReadOnly = true;
-            this.dataGridView.RowHeadersVisible = false;
-            this.dataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView.Size = new System.Drawing.Size(845, 481);
-            this.dataGridView.TabIndex = 19;
-            // 
-            // Id
-            // 
-            this.Id.HeaderText = "ID";
-            this.Id.Name = "Id";
-            this.Id.ReadOnly = true;
-            this.Id.Width = 30;
-            // 
-            // RazaoSocial
-            // 
-            this.RazaoSocial.HeaderText = "Razão Social";
-            this.RazaoSocial.Name = "RazaoSocial";
-            this.RazaoSocial.ReadOnly = true;
-            this.RazaoSocial.Width = 290;
-            // 
-            // Telefone
-            // 
-            this.Telefone.HeaderText = "Telefone";
-            this.Telefone.Name = "Telefone";
-            this.Telefone.ReadOnly = true;
-            // 
-            // DataCredenciamento
-            // 
-            this.DataCredenciamento.HeaderText = "Data Credenciamento";
-            this.DataCredenciamento.Name = "DataCredenciamento";
-            this.DataCredenciamento.ReadOnly = true;
-            this.DataCredenciamento.Width = 200;
-            // 
-            // DataDescredenciamento
-            // 
-            this.DataDescredenciamento.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.DataDescredenciamento.HeaderText = "Data Descredenciamento";
-            this.DataDescredenciamento.Name = "DataDescredenciamento";
-            this.DataDescredenciamento.ReadOnly = true;
+            this.ListView.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ListView.FullRowSelect = true;
+            this.ListView.HideSelection = false;
+            this.ListView.Location = new System.Drawing.Point(7, 108);
+            this.ListView.Name = "ListView";
+            this.ListView.Size = new System.Drawing.Size(845, 480);
+            this.ListView.TabIndex = 19;
+            this.ListView.UseCompatibleStateImageBehavior = false;
+            this.ListView.View = System.Windows.Forms.View.Details;
+            this.ListView.DoubleClick += new System.EventHandler(this.DoubleClick_Click);
             // 
             // Entidades
             // 
@@ -286,7 +222,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(1050, 600);
-            this.Controls.Add(this.dataGridView);
+            this.Controls.Add(this.ListView);
             this.Controls.Add(this.Detalhes);
             this.Controls.Add(this.BtnFechar);
             this.Controls.Add(this.groupBox1);
@@ -300,7 +236,6 @@
             this.Load += new System.EventHandler(this.Entidades_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -319,11 +254,6 @@
         private System.Windows.Forms.Label BtnFechar;
         private System.Windows.Forms.Button Detalhes;
         private System.Windows.Forms.DateTimePicker DataCredenciamentoFiltro;
-        private System.Windows.Forms.DataGridView dataGridView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Id;
-        private System.Windows.Forms.DataGridViewTextBoxColumn RazaoSocial;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Telefone;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DataCredenciamento;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DataDescredenciamento;
+        private System.Windows.Forms.ListView ListView;
     }
 }

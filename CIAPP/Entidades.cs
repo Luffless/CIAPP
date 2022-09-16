@@ -26,14 +26,23 @@ namespace CIAPP
 
         private void Entidades_Load(object sender, EventArgs e)
         {
+            AdicionaColunas();
             CarregarRegistros();
+        }
+
+        private void AdicionaColunas()
+        {
+            ListView.Font = new Font(ListView.Font, FontStyle.Bold);
+            ListView.Columns.Add("ID", 30);
+            ListView.Columns.Add("Razão Social", 290);
+            ListView.Columns.Add("Telefone", 100);
+            ListView.Columns.Add("Data Credenciamento", 200);
+            ListView.Columns.Add("Data Descredenciamento", 210);
         }
 
         private void CarregarRegistros()
         {
-            string dataDescredenciamento;
-
-            dataGridView.Rows.Clear();
+            ListView.Items.Clear();
             itemList.Clear();
 
             //SQL de busca de registros aqui
@@ -53,17 +62,31 @@ namespace CIAPP
 
             for (int i = 0; i < itemList.Count; i++)
             {
+                ListViewItem listItem = new ListViewItem(itemList[i].Id.ToString())
+                {
+                    Font = new Font(ListView.Font, FontStyle.Regular)
+                };
+                listItem.SubItems.Add(new ListViewItem.ListViewSubItem(listItem, itemList[i].RazaoSocial));
+                listItem.SubItems.Add(new ListViewItem.ListViewSubItem(listItem, itemList[i].Telefone.ToString()));
+                listItem.SubItems.Add(new ListViewItem.ListViewSubItem(listItem, itemList[i].DataCredenciamento.ToString("dd/MM/yyyy")));
                 if (itemList[i].DataDescredenciamento != default)
                 {
-                    dataDescredenciamento = itemList[i].DataDescredenciamento.ToString("dd/MM/yyyy");
+                    listItem.SubItems.Add(new ListViewItem.ListViewSubItem(listItem, itemList[i].DataDescredenciamento.ToString("dd/MM/yyyy")));
                 }
-                else
-                {
-                    dataDescredenciamento = null;
-                }
+                ListView.Items.Add(listItem);
+            }
+        }
 
-                string[] row = { itemList[i].Id.ToString(), itemList[i].RazaoSocial, itemList[i].Telefone.ToString(), itemList[i].DataCredenciamento.ToString("dd/MM/yyyy"), dataDescredenciamento };
-                dataGridView.Rows.Add(row);
+        private void DataCredenciamentoFiltro_ValueChanged(object sender, EventArgs e)
+        {
+            DataCredenciamentoFiltro.CustomFormat = "dd/MM/yyyy";
+        }
+
+        private void DataCredenciamentoFiltro_KeyDown(object sender, KeyEventArgs e)
+        {
+            if ((e.KeyCode == Keys.Back) || (e.KeyCode == Keys.Delete))
+            {
+                DataCredenciamentoFiltro.CustomFormat = " ";
             }
         }
 
@@ -80,9 +103,9 @@ namespace CIAPP
                 return;
             }
 
-            DataGridViewRow row = dataGridView.SelectedRows[0];
+            ListViewItem item = ListView.SelectedItems[0];
             EntidadeForm form = new EntidadeForm("Editar");
-            form.Id.Text = row.Cells["Id"].Value.ToString();
+            form.Id.Text = item.SubItems[0].Text;
             form.ShowDialog();
             CarregarRegistros();
         }
@@ -110,9 +133,9 @@ namespace CIAPP
                 return;
             }
 
-            DataGridViewRow row = dataGridView.SelectedRows[0];
+            ListViewItem item = ListView.SelectedItems[0];
             EntidadeForm form = new EntidadeForm("Detalhes");
-            form.Id.Text = row.Cells["Id"].Value.ToString();
+            form.Id.Text = item.SubItems[0].Text;
             form.ShowDialog();
         }
 
@@ -123,9 +146,15 @@ namespace CIAPP
 
         private bool VerificaList()
         {
-            if (dataGridView.Rows.Count == 0)
+            if (ListView.Items.Count == 0)
             {
                 MessageBox.Show("Não há nenhum registro!", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            if (ListView.SelectedItems.Count == 0)
+            {
+                MessageBox.Show("Selecione um registro antes!", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
 

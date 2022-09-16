@@ -26,24 +26,24 @@ namespace CIAPP
 
         private void Usuarios_Load(object sender, EventArgs e)
         {
-            Tipo.SelectedItem = Tipo.Items[0];
+            TipoFiltro.SelectedItem = TipoFiltro.Items[0];
             AdicionaColunas();
             CarregarRegistros();
         }
 
         private void AdicionaColunas()
         {
-            listView.Font = new Font(listView.Font, FontStyle.Bold);
-            listView.Columns.Add("ID", 40);
-            listView.Columns.Add("Nome", 200);
-            listView.Columns.Add("Login", 200);
-            listView.Columns.Add("Tipo", 80);
-            listView.Columns.Add("E-mail", 300);
+            ListView.Font = new Font(ListView.Font, FontStyle.Bold);
+            ListView.Columns.Add("ID", 30);
+            ListView.Columns.Add("Nome", 210);
+            ListView.Columns.Add("Login", 200);
+            ListView.Columns.Add("Tipo", 80);
+            ListView.Columns.Add("E-mail", 300);
         }
 
         private void CarregarRegistros()
         {
-            listView.Items.Clear();
+            ListView.Items.Clear();
             itemList.Clear();
 
             //SQL de busca de registros aqui, não buscar o usuário de código zero, pois é o usuário admin (primeiro usuário)
@@ -65,13 +65,13 @@ namespace CIAPP
             {
                 ListViewItem listItem = new ListViewItem(itemList[i].Id.ToString())
                 {
-                    Font = new Font(listView.Font, FontStyle.Regular)
+                    Font = new Font(ListView.Font, FontStyle.Regular)
                 };
                 listItem.SubItems.Add(new ListViewItem.ListViewSubItem(listItem, itemList[i].Nome));
                 listItem.SubItems.Add(new ListViewItem.ListViewSubItem(listItem, itemList[i].Login));
                 listItem.SubItems.Add(new ListViewItem.ListViewSubItem(listItem, itemList[i].Tipo));
                 listItem.SubItems.Add(new ListViewItem.ListViewSubItem(listItem, itemList[i].Email));
-                listView.Items.Add(listItem);
+                ListView.Items.Add(listItem);
             }
         }
 
@@ -88,7 +88,7 @@ namespace CIAPP
                 return;
             }
 
-            ListViewItem item = listView.SelectedItems[0];
+            ListViewItem item = ListView.SelectedItems[0];
             UsuarioForm form = new UsuarioForm("Editar");
             form.Id.Text = item.SubItems[0].Text;
             form.ShowDialog();
@@ -102,7 +102,7 @@ namespace CIAPP
                 return;
             }
 
-            ListViewItem item = listView.SelectedItems[0];
+            ListViewItem item = ListView.SelectedItems[0];
             if (item.SubItems[3].Text == "Entidade")
             {
                 //Verificar se o usuário com o tipo 'Entidade' já possui algum Processo Judicial vinculado em sua entidade
@@ -111,7 +111,6 @@ namespace CIAPP
             if (MessageBox.Show("Confirma excluir este registro?", "Selecione a opção", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 //SQL de exclusão de registro
-                //Se o tipo de usuário for 'Entidade' fazer exclusão no banco SQLite da entidade do usuário também
                 CarregarRegistros();
             }
         }
@@ -123,7 +122,7 @@ namespace CIAPP
                 return;
             }
 
-            ListViewItem item = listView.SelectedItems[0];
+            ListViewItem item = ListView.SelectedItems[0];
             UsuarioForm form = new UsuarioForm("Detalhes");
             form.Id.Text = item.SubItems[0].Text;
             form.ShowDialog();
@@ -136,13 +135,13 @@ namespace CIAPP
 
         private bool VerificaList()
         {
-            if (listView.Items.Count == 0)
+            if (ListView.Items.Count == 0)
             {
                 MessageBox.Show("Não há nenhum registro!", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
 
-            if (listView.SelectedItems.Count == 0)
+            if (ListView.SelectedItems.Count == 0)
             {
                 MessageBox.Show("Selecione um registro antes!", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
