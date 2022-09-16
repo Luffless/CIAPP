@@ -2,6 +2,7 @@
 
 public class Entidade
 {
+    public int Id { get; set; }
     public string RazaoSocial { get; set; }
     public long Telefone { get; set; }
     public string Email { get; set; }
@@ -12,8 +13,9 @@ public class Entidade
 
     public Entidade() { }
 
-    public Entidade(string razaoSocial, int telefone, string email, DateTime dataCredenciamento, DateTime dataDescredenciamento, string observacao, Endereco endereco)
+    public Entidade(int id, string razaoSocial, int telefone, string email, DateTime dataCredenciamento, DateTime dataDescredenciamento, string observacao, Endereco endereco)
     {
+        Id = id;
         RazaoSocial = razaoSocial;
         Telefone = telefone;
         Email = email;

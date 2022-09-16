@@ -26,32 +26,25 @@ namespace CIAPP
 
         private void Entidades_Load(object sender, EventArgs e)
         {
-            AdicionaColunas();
             CarregarRegistros();
-        }
-
-        private void AdicionaColunas()
-        {
-            listView.Font = new Font(listView.Font, FontStyle.Bold);
-            listView.Columns.Add("Razão Social", 310);
-            listView.Columns.Add("Telefone", 120);
-            listView.Columns.Add("Data Credenciamento", 180);
-            listView.Columns.Add("Data Descredenciamento", 210);
         }
 
         private void CarregarRegistros()
         {
-            listView.Items.Clear();
+            string dataDescredenciamento;
+
+            dataGridView.Rows.Clear();
             itemList.Clear();
 
-            //SQL de busca de registros aqui, não buscar o usuário de código zero, pois é o usuário admin (primeiro usuário)
+            //SQL de busca de registros aqui
             //For só pra teste
             for (int j = 0; j < 5; j++)
             {
                 Entidade entidade = new Entidade
                 {
+                    Id = j + 1,
                     RazaoSocial = "Nome da Entidade",
-                    Telefone = 054999995555,
+                    Telefone = 54999995555,
                     DataCredenciamento = DateTime.Today,
                     DataDescredenciamento = default
                 };
@@ -60,18 +53,83 @@ namespace CIAPP
 
             for (int i = 0; i < itemList.Count; i++)
             {
-                ListViewItem listItem = new ListViewItem(itemList[i].RazaoSocial)
-                {
-                    Font = new Font(listView.Font, FontStyle.Regular)
-                };
-                listItem.SubItems.Add(new ListViewItem.ListViewSubItem(listItem, itemList[i].Telefone.ToString()));
-                listItem.SubItems.Add(new ListViewItem.ListViewSubItem(listItem, itemList[i].DataCredenciamento.ToString("dd/MM/yyyy")));
                 if (itemList[i].DataDescredenciamento != default)
                 {
-                    listItem.SubItems.Add(new ListViewItem.ListViewSubItem(listItem, itemList[i].DataDescredenciamento.ToString("dd/MM/yyyy")));
+                    dataDescredenciamento = itemList[i].DataDescredenciamento.ToString("dd/MM/yyyy");
                 }
-                listView.Items.Add(listItem);
+                else
+                {
+                    dataDescredenciamento = null;
+                }
+
+                string[] row = { itemList[i].Id.ToString(), itemList[i].RazaoSocial, itemList[i].Telefone.ToString(), itemList[i].DataCredenciamento.ToString("dd/MM/yyyy"), dataDescredenciamento };
+                dataGridView.Rows.Add(row);
             }
+        }
+
+        private void Novo_Click(object sender, EventArgs e)
+        {
+            new EntidadeForm("Incluir").ShowDialog();
+            CarregarRegistros();
+        }
+
+        private void Editar_Click(object sender, EventArgs e)
+        {
+            if (!VerificaList())
+            {
+                return;
+            }
+
+            DataGridViewRow row = dataGridView.SelectedRows[0];
+            EntidadeForm form = new EntidadeForm("Editar");
+            form.Id.Text = row.Cells["Id"].Value.ToString();
+            form.ShowDialog();
+            CarregarRegistros();
+        }
+
+        private void Excluir_Click(object sender, EventArgs e)
+        {
+            if (!VerificaList())
+            {
+                return;
+            }
+
+            //Verificar se a entidade já possui algum Processo Judicial vinculado
+
+            if (MessageBox.Show("Confirma excluir este registro?", "Selecione a opção", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                //SQL de exclusão de registro
+                CarregarRegistros();
+            }
+        }
+
+        private void Detalhes_Click(object sender, EventArgs e)
+        {
+            if (!VerificaList())
+            {
+                return;
+            }
+
+            DataGridViewRow row = dataGridView.SelectedRows[0];
+            EntidadeForm form = new EntidadeForm("Detalhes");
+            form.Id.Text = row.Cells["Id"].Value.ToString();
+            form.ShowDialog();
+        }
+
+        private void DoubleClick_Click(object sender, EventArgs e)
+        {
+            Detalhes_Click(sender, e);
+        }
+
+        private bool VerificaList()
+        {
+            if (dataGridView.Rows.Count == 0)
+            {
+                MessageBox.Show("Não há nenhum registro!", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            return true;
         }
     }
 }

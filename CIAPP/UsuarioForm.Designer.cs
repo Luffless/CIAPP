@@ -212,6 +212,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(406, 316);
             this.Controls.Add(this.Entidade);
             this.Controls.Add(this.LabelEntidade);
@@ -234,7 +235,7 @@
             this.MinimizeBox = false;
             this.Name = "UsuarioForm";
             this.Text = "Usuário";
-            this.Load += new System.EventHandler(this.ManutencaoUsuario_Load);
+            this.Load += new System.EventHandler(this.UsuarioForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
