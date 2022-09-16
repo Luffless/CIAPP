@@ -5,7 +5,7 @@ namespace CIAPP
 {
     public partial class UsuarioForm : Form
     {
-        private readonly ValidationUsuario validacao = new ValidationUsuario();
+        private readonly ValidationUsuario validacaoUsuario = new ValidationUsuario();
         private readonly string manutencao;
 
         public UsuarioForm(string man)
@@ -14,7 +14,7 @@ namespace CIAPP
             manutencao = man;
         }
 
-        private void ManutencaoUsuario_Load(object sender, EventArgs e)
+        private void UsuarioForm_Load(object sender, EventArgs e)
         {
             //Fazer SQL para carregar as entidades no combobox Entidade (que não possuem nenhum usuário atribuído) na tela
 
@@ -49,31 +49,31 @@ namespace CIAPP
 
         private void Salvar_Click(object sender, EventArgs e)
         {
-            if (!validacao.NomeEntrada(Nome.Text))
+            if (!validacaoUsuario.NomeEntrada(Nome.Text))
             {
                 Nome.Focus();
                 return;
             }
 
-            if (!validacao.LoginEntrada(Login.Text))
+            if (!validacaoUsuario.LoginEntrada(Login.Text))
             {
                 Login.Focus();
                 return;
             }
 
-            if (!validacao.SenhaEntrada(Senha.Text))
+            if (!validacaoUsuario.SenhaEntrada(Senha.Text))
             {
                 Senha.Focus();
                 return;
             }
 
-            if (!validacao.EmailEntrada(Email.Text))
+            if (!validacaoUsuario.EmailEntrada(Email.Text))
             {
                 Email.Focus();
                 return;
             }
 
-            if (!validacao.EntidadeEntrada(Tipo.Text, Entidade.Text))
+            if (!validacaoUsuario.EntidadeEntrada(Tipo.Text, Entidade.Text))
             {
                 Entidade.Focus();
                 return;

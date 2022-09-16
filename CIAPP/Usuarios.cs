@@ -34,7 +34,7 @@ namespace CIAPP
         private void AdicionaColunas()
         {
             listView.Font = new Font(listView.Font, FontStyle.Bold);
-            listView.Columns.Add("Id", 40);
+            listView.Columns.Add("ID", 40);
             listView.Columns.Add("Nome", 200);
             listView.Columns.Add("Login", 200);
             listView.Columns.Add("Tipo", 80);
@@ -113,7 +113,7 @@ namespace CIAPP
                 //SQL de exclusão de registro
                 //Se o tipo de usuário for 'Entidade' fazer exclusão no banco SQLite da entidade do usuário também
                 CarregarRegistros();
-            } 
+            }
         }
 
         private void Detalhes_Click(object sender, EventArgs e)

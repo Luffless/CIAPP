@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using System.Text.RegularExpressions;
+using System.Windows.Forms;
 
 public class ValidationUsuario
 {
@@ -42,6 +43,14 @@ public class ValidationUsuario
         if (string.IsNullOrWhiteSpace(email))
         {
             MessageBox.Show("Informe o e-mail!", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            return false;
+        }
+
+        Regex reg = new Regex(@"^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,6}$", RegexOptions.IgnoreCase);
+
+        if (!reg.IsMatch(email))
+        {
+            MessageBox.Show("E-mail inválido!", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             return false;
         }
 
