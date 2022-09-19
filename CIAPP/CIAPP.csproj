@@ -112,6 +112,9 @@
     </Compile>
     <Compile Include="Model\Atividade.cs" />
     <Compile Include="Model\Crime.cs" />
+    <Compile Include="Model\Doenca.cs" />
+    <Compile Include="Model\Habilidade.cs" />
+    <Compile Include="Model\Parentesco.cs" />
     <Compile Include="Model\Prestador.cs" />
     <Compile Include="Model\ProcessoJudicial.cs" />
     <Compile Include="UsuarioForm.cs">
@@ -192,9 +195,7 @@
   <ItemGroup>
     <Content Include="Assets\im_ciapp.png" />
     <Content Include="Assets\im_alterar_registro.png" />
-    <Content Include="Assets\im_cancelar.png" />
-    <Content Include="Assets\im_confirmar.png" />
-    <Content Include="Assets\im_encerra.png" />
+    <Content Include="Assets\im_detalhes.png" />
     <Content Include="Assets\im_entidade.png" />
     <Content Include="Assets\im_excluir_registro.png" />
     <Content Include="Assets\im_icon.ico" />
@@ -203,8 +204,6 @@
     <Content Include="Assets\im_logo.png" />
     <Content Include="Assets\im_pesquisar.png" />
     <Content Include="Assets\im_prestadores.png" />
-    <Content Include="Assets\im_sair.png" />
-    <Content Include="Assets\im_voltar.png" />
     <Content Include="Assets\im_sanduiche.png" />
     <Content Include="Assets\im_police.png" />
     <Content Include="Assets\im_usuarios.png" />

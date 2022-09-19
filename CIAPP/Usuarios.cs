@@ -26,7 +26,6 @@ namespace CIAPP
 
         private void Usuarios_Load(object sender, EventArgs e)
         {
-            TipoFiltro.SelectedItem = TipoFiltro.Items[0];
             AdicionaColunas();
             CarregarRegistros();
         }
@@ -35,17 +34,16 @@ namespace CIAPP
         {
             ListView.Font = new Font(ListView.Font, FontStyle.Bold);
             ListView.Columns.Add("ID", 30);
-            ListView.Columns.Add("Nome", 210);
-            ListView.Columns.Add("Login", 200);
-            ListView.Columns.Add("Tipo", 80);
-            ListView.Columns.Add("E-mail", 300);
+            ListView.Columns.Add("Nome", 250);
+            ListView.Columns.Add("E-mail", 340);
+            ListView.Columns.Add("Login", 200);     
         }
 
         private void CarregarRegistros()
         {
             ListView.Items.Clear();
 
-            List<Usuario> itemList = (List<Usuario>)usuarioDAO.RecuperarTodos();
+            List<Usuario> itemList = (List<Usuario>)usuarioDAO.RecuperarTodosFiltrado(NomeFiltro.Text, EmailFiltro.Text);
 
             for (int i = 0; i < itemList.Count; i++)
             {
@@ -54,11 +52,15 @@ namespace CIAPP
                     Font = new Font(ListView.Font, FontStyle.Regular)
                 };
                 listItem.SubItems.Add(new ListViewItem.ListViewSubItem(listItem, itemList[i].Nome));
-                listItem.SubItems.Add(new ListViewItem.ListViewSubItem(listItem, itemList[i].Login));
-                listItem.SubItems.Add(new ListViewItem.ListViewSubItem(listItem, itemList[i].Tipo));
                 listItem.SubItems.Add(new ListViewItem.ListViewSubItem(listItem, itemList[i].Email));
+                listItem.SubItems.Add(new ListViewItem.ListViewSubItem(listItem, itemList[i].Login));
                 ListView.Items.Add(listItem);
             }
+        }
+
+        private void Pesquisar_Click(object sender, EventArgs e)
+        {
+            CarregarRegistros();
         }
 
         private void Novo_Click(object sender, EventArgs e)
@@ -89,11 +91,6 @@ namespace CIAPP
             }
 
             ListViewItem item = ListView.SelectedItems[0];
-            if (item.SubItems[3].Text == "Entidade")
-            {
-                //Verificar se o usuário com o tipo 'Entidade' já possui algum Processo Judicial vinculado em sua entidade
-                //(será implementado futuramente)
-            }
 
             if (MessageBox.Show("Confirma excluir este registro?", "Selecione a opção", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {

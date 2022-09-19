@@ -3,6 +3,7 @@ using Npgsql;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Xml.Linq;
 
 public class EntidadeDAO
 {
@@ -16,18 +17,18 @@ public class EntidadeDAO
 
             if (entidade.DataDescredenciamento.Date == Convert.ToDateTime("01/01/0001").Date)
             {
-                sql = @"insert into entidade (id, razaoSocial, telefone, email, dataCredenciamento, observacao,
+                sql = @"insert into entidade (id, razaosocial, telefone, email, datacredenciamento, observacao,
                                               rua, numero, complemento, bairro, municipio, cep, estado) values 
-                                             (@id, @razaoSocial, @telefone, @email, @dataCredenciamento, @observacao,
+                                             (@id, @razaosocial, @telefone, @email, @datacredenciamento, @observacao,
                                               @rua, @numero, @complemento, @bairro, @municipio, @cep, @estado)";
 
                 connection.Query(sql, param: new
                 {
                     id = entidade.Id,
-                    razaoSocial = entidade.RazaoSocial,
+                    razaosocial = entidade.RazaoSocial,
                     telefone = entidade.Telefone,
                     email = entidade.Email,
-                    dataCredenciamento = entidade.DataCredenciamento,
+                    datacredenciamento = entidade.DataCredenciamento,
                     observacao = entidade.Observacao,
                     rua = entidade.Endereco.Rua,
                     numero = entidade.Endereco.Numero,
@@ -40,19 +41,19 @@ public class EntidadeDAO
             }
             else
             {
-                sql = @"insert into entidade (id, razaoSocial, telefone, email, dataCredenciamento, dataDescredenciamento, observacao,
+                sql = @"insert into entidade (id, razaosocial, telefone, email, datacredenciamento, datadescredenciamento, observacao,
                                               rua, numero, complemento, bairro, municipio, cep, estado) values 
-                                             (@id, @razaoSocial, @telefone, @email, @dataCredenciamento, @dataDescredenciamento, @observacao,
+                                             (@id, @razaosocial, @telefone, @email, @datacredenciamento, @datadescredenciamento, @observacao,
                                               @rua, @numero, @complemento, @bairro, @municipio, @cep, @estado)";
 
                 connection.Query(sql, param: new
                 {
                     id = entidade.Id,
-                    razaoSocial = entidade.RazaoSocial,
+                    razaosocial = entidade.RazaoSocial,
                     telefone = entidade.Telefone,
                     email = entidade.Email,
-                    dataCredenciamento = entidade.DataCredenciamento,
-                    dataDescredenciamento = entidade.DataDescredenciamento,
+                    datacredenciamento = entidade.DataCredenciamento,
+                    datadescredenciamento = entidade.DataDescredenciamento,
                     observacao = entidade.Observacao,
                     rua = entidade.Endereco.Rua,
                     numero = entidade.Endereco.Numero,
@@ -77,11 +78,11 @@ public class EntidadeDAO
             if (entidade.DataDescredenciamento.Date == Convert.ToDateTime("01/01/0001").Date)
             {
                 sql = @"update entidade
-                           set razaoSocial = @razaoSocial,
+                           set razaosocial = @razaosocial,
                                telefone = @telefone,
                                email = @email,
-                               dataCredenciamento = @dataCredenciamento,
-                               dataDescredenciamento = null,
+                               datacredenciamento = @datacredenciamento,
+                               datadescredenciamento = null,
                                observacao = @observacao,
                                rua = @rua,
                                numero = @numero,
@@ -94,10 +95,10 @@ public class EntidadeDAO
 
                 connection.Query(sql, param: new
                 {
-                    razaoSocial = entidade.RazaoSocial,
+                    razaosocial = entidade.RazaoSocial,
                     telefone = entidade.Telefone,
                     email = entidade.Email,
-                    dataCredenciamento = entidade.DataCredenciamento,
+                    datacredenciamento = entidade.DataCredenciamento,
                     observacao = entidade.Observacao,
                     rua = entidade.Endereco.Rua,
                     numero = entidade.Endereco.Numero,
@@ -112,11 +113,11 @@ public class EntidadeDAO
             else
             {
                 sql = @"update entidade
-                           set razaoSocial = @razaoSocial,
+                           set razaosocial = @razaoSocial,
                                telefone = @telefone,
                                email = @email,
-                               dataCredenciamento = @dataCredenciamento,
-                               dataDescredenciamento = @dataDescredenciamento,
+                               datacredenciamento = @dataCredenciamento,
+                               datadescredenciamento = @dataDescredenciamento,
                                observacao = @observacao,
                                rua = @rua,
                                numero = @numero,
@@ -129,11 +130,11 @@ public class EntidadeDAO
 
                 connection.Query(sql, param: new
                 {
-                    razaoSocial = entidade.RazaoSocial,
+                    razaosocial = entidade.RazaoSocial,
                     telefone = entidade.Telefone,
                     email = entidade.Email,
-                    dataCredenciamento = entidade.DataCredenciamento,
-                    dataDescredenciamento = entidade.DataDescredenciamento,
+                    datacredenciamento = entidade.DataCredenciamento,
+                    datadescredenciamento = entidade.DataDescredenciamento,
                     observacao = entidade.Observacao,
                     rua = entidade.Endereco.Rua,
                     numero = entidade.Endereco.Numero,
@@ -174,13 +175,25 @@ public class EntidadeDAO
         }
     }
 
-    public IEnumerable<Entidade> RecuperarTodos()
+    public IEnumerable<Entidade> RecuperarTodosFiltrado(string razaoSocial, string dataCredenciamento)
     {
         using (NpgsqlConnection connection = new NpgsqlConnection(StringConexao.stringConexao))
         {
             string sql = @"select *
                              from entidade
-                            order by id";
+                            where 1 = 1";
+
+            if (!string.IsNullOrWhiteSpace(razaoSocial))
+            {
+                sql += " and upper(razaosocial) like upper(CONCAT('%', @razaosocial, '%'))";
+            }
+
+            if (!string.IsNullOrWhiteSpace(dataCredenciamento))
+            {
+                sql += " and datacredenciamento = date(@datacredenciamento)";
+            }
+
+            sql += " order by id";
 
             return connection.Query<Entidade, Endereco, Entidade>(sql,
                    (entidade, endereco) =>
@@ -188,7 +201,12 @@ public class EntidadeDAO
                        entidade.Endereco = endereco;
                        return entidade;
                    },
-                   splitOn: "Rua");
+                   splitOn: "Rua",
+                   param: new 
+                   {
+                       razaosocial = razaoSocial,
+                       datacredenciamento = dataCredenciamento
+                   });
         }
     }
 

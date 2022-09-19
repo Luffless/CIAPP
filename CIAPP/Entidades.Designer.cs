@@ -41,6 +41,7 @@
             this.BtnFechar = new System.Windows.Forms.Label();
             this.Detalhes = new System.Windows.Forms.Button();
             this.ListView = new System.Windows.Forms.ListView();
+            this.Pesquisar = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -216,12 +217,30 @@
             this.ListView.View = System.Windows.Forms.View.Details;
             this.ListView.DoubleClick += new System.EventHandler(this.DoubleClick_Click);
             // 
+            // Pesquisar
+            // 
+            this.Pesquisar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.Pesquisar.BackColor = System.Drawing.Color.MidnightBlue;
+            this.Pesquisar.FlatAppearance.BorderSize = 0;
+            this.Pesquisar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.Pesquisar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Pesquisar.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Pesquisar.ForeColor = System.Drawing.Color.White;
+            this.Pesquisar.Image = ((System.Drawing.Image)(resources.GetObject("Pesquisar.Image")));
+            this.Pesquisar.Location = new System.Drawing.Point(858, 46);
+            this.Pesquisar.Name = "Pesquisar";
+            this.Pesquisar.Size = new System.Drawing.Size(54, 54);
+            this.Pesquisar.TabIndex = 20;
+            this.Pesquisar.UseVisualStyleBackColor = false;
+            this.Pesquisar.Click += new System.EventHandler(this.Pesquisar_Click);
+            // 
             // Entidades
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(1050, 600);
+            this.Controls.Add(this.Pesquisar);
             this.Controls.Add(this.ListView);
             this.Controls.Add(this.Detalhes);
             this.Controls.Add(this.BtnFechar);
@@ -255,5 +274,6 @@
         private System.Windows.Forms.Button Detalhes;
         private System.Windows.Forms.DateTimePicker DataCredenciamentoFiltro;
         private System.Windows.Forms.ListView ListView;
+        private System.Windows.Forms.Button Pesquisar;
     }
 }

@@ -47,7 +47,7 @@ namespace CIAPP
 
             Hide();
 
-            new MenuPrincipal().ShowDialog();
+            new MenuPrincipal(LoginEntrada.Text).ShowDialog();
         }
 
         private void OnKeyDown(object sender, KeyEventArgs e)

@@ -38,6 +38,7 @@
             this.BtnSlide = new System.Windows.Forms.PictureBox();
             this.Painel = new System.Windows.Forms.Panel();
             this.BarraTitulo = new System.Windows.Forms.Panel();
+            this.UsuarioLogado = new System.Windows.Forms.Label();
             this.MenuVertical.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -153,12 +154,23 @@
             // BarraTitulo
             // 
             this.BarraTitulo.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.BarraTitulo.Controls.Add(this.UsuarioLogado);
             this.BarraTitulo.Controls.Add(this.BtnSlide);
             this.BarraTitulo.Dock = System.Windows.Forms.DockStyle.Top;
             this.BarraTitulo.Location = new System.Drawing.Point(250, 0);
             this.BarraTitulo.Name = "BarraTitulo";
             this.BarraTitulo.Size = new System.Drawing.Size(1050, 50);
             this.BarraTitulo.TabIndex = 1;
+            // 
+            // UsuarioLogado
+            // 
+            this.UsuarioLogado.AutoSize = true;
+            this.UsuarioLogado.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.UsuarioLogado.Location = new System.Drawing.Point(47, 15);
+            this.UsuarioLogado.Name = "UsuarioLogado";
+            this.UsuarioLogado.Size = new System.Drawing.Size(125, 19);
+            this.UsuarioLogado.TabIndex = 1;
+            this.UsuarioLogado.Text = "UsuarioLogado";
             // 
             // MenuPrincipal
             // 
@@ -173,11 +185,13 @@
             this.Name = "MenuPrincipal";
             this.Text = "CIAPP";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Close);
+            this.Load += new System.EventHandler(this.MenuPrincipal_Load);
             this.MenuVertical.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.BtnSlide)).EndInit();
             this.BarraTitulo.ResumeLayout(false);
+            this.BarraTitulo.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -193,5 +207,6 @@
         public System.Windows.Forms.Button BtnUsuarios;
         public System.Windows.Forms.Button BtnPrestadores;
         public System.Windows.Forms.Button BtnEntidades;
+        private System.Windows.Forms.Label UsuarioLogado;
     }
 }

@@ -1,7 +1,6 @@
 ﻿using Dapper;
 using Npgsql;
 using System.Collections.Generic;
-using System.Linq;
 
 public class UsuarioDAO
 {
@@ -9,36 +8,16 @@ public class UsuarioDAO
     {
         using (NpgsqlConnection connection = new NpgsqlConnection(StringConexao.stringConexao))
         {
-            if (usuario.Tipo == "Fórum")
-            {
-                string sql = @"insert into usuario (id, nome, login, senha, email, tipo) values
-                                                   (@id, @nome, @login, @senha, @email, @tipo)";
+            string sql = "insert into usuario values (@id, @nome, @email, @login, @senha)";
 
-                connection.Query(sql, param: new
-                {
-                    id = usuario.Id,
-                    nome = usuario.Nome,
-                    login = usuario.Login,
-                    senha = usuario.Senha,
-                    email = usuario.Email,
-                    tipo = usuario.Tipo
-                });
-            }
-            else
+            connection.Query(sql, param: new
             {
-                string sql = @"insert into usuario (id, nome, login, senha, email, tipo, id_entidade) values
-                                                   (@id, @nome, @login, @senha, @email, @tipo, @id_entidade)";
-                connection.Query(sql, param: new
-                {
-                    id = usuario.Id,
-                    nome = usuario.Nome,
-                    login = usuario.Login,
-                    senha = usuario.Senha,
-                    email = usuario.Email,
-                    tipo = usuario.Tipo,
-                    id_entidade = usuario.Entidade.Id
-                });
-            }
+                id = usuario.Id,
+                nome = usuario.Nome,
+                email = usuario.Email,
+                login = usuario.Login,
+                senha = usuario.Senha
+            });
         }
     }
 
@@ -46,39 +25,39 @@ public class UsuarioDAO
     {
         using (NpgsqlConnection connection = new NpgsqlConnection(StringConexao.stringConexao))
         {
-            string sql = @"update usuario
-                              set nome = @nome,
-                                  login = @login,";
-
-            if (!string.IsNullOrWhiteSpace(usuario.Senha))
-            {
-                sql += " senha = @senha,";
-            }
-
-            sql += @" email = @email,
-                       tipo = @tipo
-                      where id = @id";
+            string sql;
 
             if (string.IsNullOrWhiteSpace(usuario.Senha))
             {
+                sql = @"update usuario
+                           set nome = @nome,
+                               email = @email,
+                               login = @login
+                         where id = @id";
+
                 connection.Query(sql, param: new
                 {
                     nome = usuario.Nome,
-                    login = usuario.Login,
                     email = usuario.Email,
-                    tipo = usuario.Tipo,
+                    login = usuario.Login,
                     id = usuario.Id
                 });
             }
             else
             {
+                sql = @"update usuario
+                           set nome = @nome,
+                               email = @email,
+                               login = @login,
+                               senha = @senha
+                         where id = @id";
+
                 connection.Query(sql, param: new
                 {
                     nome = usuario.Nome,
+                    email = usuario.Email,
                     login = usuario.Login,
                     senha = usuario.Senha,
-                    email = usuario.Email,
-                    tipo = usuario.Tipo,
                     id = usuario.Id
                 });
             }
@@ -96,23 +75,31 @@ public class UsuarioDAO
         }
     }
 
-    public IEnumerable<Usuario> RecuperarTodos()
+    public IEnumerable<Usuario> RecuperarTodosFiltrado(string nomeUsuario, string emailUsuario)
     {
         using (NpgsqlConnection connection = new NpgsqlConnection(StringConexao.stringConexao))
         {
             string sql = @"select *
                              from usuario
-                             left join entidade 
-                               on usuario.id_entidade = entidade.id
-                            where usuario.id <> 0";
+                            where id <> 0";
 
-            return connection.Query<Usuario, Entidade, Usuario>(sql,
-                   (usuario, entidade) =>
+            if (!string.IsNullOrWhiteSpace(nomeUsuario))
+            {
+                sql += " and upper(nome) like upper(CONCAT('%', @nome, '%'))";
+            }
+
+            if (!string.IsNullOrWhiteSpace(emailUsuario))
+            {
+                sql += " and upper(email) like upper(CONCAT('%', @email, '%'))";
+            }
+
+            sql += " order by id";
+
+            return connection.Query<Usuario>(sql, param: new
                    {
-                       usuario.Entidade = entidade;
-                       return usuario;
-                   },
-                   splitOn: "id_entidade");
+                       nome = nomeUsuario,
+                       email = emailUsuario
+                   });
         }
     }
 
@@ -122,21 +109,21 @@ public class UsuarioDAO
         {
             string sql = @"select *
                              from usuario
-                             left join entidade 
-                               on usuario.id_entidade = entidade.id
-                            where usuario.id = @id";
+                            where id = @id";
 
-            return connection.Query<Usuario, Entidade, Usuario>(sql,
-                   (usuario, entidade) =>
-                   {
-                       usuario.Entidade = entidade;
-                       return usuario;
-                   },
-                   splitOn: "id_entidade",
-                   param: new
-                   {
-                       id = idUsuario
-                   }).Single();
+            return connection.QuerySingle<Usuario>(sql, param: new { id = idUsuario });
+        }
+    }
+
+    public string RecuperarPorLogin(string loginUsuario)
+    {
+        using (NpgsqlConnection connection = new NpgsqlConnection(StringConexao.stringConexao))
+        {
+            string sql = @"select nome
+                             from usuario
+                            where login = @login";
+
+            return connection.QuerySingle<string>(sql, param: new { login = loginUsuario });
         }
     }
 
@@ -147,8 +134,7 @@ public class UsuarioDAO
             string sql = @"select count(*)
                              from usuario
                             where login = @login
-                              and senha = @senha
-                              and tipo = 'Fórum'";
+                              and senha = @senha";
 
             return connection.QuerySingle<bool>(sql, param: new
                    {
@@ -200,35 +186,6 @@ public class UsuarioDAO
                              from usuario";
 
             return connection.QuerySingle<int>(sql);
-        }
-    }
-
-    public bool ExisteEntidadeUsuario(int idEntidade)
-    {
-        using (NpgsqlConnection connection = new NpgsqlConnection(StringConexao.stringConexao))
-        {
-            string sql = @"select count(*)
-                             from usuario
-                            where id_entidade = @id";
-
-            return connection.QuerySingle<bool>(sql, param: new { id = idEntidade });
-        }
-    }
-
-    public bool ExisteEntidadeUsuarioDiferente(int idUsuario, int idEntidade)
-    {
-        using (NpgsqlConnection connection = new NpgsqlConnection(StringConexao.stringConexao))
-        {
-            string sql = @"select count(*)
-                             from usuario
-                            where id <> @id
-                              and id_entidade = @id_entidade";
-
-            return connection.QuerySingle<bool>(sql, param: new
-                   {
-                       id = idUsuario,
-                       id_entidade = idEntidade
-                   });
         }
     }
 }

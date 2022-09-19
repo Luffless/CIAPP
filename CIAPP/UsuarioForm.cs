@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Text;
 using System.Windows.Forms;
@@ -21,48 +20,30 @@ namespace CIAPP
         private void UsuarioForm_Load(object sender, EventArgs e)
         {
             Usuario usuario;
-            List<Entidade> itemList = (List<Entidade>)new EntidadeDAO().RecuperarTodos();
-
-            for (int i = 0; i < itemList.Count; i++)
-            {
-                Entidade.Items.Add(itemList[i].RazaoSocial);
-            }
 
             switch (manutencao)
             {
                 case "Incluir":
                     Id.Text = usuarioDAO.RetornaProximoId().ToString();
-                    Tipo.Text = "Entidade";
                     break;
 
                 case "Editar":
                     usuario = usuarioDAO.RecuperarPorId(int.Parse(Id.Text));
                     Nome.Text = usuario.Nome;
-                    Login.Text = usuario.Login;
                     Email.Text = usuario.Email;
-                    Tipo.Text = usuario.Tipo;
-                    Entidade.Text = usuario.Entidade.RazaoSocial;
-
-                    Tipo.Enabled = false;
-                    Entidade.Enabled = false;
-                    MostraEscondeEntidade();
+                    Login.Text = usuario.Login;
                     break;
 
                 default:
                     usuario = usuarioDAO.RecuperarPorId(int.Parse(Id.Text));
                     Nome.Text = usuario.Nome;
-                    Login.Text = usuario.Login;
                     Email.Text = usuario.Email;
-                    Tipo.Text = usuario.Tipo;
-                    Entidade.Text = usuario.Entidade.RazaoSocial;
-
+                    Login.Text = usuario.Login;
+                    
                     Nome.Enabled = false;
-                    Login.Enabled = false;
-                    Senha.Enabled = false;
                     Email.Enabled = false;
-                    Tipo.Enabled = false;
-                    Entidade.Enabled = false;
-                    MostraEscondeEntidade();
+                    Login.Enabled = false;
+                    Senha.Enabled = false;                 
                     SenhaLabel.Visible = false;
                     Senha.Visible = false;
                     Salvar.Visible = false;
@@ -78,6 +59,12 @@ namespace CIAPP
                 return;
             }
 
+            if (!validacaoUsuario.EmailEntrada(int.Parse(Id.Text), Email.Text))
+            {
+                Email.Focus();
+                return;
+            }
+
             if (!validacaoUsuario.LoginEntrada(int.Parse(Id.Text), Login.Text))
             {
                 Login.Focus();
@@ -89,21 +76,6 @@ namespace CIAPP
                 if (!validacaoUsuario.SenhaEntrada(Senha.Text))
                 {
                     Senha.Focus();
-                    return;
-                }
-            }
-
-            if (!validacaoUsuario.EmailEntrada(int.Parse(Id.Text), Email.Text))
-            {
-                Email.Focus();
-                return;
-            }
-
-            if (Tipo.Text == "Entidade")
-            {
-                if (!validacaoUsuario.EntidadeEntrada(int.Parse(Id.Text), Entidade.SelectedIndex + 1, Entidade.Text))
-                {
-                    Entidade.Focus();
                     return;
                 }
             }
@@ -123,36 +95,21 @@ namespace CIAPP
                 }
             }
 
+            Usuario usuario = new Usuario
+            {
+                Id = int.Parse(Id.Text),
+                Nome = Nome.Text,
+                Email = Email.Text,
+                Login = Login.Text,
+                Senha = hashmd5.ToString()
+            };
+
             if (manutencao == "Incluir")
             {
-                Usuario usuario = new Usuario
-                {
-                    Id = int.Parse(Id.Text),
-                    Nome = Nome.Text,
-                    Login = Login.Text,
-                    Senha = hashmd5.ToString(),
-                    Email = Email.Text,
-                    Tipo = Tipo.Text,
-                    Entidade = new Entidade
-                    {
-                        Id = Entidade.SelectedIndex + 1
-                    }
-                };
-
                 usuarioDAO.Insert(usuario);
             }
             else
             {
-                Usuario usuario = new Usuario
-                {
-                    Id = int.Parse(Id.Text),
-                    Nome = Nome.Text,
-                    Login = Login.Text,
-                    Senha = hashmd5.ToString(),
-                    Email = Email.Text,
-                    Tipo = Tipo.Text
-                };
-
                 usuarioDAO.Update(usuario);
             }
 
@@ -174,25 +131,6 @@ namespace CIAPP
             {
                 SelectNextControl(ActiveControl, false, true, true, true);
                 e.Handled = true;
-            }
-        }
-
-        private void Tipo_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            MostraEscondeEntidade();
-        }
-
-        private void MostraEscondeEntidade()
-        {
-            if (Tipo.Text == "Entidade")
-            {
-                LabelEntidade.Visible = true;
-                Entidade.Visible = true;
-            }
-            else
-            {
-                LabelEntidade.Visible = false;
-                Entidade.Visible = false;
             }
         }
     }
