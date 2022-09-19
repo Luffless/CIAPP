@@ -7,7 +7,7 @@ namespace CIAPP
 {
     public partial class Usuarios : Form
     {
-        private readonly List<Usuario> itemList = new List<Usuario>();
+        private readonly UsuarioDAO usuarioDAO = new UsuarioDAO();
         private readonly MenuPrincipal formMenuPrincipal;
 
         public Usuarios(MenuPrincipal form)
@@ -44,22 +44,8 @@ namespace CIAPP
         private void CarregarRegistros()
         {
             ListView.Items.Clear();
-            itemList.Clear();
 
-            //SQL de busca de registros aqui, não buscar o usuário de código zero, pois é o usuário admin (primeiro usuário)
-            //For só pra teste
-            for (int j = 0; j < 50; j++)
-            {
-                Usuario usuario = new Usuario
-                {
-                    Id = j + 1,
-                    Nome = "Daniel",
-                    Login = "daniel",
-                    Tipo = "Fórum",
-                    Email = "daniel"
-                };
-                itemList.Add(usuario);
-            }
+            List<Usuario> itemList = (List<Usuario>)usuarioDAO.RecuperarTodos();
 
             for (int i = 0; i < itemList.Count; i++)
             {
@@ -106,11 +92,12 @@ namespace CIAPP
             if (item.SubItems[3].Text == "Entidade")
             {
                 //Verificar se o usuário com o tipo 'Entidade' já possui algum Processo Judicial vinculado em sua entidade
+                //(será implementado futuramente)
             }
 
             if (MessageBox.Show("Confirma excluir este registro?", "Selecione a opção", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                //SQL de exclusão de registro
+                usuarioDAO.Delete(int.Parse(item.SubItems[0].Text));
                 CarregarRegistros();
             }
         }

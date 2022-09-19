@@ -2,6 +2,8 @@
 
 public class ValidationLogin
 {
+    private readonly UsuarioDAO usuarioDAO = new UsuarioDAO();
+
     public bool LoginEntrada(string login)
     {
         if (string.IsNullOrWhiteSpace(login))
@@ -24,16 +26,13 @@ public class ValidationLogin
         return true;
     }
 
-    public bool UsuarioIsValid(string hashmd5)
+    public bool UsuarioIsValid(string login, string hashmd5)
     {
-        // Validação de que se o usuário existe no banco de dados
-        /*
-        if (hashmd5 != "QldDWlxEL6fWALFXL1uUvA==")
+        if (!usuarioDAO.ExisteUsuarioLogin(login, hashmd5))
         {
             MessageBox.Show("Não foi encontrado o usuário informado!", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             return false;
         }
-        */
 
         return true;
     }

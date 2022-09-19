@@ -3,6 +3,8 @@ using System.Windows.Forms;
 
 public class ValidationEntidade
 {
+    private readonly EntidadeDAO entidadeDAO = new EntidadeDAO();
+
     public bool RazaoSocialEntrada(string razaoSocial)
     {
         if (string.IsNullOrWhiteSpace(razaoSocial))
@@ -31,7 +33,7 @@ public class ValidationEntidade
         return true;
     }
 
-    public bool EmailEntrada(string email)
+    public bool EmailEntrada(int id, string email)
     {
         if (string.IsNullOrWhiteSpace(email))
         {
@@ -47,7 +49,33 @@ public class ValidationEntidade
             return false;
         }
 
-        //Verificar por SQL se o e-mail informado já existe no banco de dados
+        if (entidadeDAO.ExisteEmail(id, email))
+        {
+            MessageBox.Show("E-mail informado já existe!", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            return false;
+        }
+
+        return true;
+    }
+
+    public bool DataCredenciamentoEntrada(DateTimePicker dataCredenciamento)
+    {
+        if (dataCredenciamento.CustomFormat == " ")
+        {
+            MessageBox.Show("Informe a data de credenciamento!", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            return false;
+        }
+
+        return true;
+    }
+
+    public bool DataDescredenciamentoEntrada(DateTimePicker dataCredenciamento, DateTimePicker dataDescredenciamento)
+    {
+        if (dataDescredenciamento.CustomFormat == "dd/MM/yyyy" && dataDescredenciamento.Value < dataCredenciamento.Value)
+        {
+            MessageBox.Show("Data de descredenciamento não pode ser menor que a data de credenciamento!", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            return false;
+        }
 
         return true;
     }

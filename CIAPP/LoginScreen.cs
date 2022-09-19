@@ -28,11 +28,18 @@ namespace CIAPP
                 return;
             }
 
-            var bytes = new UTF8Encoding().GetBytes(LoginEntrada.Text + Senha.Text);
-            var hashbytes = MD5.Create().ComputeHash(bytes);
-            var convert = Convert.ToBase64String(hashbytes);
+            byte[] hash;
+            using (MD5 md5 = MD5.Create())
+            {
+                hash = md5.ComputeHash(Encoding.UTF8.GetBytes(LoginEntrada.Text + Senha.Text + "CIAPP"));
+            }
+            StringBuilder hashmd5 = new StringBuilder();
+            for (int i = 0; i < hash.Length; i++)
+            {
+                hashmd5.Append(hash[i].ToString("x2"));
+            }
 
-            if (!validacaoLogin.UsuarioIsValid(convert))
+            if (!validacaoLogin.UsuarioIsValid(LoginEntrada.Text, hashmd5.ToString()))
             {
                 LoginEntrada.Focus();
                 return;
@@ -40,7 +47,7 @@ namespace CIAPP
 
             Hide();
 
-            new MenuPrincipal(LoginEntrada.Text).ShowDialog();
+            new MenuPrincipal().ShowDialog();
         }
 
         private void OnKeyDown(object sender, KeyEventArgs e)
