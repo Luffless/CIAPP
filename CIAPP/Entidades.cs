@@ -7,7 +7,6 @@ namespace CIAPP
 {
     public partial class Entidades : Form
     {
-        private readonly UsuarioDAO usuarioDAO = new UsuarioDAO();
         private readonly EntidadeDAO entidadeDAO = new EntidadeDAO();
         private readonly MenuPrincipal formMenuPrincipal;
 
@@ -43,9 +42,20 @@ namespace CIAPP
 
         private void CarregarRegistros()
         {
+            string dataCredenciamento;
+
             ListView.Items.Clear();
 
-            List<Entidade> itemList = (List<Entidade>)entidadeDAO.RecuperarTodos();
+            if (DataCredenciamentoFiltro.CustomFormat == " ")
+            {
+                dataCredenciamento = null;
+            }
+            else
+            {
+                dataCredenciamento = DataCredenciamentoFiltro.Value.Date.ToString();
+            }
+
+            List<Entidade> itemList = (List<Entidade>)entidadeDAO.RecuperarTodosFiltrado(RazaoSocialFiltro.Text, dataCredenciamento);
 
             for (int i = 0; i < itemList.Count; i++)
             {
@@ -56,7 +66,7 @@ namespace CIAPP
                 listItem.SubItems.Add(new ListViewItem.ListViewSubItem(listItem, itemList[i].RazaoSocial));
                 listItem.SubItems.Add(new ListViewItem.ListViewSubItem(listItem, itemList[i].Telefone.ToString()));
                 listItem.SubItems.Add(new ListViewItem.ListViewSubItem(listItem, itemList[i].DataCredenciamento.ToString("dd/MM/yyyy")));
-                if (itemList[i].DataDescredenciamento != default)
+                if (itemList[i].DataDescredenciamento.Date != Convert.ToDateTime("01/01/0001").Date)
                 {
                     listItem.SubItems.Add(new ListViewItem.ListViewSubItem(listItem, itemList[i].DataDescredenciamento.ToString("dd/MM/yyyy")));
                 }
@@ -75,6 +85,11 @@ namespace CIAPP
             {
                 DataCredenciamentoFiltro.CustomFormat = " ";
             }
+        }
+
+        private void Pesquisar_Click(object sender, EventArgs e)
+        {
+            CarregarRegistros();
         }
 
         private void Novo_Click(object sender, EventArgs e)
@@ -105,12 +120,6 @@ namespace CIAPP
             }
 
             ListViewItem item = ListView.SelectedItems[0];
-
-            if (usuarioDAO.ExisteEntidadeUsuario(int.Parse(item.SubItems[0].Text)))
-            {
-                MessageBox.Show("Não é possível excluir esta entidade, pois a mesma pertence a um usuário cadastrado!", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
 
             //Verificar se a entidade já possui algum Processo Judicial vinculado
             //(será implementado futuramente)

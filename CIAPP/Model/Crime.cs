@@ -1,14 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CIAPP.Model
+﻿public class Crime
 {
-    public class Crime
-    {
-        public string codigoPenal { get; set; }
-        public string descricao { get; set; }
-    }
+    public string CodigoPenal { get; set; }
+    public string Descricao { get; set; }
 }

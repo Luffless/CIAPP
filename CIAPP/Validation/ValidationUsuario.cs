@@ -16,34 +16,6 @@ public class ValidationUsuario
         return true;
     }
 
-    public bool LoginEntrada(int id, string login)
-    {
-        if (string.IsNullOrWhiteSpace(login))
-        {
-            MessageBox.Show("Informe o login!", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            return false;
-        }
-
-        if (usuarioDAO.ExisteLogin(id, login))
-        {
-            MessageBox.Show("Login informado já existe!", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            return false;
-        }
-
-        return true;
-    }
-
-    public bool SenhaEntrada(string senha)
-    {
-        if (string.IsNullOrWhiteSpace(senha))
-        {
-            MessageBox.Show("Informe a senha!", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            return false;
-        }
-
-        return true;
-    }
-
     public bool EmailEntrada(int id, string email)
     {
         if (string.IsNullOrWhiteSpace(email))
@@ -69,17 +41,28 @@ public class ValidationUsuario
         return true;
     }
 
-    public bool EntidadeEntrada(int idUsuario, int idEntidade, string entidade)
+    public bool LoginEntrada(int id, string login)
     {
-        if (string.IsNullOrWhiteSpace(entidade))
+        if (string.IsNullOrWhiteSpace(login))
         {
-            MessageBox.Show("Informe a entidade!", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            MessageBox.Show("Informe o login!", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             return false;
         }
 
-        if (usuarioDAO.ExisteEntidadeUsuarioDiferente(idUsuario, idEntidade))
+        if (usuarioDAO.ExisteLogin(id, login))
         {
-            MessageBox.Show("Entidade escolhida já faz parte de outro usuário!", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            MessageBox.Show("Login informado já existe!", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            return false;
+        }
+
+        return true;
+    }
+
+    public bool SenhaEntrada(string senha)
+    {
+        if (string.IsNullOrWhiteSpace(senha))
+        {
+            MessageBox.Show("Informe a senha!", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             return false;
         }
 
