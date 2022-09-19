@@ -6,17 +6,9 @@ namespace CIAPP
 {
     public partial class MenuPrincipal : Form
     {
-        private readonly string loginLogado;
-
-        public MenuPrincipal(string login)
+        public MenuPrincipal()
         {
             InitializeComponent();
-            loginLogado = login;
-        }
-
-        private void MenuPrincipal_Load(object sender, EventArgs e)
-        {
-            //Carregar as informações do usuário logado a partir da variável 'loginLogado'
         }
 
         private void BtnSlide_Click(object sender, EventArgs e)

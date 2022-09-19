@@ -7,7 +7,8 @@ namespace CIAPP
 {
     public partial class Entidades : Form
     {
-        private readonly List<Entidade> itemList = new List<Entidade>();
+        private readonly UsuarioDAO usuarioDAO = new UsuarioDAO();
+        private readonly EntidadeDAO entidadeDAO = new EntidadeDAO();
         private readonly MenuPrincipal formMenuPrincipal;
 
         public Entidades(MenuPrincipal form)
@@ -43,22 +44,8 @@ namespace CIAPP
         private void CarregarRegistros()
         {
             ListView.Items.Clear();
-            itemList.Clear();
 
-            //SQL de busca de registros aqui
-            //For só pra teste
-            for (int j = 0; j < 5; j++)
-            {
-                Entidade entidade = new Entidade
-                {
-                    Id = j + 1,
-                    RazaoSocial = "Nome da Entidade",
-                    Telefone = 54999995555,
-                    DataCredenciamento = DateTime.Today,
-                    DataDescredenciamento = default
-                };
-                itemList.Add(entidade);
-            }
+            List<Entidade> itemList = (List<Entidade>)entidadeDAO.RecuperarTodos();
 
             for (int i = 0; i < itemList.Count; i++)
             {
@@ -117,11 +104,20 @@ namespace CIAPP
                 return;
             }
 
+            ListViewItem item = ListView.SelectedItems[0];
+
+            if (usuarioDAO.ExisteEntidadeUsuario(int.Parse(item.SubItems[0].Text)))
+            {
+                MessageBox.Show("Não é possível excluir esta entidade, pois a mesma pertence a um usuário cadastrado!", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             //Verificar se a entidade já possui algum Processo Judicial vinculado
+            //(será implementado futuramente)
 
             if (MessageBox.Show("Confirma excluir este registro?", "Selecione a opção", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                //SQL de exclusão de registro
+                entidadeDAO.Delete(int.Parse(item.SubItems[0].Text));
                 CarregarRegistros();
             }
         }

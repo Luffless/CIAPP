@@ -3,6 +3,8 @@ using System.Windows.Forms;
 
 public class ValidationUsuario
 {
+    private readonly UsuarioDAO usuarioDAO = new UsuarioDAO();
+
     public bool NomeEntrada(string nome)
     {
         if (string.IsNullOrWhiteSpace(nome))
@@ -14,7 +16,7 @@ public class ValidationUsuario
         return true;
     }
 
-    public bool LoginEntrada(string login)
+    public bool LoginEntrada(int id, string login)
     {
         if (string.IsNullOrWhiteSpace(login))
         {
@@ -22,7 +24,11 @@ public class ValidationUsuario
             return false;
         }
 
-        //Verificar por SQL se o login informado já existe no banco de dados
+        if (usuarioDAO.ExisteLogin(id, login))
+        {
+            MessageBox.Show("Login informado já existe!", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            return false;
+        }
 
         return true;
     }
@@ -38,7 +44,7 @@ public class ValidationUsuario
         return true;
     }
 
-    public bool EmailEntrada(string email)
+    public bool EmailEntrada(int id, string email)
     {
         if (string.IsNullOrWhiteSpace(email))
         {
@@ -54,20 +60,27 @@ public class ValidationUsuario
             return false;
         }
 
-        //Verificar por SQL se o e-mail informado já existe no banco de dados
+        if (usuarioDAO.ExisteEmail(id, email))
+        {
+            MessageBox.Show("E-mail informado já existe!", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            return false;
+        }
 
         return true;
     }
 
-    public bool EntidadeEntrada(string tipo, string entidade)
+    public bool EntidadeEntrada(int idUsuario, int idEntidade, string entidade)
     {
-        if (tipo == "Entidade")
+        if (string.IsNullOrWhiteSpace(entidade))
         {
-            if (string.IsNullOrWhiteSpace(entidade))
-            {
-                MessageBox.Show("Informe a entidade!", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
+            MessageBox.Show("Informe a entidade!", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            return false;
+        }
+
+        if (usuarioDAO.ExisteEntidadeUsuarioDiferente(idUsuario, idEntidade))
+        {
+            MessageBox.Show("Entidade escolhida já faz parte de outro usuário!", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            return false;
         }
 
         return true;

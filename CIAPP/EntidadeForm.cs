@@ -8,6 +8,7 @@ namespace CIAPP
     {
         private readonly ValidationEntidade validacaoEntidade = new ValidationEntidade();
         private readonly ValidationEndereco validacaoEndereco = new ValidationEndereco();
+        private readonly EntidadeDAO entidadeDAO = new EntidadeDAO();
         private readonly string manutencao;
 
         public EntidadeForm(string man)
@@ -18,18 +19,55 @@ namespace CIAPP
 
         private void EntidadeForm_Load(object sender, EventArgs e)
         {
+            Entidade entidade;
+
             switch (manutencao)
             {
                 case "Incluir":
-                    Id.Text = "1";  //Fazer SQL para verificar o número do próximo Id
+                    Id.Text = entidadeDAO.RetornaProximoId().ToString();
                     break;
 
                 case "Editar":
-                    //Fazer SQL a partir do Id preenchido, buscando todas as informações e colocando na tela
+                    entidade = entidadeDAO.RecuperarPorId(int.Parse(Id.Text));
+                    RazaoSocial.Text = entidade.RazaoSocial;
+                    Telefone.Text = entidade.Telefone.ToString();
+                    Email.Text = entidade.Email;
+                    DataCredenciamento.Text = entidade.DataCredenciamento.ToString();
+                    if (entidade.DataDescredenciamento.Date != Convert.ToDateTime("01/01/0001").Date)
+                    {
+                        DataDescredenciamento.Text = entidade.DataDescredenciamento.ToString();
+                    }
+                    Observacao.Text = entidade.Observacao;
+
+                    Rua.Text = entidade.Endereco.Rua;
+                    Numero.Text = entidade.Endereco.Numero.ToString();
+                    Complemento.Text = entidade.Endereco.Complemento;
+                    Bairro.Text = entidade.Endereco.Bairro;
+                    Municipio.Text = entidade.Endereco.Municipio;
+                    Cep.Text = entidade.Endereco.Cep;
+                    Estado.Text = entidade.Endereco.Estado;
                     break;
 
                 default:
-                    //Fazer SQL a partir do Id preenchido, buscando todas as informações e colocando na tela
+                    entidade = entidadeDAO.RecuperarPorId(int.Parse(Id.Text));
+                    RazaoSocial.Text = entidade.RazaoSocial;
+                    Telefone.Text = entidade.Telefone.ToString();
+                    Email.Text = entidade.Email;
+                    DataCredenciamento.Text = entidade.DataCredenciamento.ToString();
+                    if (entidade.DataDescredenciamento.Date != Convert.ToDateTime("01/01/0001").Date)
+                    {
+                        DataDescredenciamento.Text = entidade.DataDescredenciamento.ToString();
+                    }
+                    Observacao.Text = entidade.Observacao;
+
+                    Rua.Text = entidade.Endereco.Rua;
+                    Numero.Text = entidade.Endereco.Numero.ToString();
+                    Complemento.Text = entidade.Endereco.Complemento;
+                    Bairro.Text = entidade.Endereco.Bairro;
+                    Municipio.Text = entidade.Endereco.Municipio;
+                    Cep.Text = entidade.Endereco.Cep;
+                    Estado.Text = entidade.Endereco.Estado;
+
                     RazaoSocial.Enabled = false;
                     Telefone.Enabled = false;
                     Email.Enabled = false;
@@ -109,9 +147,21 @@ namespace CIAPP
                 return;
             }
 
-            if (!validacaoEntidade.EmailEntrada(Email.Text))
+            if (!validacaoEntidade.EmailEntrada(int.Parse(Id.Text), Email.Text))
             {
                 Email.Focus();
+                return;
+            }
+
+            if (!validacaoEntidade.DataCredenciamentoEntrada(DataCredenciamento))
+            {
+                DataCredenciamento.Focus();
+                return;
+            }
+
+            if (!validacaoEntidade.DataDescredenciamentoEntrada(DataCredenciamento, DataDescredenciamento))
+            {
+                DataDescredenciamento.Focus();
                 return;
             }
 
@@ -151,17 +201,61 @@ namespace CIAPP
                 return;
             }
 
-            //DataCredenciamento (datetime não permite nulo, ver o que fazer)
+            Entidade entidade;
 
-            //DataDescredenciamento (datetime não permite nulo, ver o que fazer)
-
-            if (manutencao == "Incluir")
+            if (DataDescredenciamento.CustomFormat == " ")
             {
-                //Persistência no banco de dados ao realizar inserção
+                entidade = new Entidade
+                {
+                    Id = int.Parse(Id.Text),
+                    RazaoSocial = RazaoSocial.Text,
+                    Telefone = long.Parse(Telefone.Text),
+                    Email = Email.Text,
+                    DataCredenciamento = DataCredenciamento.Value.Date,
+                    Observacao = Observacao.Text,
+                    Endereco = new Endereco
+                    {
+                        Rua = Rua.Text,
+                        Numero = int.Parse(Numero.Text),
+                        Complemento = Complemento.Text,
+                        Bairro = Bairro.Text,
+                        Municipio = Municipio.Text,
+                        Cep = Cep.Text,
+                        Estado = Estado.Text
+                    }
+                };
             }
             else
             {
-                //Persistência no banco de dados ao realizar edição
+                entidade = new Entidade
+                {
+                    Id = int.Parse(Id.Text),
+                    RazaoSocial = RazaoSocial.Text,
+                    Telefone = long.Parse(Telefone.Text),
+                    Email = Email.Text,
+                    DataCredenciamento = DataCredenciamento.Value.Date,
+                    DataDescredenciamento = DataDescredenciamento.Value.Date,
+                    Observacao = Observacao.Text,
+                    Endereco = new Endereco
+                    {
+                        Rua = Rua.Text,
+                        Numero = int.Parse(Numero.Text),
+                        Complemento = Complemento.Text,
+                        Bairro = Bairro.Text,
+                        Municipio = Municipio.Text,
+                        Cep = Cep.Text,
+                        Estado = Estado.Text
+                    }
+                };
+            }
+
+            if (manutencao == "Incluir")
+            {
+                entidadeDAO.Insert(entidade);
+            }
+            else
+            {
+                entidadeDAO.Update(entidade);
             }
 
             Close();

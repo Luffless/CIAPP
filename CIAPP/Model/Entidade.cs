@@ -10,18 +10,4 @@ public class Entidade
     public DateTime DataDescredenciamento { get; set; }
     public string Observacao { get; set; }
     public Endereco Endereco { get; set; }
-
-    public Entidade() { }
-
-    public Entidade(int id, string razaoSocial, int telefone, string email, DateTime dataCredenciamento, DateTime dataDescredenciamento, string observacao, Endereco endereco)
-    {
-        Id = id;
-        RazaoSocial = razaoSocial;
-        Telefone = telefone;
-        Email = email;
-        DataCredenciamento = dataCredenciamento;
-        DataDescredenciamento = dataDescredenciamento;
-        Observacao = observacao;
-        Endereco = endereco;
-    }
 }
