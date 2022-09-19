@@ -155,6 +155,7 @@
             // Cep
             // 
             this.Cep.Location = new System.Drawing.Point(727, 69);
+            this.Cep.MaxLength = 9;
             this.Cep.Name = "Cep";
             this.Cep.Size = new System.Drawing.Size(100, 26);
             this.Cep.TabIndex = 13;

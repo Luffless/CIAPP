@@ -3,7 +3,6 @@ using Npgsql;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Xml.Linq;
 
 public class EntidadeDAO
 {
@@ -41,10 +40,8 @@ public class EntidadeDAO
             }
             else
             {
-                sql = @"insert into entidade (id, razaosocial, telefone, email, datacredenciamento, datadescredenciamento, observacao,
-                                              rua, numero, complemento, bairro, municipio, cep, estado) values 
-                                             (@id, @razaosocial, @telefone, @email, @datacredenciamento, @datadescredenciamento, @observacao,
-                                              @rua, @numero, @complemento, @bairro, @municipio, @cep, @estado)";
+                sql = @"insert into entidade values (@id, @razaosocial, @telefone, @email, @datacredenciamento, @datadescredenciamento, @observacao,
+                                                     @rua, @numero, @complemento, @bairro, @municipio, @cep, @estado)";
 
                 connection.Query(sql, param: new
                 {
