@@ -5,6 +5,8 @@ VisualStudioVersion = 17.1.32210.238
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CIAPP", "CIAPP\CIAPP.csproj", "{881F0E0A-CC2E-494B-9912-9FE70CE0739D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CIAPPentidade", "CIAPPentidade\CIAPPentidade.csproj", "{A5795BE3-55A8-4A09-B3D6-0753F3A37271}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{881F0E0A-CC2E-494B-9912-9FE70CE0739D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{881F0E0A-CC2E-494B-9912-9FE70CE0739D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{881F0E0A-CC2E-494B-9912-9FE70CE0739D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A5795BE3-55A8-4A09-B3D6-0753F3A37271}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5795BE3-55A8-4A09-B3D6-0753F3A37271}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5795BE3-55A8-4A09-B3D6-0753F3A37271}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5795BE3-55A8-4A09-B3D6-0753F3A37271}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

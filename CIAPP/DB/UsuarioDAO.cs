@@ -10,7 +10,7 @@ public class UsuarioDAO
         {
             string sql = "insert into usuario values (@id, @nome, @email, @login, @senha)";
 
-            connection.Query(sql, param: new
+            connection.Execute(sql, param: new
             {
                 id = usuario.Id,
                 nome = usuario.Nome,
@@ -35,7 +35,7 @@ public class UsuarioDAO
                                login = @login
                          where id = @id";
 
-                connection.Query(sql, param: new
+                connection.Execute(sql, param: new
                 {
                     nome = usuario.Nome,
                     email = usuario.Email,
@@ -52,7 +52,7 @@ public class UsuarioDAO
                                senha = @senha
                          where id = @id";
 
-                connection.Query(sql, param: new
+                connection.Execute(sql, param: new
                 {
                     nome = usuario.Nome,
                     email = usuario.Email,
@@ -71,7 +71,7 @@ public class UsuarioDAO
             string sql = @"delete from usuario
                             where id = @id";
 
-            connection.Query(sql, param: new { id = idUsuario });
+            connection.Execute(sql, param: new { id = idUsuario });
         }
     }
 

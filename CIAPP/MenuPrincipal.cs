@@ -62,7 +62,7 @@ namespace CIAPP
             BtnUsuarios.BackColor = Color.FromArgb(45, 45, 48);
             BtnEntidades.BackColor = Color.FromArgb(25, 25, 112);
             BtnPrestadores.BackColor = Color.FromArgb(25, 25, 112);
-            AbrirFormInPainel(new Usuarios(this));
+            AbrirFormInPainel(new Usuarios(this, loginUsuarioLogado));
         }
 
         private void BtnEntidades_Click(object sender, EventArgs e)
@@ -71,6 +71,14 @@ namespace CIAPP
             BtnEntidades.BackColor = Color.FromArgb(45, 45, 48);
             BtnPrestadores.BackColor = Color.FromArgb(25, 25, 112);
             AbrirFormInPainel(new Entidades(this));
+        }
+
+        private void BtnPrestadores_Click(object sender, EventArgs e)
+        {
+            BtnUsuarios.BackColor = Color.FromArgb(25, 25, 112);
+            BtnEntidades.BackColor = Color.FromArgb(25, 25, 112);
+            BtnPrestadores.BackColor = Color.FromArgb(45, 45, 48);
+            AbrirFormInPainel(new Prestadores(this));
         }
     }
 }

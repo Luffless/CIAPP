@@ -24,12 +24,6 @@ public class ValidationEntidade
             return false;
         }
 
-        if (telefone.Length != 11)
-        {
-            MessageBox.Show("Telefone inválido!", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            return false;
-        }
-
         return true;
     }
 
