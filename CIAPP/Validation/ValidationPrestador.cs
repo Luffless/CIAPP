@@ -51,7 +51,7 @@ public class ValidationPrestador
     {
         if (foto == null)
         {
-            MessageBox.Show("Informe uma foto!", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            MessageBox.Show("Selecione uma foto!", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             return false;
         }
 
