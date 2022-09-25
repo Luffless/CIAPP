@@ -19,35 +19,28 @@ namespace CIAPP
 
         private void UsuarioForm_Load(object sender, EventArgs e)
         {
-            Usuario usuario;
-
-            switch (manutencao)
+            if (manutencao == "Incluir")
             {
-                case "Incluir":
-                    Id.Text = usuarioDAO.RetornaProximoId().ToString();
-                    break;
+                Id.Text = usuarioDAO.RetornaProximoId().ToString();
+            }
+            else
+            {
+                Usuario usuario = usuarioDAO.RecuperarPorId(int.Parse(Id.Text));
+                Nome.Text = usuario.Nome;
+                Email.Text = usuario.Email;
+                Login.Text = usuario.Login;
+            }
 
-                case "Editar":
-                    usuario = usuarioDAO.RecuperarPorId(int.Parse(Id.Text));
-                    Nome.Text = usuario.Nome;
-                    Email.Text = usuario.Email;
-                    Login.Text = usuario.Login;
-                    break;
+            if (manutencao == "Detalhes")
+            {
+                Nome.Enabled = false;
+                Email.Enabled = false;
+                Login.Enabled = false;
+                Senha.Enabled = false;
 
-                default:
-                    usuario = usuarioDAO.RecuperarPorId(int.Parse(Id.Text));
-                    Nome.Text = usuario.Nome;
-                    Email.Text = usuario.Email;
-                    Login.Text = usuario.Login;
-                    
-                    Nome.Enabled = false;
-                    Email.Enabled = false;
-                    Login.Enabled = false;
-                    Senha.Enabled = false;                 
-                    SenhaLabel.Visible = false;
-                    Senha.Visible = false;
-                    Salvar.Visible = false;
-                    break;
+                SenhaLabel.Visible = false;
+                Senha.Visible = false;
+                Salvar.Visible = false;
             }
         }
 

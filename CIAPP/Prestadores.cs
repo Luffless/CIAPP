@@ -5,17 +5,15 @@ using System.Windows.Forms;
 
 namespace CIAPP
 {
-    public partial class Usuarios : Form
+    public partial class Prestadores : Form
     {
-        private readonly string loginUsuarioLogado;
-        private readonly UsuarioDAO usuarioDAO = new UsuarioDAO();
+        private readonly PrestadorDAO prestadorDAO = new PrestadorDAO();
         private readonly MenuPrincipal formMenuPrincipal;
 
-        public Usuarios(MenuPrincipal form, string usuarioLogado)
+        public Prestadores(MenuPrincipal form)
         {
             InitializeComponent();
             formMenuPrincipal = form;
-            loginUsuarioLogado = usuarioLogado;
         }
 
         private void BtnFechar_Click(object sender, EventArgs e)
@@ -26,7 +24,7 @@ namespace CIAPP
             Close();
         }
 
-        private void Usuarios_Load(object sender, EventArgs e)
+        private void Prestadores_Load(object sender, EventArgs e)
         {
             AdicionaColunas();
             CarregarRegistros();
@@ -36,16 +34,28 @@ namespace CIAPP
         {
             ListView.Font = new Font(ListView.Font, FontStyle.Bold);
             ListView.Columns.Add("ID", 30);
-            ListView.Columns.Add("Nome", 250);
-            ListView.Columns.Add("E-mail", 340);
-            ListView.Columns.Add("Login", 200);     
+            ListView.Columns.Add("Nome", 330);
+            ListView.Columns.Add("Data Nascimento", 140);
+            ListView.Columns.Add("Naturalidade", 165);
+            ListView.Columns.Add("Profissão", 165);
         }
 
         private void CarregarRegistros()
         {
+            string dataNascimento;
+
             ListView.Items.Clear();
 
-            List<Usuario> itemList = (List<Usuario>)usuarioDAO.RecuperarTodosFiltrado(NomeFiltro.Text, EmailFiltro.Text);
+            if (DataNascimentoFiltro.CustomFormat == " ")
+            {
+                dataNascimento = null;
+            }
+            else
+            {
+                dataNascimento = DataNascimentoFiltro.Value.Date.ToString();
+            }
+
+            List<Prestador> itemList = (List<Prestador>)prestadorDAO.RecuperarTodosFiltrado(NomeFiltro.Text, dataNascimento);
 
             for (int i = 0; i < itemList.Count; i++)
             {
@@ -54,9 +64,23 @@ namespace CIAPP
                     Font = new Font(ListView.Font, FontStyle.Regular)
                 };
                 listItem.SubItems.Add(new ListViewItem.ListViewSubItem(listItem, itemList[i].Nome));
-                listItem.SubItems.Add(new ListViewItem.ListViewSubItem(listItem, itemList[i].Email));
-                listItem.SubItems.Add(new ListViewItem.ListViewSubItem(listItem, itemList[i].Login));
+                listItem.SubItems.Add(new ListViewItem.ListViewSubItem(listItem, itemList[i].DataNascimento.ToString("dd/MM/yyyy")));
+                listItem.SubItems.Add(new ListViewItem.ListViewSubItem(listItem, itemList[i].Naturalidade));
+                listItem.SubItems.Add(new ListViewItem.ListViewSubItem(listItem, itemList[i].Profissao));
                 ListView.Items.Add(listItem);
+            }
+        }
+
+        private void DataNascimentoFiltro_ValueChanged(object sender, EventArgs e)
+        {
+            DataNascimentoFiltro.CustomFormat = "dd/MM/yyyy";
+        }
+
+        private void DataNascimentoFiltro_KeyDown(object sender, KeyEventArgs e)
+        {
+            if ((e.KeyCode == Keys.Back) || (e.KeyCode == Keys.Delete))
+            {
+                DataNascimentoFiltro.CustomFormat = " ";
             }
         }
 
@@ -67,7 +91,7 @@ namespace CIAPP
 
         private void Novo_Click(object sender, EventArgs e)
         {
-            new UsuarioForm("Incluir").ShowDialog();
+            new PrestadorForm("Incluir").ShowDialog();
             CarregarRegistros();
         }
 
@@ -79,7 +103,7 @@ namespace CIAPP
             }
 
             ListViewItem item = ListView.SelectedItems[0];
-            UsuarioForm form = new UsuarioForm("Editar");
+            PrestadorForm form = new PrestadorForm("Editar");
             form.Id.Text = item.SubItems[0].Text;
             form.ShowDialog();
             CarregarRegistros();
@@ -94,15 +118,12 @@ namespace CIAPP
 
             ListViewItem item = ListView.SelectedItems[0];
 
+            //Verificar se o prestador já possui algum Processo Judicial vinculado
+            //(será implementado futuramente)
+
             if (MessageBox.Show("Confirma excluir este registro?", "Selecione a opção", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                usuarioDAO.Delete(int.Parse(item.SubItems[0].Text));
-
-                if (loginUsuarioLogado == item.SubItems[3].Text)
-                {
-                    Application.Exit();
-                }
-
+                prestadorDAO.Delete(int.Parse(item.SubItems[0].Text));
                 CarregarRegistros();
             }
         }
@@ -115,7 +136,7 @@ namespace CIAPP
             }
 
             ListViewItem item = ListView.SelectedItems[0];
-            UsuarioForm form = new UsuarioForm("Detalhes");
+            PrestadorForm form = new PrestadorForm("Detalhes");
             form.Id.Text = item.SubItems[0].Text;
             form.ShowDialog();
         }

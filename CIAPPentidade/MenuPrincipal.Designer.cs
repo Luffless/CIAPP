@@ -1,4 +1,4 @@
-﻿namespace CIAPP
+﻿namespace CIAPPentidade
 {
     partial class MenuPrincipal
     {
@@ -30,9 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MenuPrincipal));
             this.MenuVertical = new System.Windows.Forms.Panel();
-            this.BtnPrestadores = new System.Windows.Forms.Button();
-            this.BtnEntidades = new System.Windows.Forms.Button();
-            this.BtnUsuarios = new System.Windows.Forms.Button();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.BtnSlide = new System.Windows.Forms.PictureBox();
@@ -49,9 +46,6 @@
             // MenuVertical
             // 
             this.MenuVertical.BackColor = System.Drawing.Color.MidnightBlue;
-            this.MenuVertical.Controls.Add(this.BtnPrestadores);
-            this.MenuVertical.Controls.Add(this.BtnEntidades);
-            this.MenuVertical.Controls.Add(this.BtnUsuarios);
             this.MenuVertical.Controls.Add(this.pictureBox2);
             this.MenuVertical.Controls.Add(this.pictureBox1);
             this.MenuVertical.Dock = System.Windows.Forms.DockStyle.Left;
@@ -59,57 +53,6 @@
             this.MenuVertical.Name = "MenuVertical";
             this.MenuVertical.Size = new System.Drawing.Size(250, 650);
             this.MenuVertical.TabIndex = 0;
-            // 
-            // BtnPrestadores
-            // 
-            this.BtnPrestadores.FlatAppearance.BorderSize = 0;
-            this.BtnPrestadores.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            this.BtnPrestadores.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnPrestadores.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnPrestadores.ForeColor = System.Drawing.Color.White;
-            this.BtnPrestadores.Image = ((System.Drawing.Image)(resources.GetObject("BtnPrestadores.Image")));
-            this.BtnPrestadores.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnPrestadores.Location = new System.Drawing.Point(0, 194);
-            this.BtnPrestadores.Name = "BtnPrestadores";
-            this.BtnPrestadores.Size = new System.Drawing.Size(250, 40);
-            this.BtnPrestadores.TabIndex = 4;
-            this.BtnPrestadores.Text = "Prestadores";
-            this.BtnPrestadores.UseVisualStyleBackColor = true;
-            this.BtnPrestadores.Click += new System.EventHandler(this.BtnPrestadores_Click);
-            // 
-            // BtnEntidades
-            // 
-            this.BtnEntidades.FlatAppearance.BorderSize = 0;
-            this.BtnEntidades.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            this.BtnEntidades.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnEntidades.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnEntidades.ForeColor = System.Drawing.Color.White;
-            this.BtnEntidades.Image = ((System.Drawing.Image)(resources.GetObject("BtnEntidades.Image")));
-            this.BtnEntidades.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnEntidades.Location = new System.Drawing.Point(0, 148);
-            this.BtnEntidades.Name = "BtnEntidades";
-            this.BtnEntidades.Size = new System.Drawing.Size(250, 40);
-            this.BtnEntidades.TabIndex = 3;
-            this.BtnEntidades.Text = "Entidades";
-            this.BtnEntidades.UseVisualStyleBackColor = true;
-            this.BtnEntidades.Click += new System.EventHandler(this.BtnEntidades_Click);
-            // 
-            // BtnUsuarios
-            // 
-            this.BtnUsuarios.FlatAppearance.BorderSize = 0;
-            this.BtnUsuarios.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            this.BtnUsuarios.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnUsuarios.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnUsuarios.ForeColor = System.Drawing.Color.White;
-            this.BtnUsuarios.Image = ((System.Drawing.Image)(resources.GetObject("BtnUsuarios.Image")));
-            this.BtnUsuarios.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnUsuarios.Location = new System.Drawing.Point(0, 102);
-            this.BtnUsuarios.Name = "BtnUsuarios";
-            this.BtnUsuarios.Size = new System.Drawing.Size(250, 40);
-            this.BtnUsuarios.TabIndex = 2;
-            this.BtnUsuarios.Text = "Usuários";
-            this.BtnUsuarios.UseVisualStyleBackColor = true;
-            this.BtnUsuarios.Click += new System.EventHandler(this.BtnUsuarios_Click);
             // 
             // pictureBox2
             // 
@@ -205,9 +148,6 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Panel BarraTitulo;
-        public System.Windows.Forms.Button BtnUsuarios;
-        public System.Windows.Forms.Button BtnPrestadores;
-        public System.Windows.Forms.Button BtnEntidades;
         private System.Windows.Forms.Label UsuarioLogado;
     }
 }

@@ -19,70 +19,49 @@ namespace CIAPP
 
         private void EntidadeForm_Load(object sender, EventArgs e)
         {
-            Entidade entidade;
-
-            switch (manutencao)
+            if (manutencao == "Incluir")
             {
-                case "Incluir":
-                    Id.Text = entidadeDAO.RetornaProximoId().ToString();
-                    break;
+                Id.Text = entidadeDAO.RetornaProximoId().ToString();
+            }
+            else
+            {
+                Entidade entidade = entidadeDAO.RecuperarPorId(int.Parse(Id.Text));
+                RazaoSocial.Text = entidade.RazaoSocial;
+                Telefone.Text = entidade.Telefone.ToString();
+                Email.Text = entidade.Email;
+                DataCredenciamento.Text = entidade.DataCredenciamento.ToString();
+                if (entidade.DataDescredenciamento.Date != Convert.ToDateTime("01/01/0001").Date)
+                {
+                    DataDescredenciamento.Text = entidade.DataDescredenciamento.ToString();
+                }
+                Observacao.Text = entidade.Observacao;
 
-                case "Editar":
-                    entidade = entidadeDAO.RecuperarPorId(int.Parse(Id.Text));
-                    RazaoSocial.Text = entidade.RazaoSocial;
-                    Telefone.Text = entidade.Telefone.ToString();
-                    Email.Text = entidade.Email;
-                    DataCredenciamento.Text = entidade.DataCredenciamento.ToString();
-                    if (entidade.DataDescredenciamento.Date != Convert.ToDateTime("01/01/0001").Date)
-                    {
-                        DataDescredenciamento.Text = entidade.DataDescredenciamento.ToString();
-                    }
-                    Observacao.Text = entidade.Observacao;
+                Rua.Text = entidade.Endereco.Rua;
+                Numero.Text = entidade.Endereco.Numero.ToString();
+                Complemento.Text = entidade.Endereco.Complemento;
+                Bairro.Text = entidade.Endereco.Bairro;
+                Municipio.Text = entidade.Endereco.Municipio;
+                Cep.Text = entidade.Endereco.Cep;
+                Estado.Text = entidade.Endereco.Estado;
+            }
 
-                    Rua.Text = entidade.Endereco.Rua;
-                    Numero.Text = entidade.Endereco.Numero.ToString();
-                    Complemento.Text = entidade.Endereco.Complemento;
-                    Bairro.Text = entidade.Endereco.Bairro;
-                    Municipio.Text = entidade.Endereco.Municipio;
-                    Cep.Text = entidade.Endereco.Cep;
-                    Estado.Text = entidade.Endereco.Estado;
-                    break;
+            if (manutencao == "Detalhes")
+            {
+                RazaoSocial.Enabled = false;
+                Telefone.Enabled = false;
+                Email.Enabled = false;
+                DataCredenciamento.Enabled = false;
+                DataDescredenciamento.Enabled = false;
+                Observacao.Enabled = false;
+                Rua.Enabled = false;
+                Numero.Enabled = false;
+                Complemento.Enabled = false;
+                Bairro.Enabled = false;
+                Municipio.Enabled = false;
+                Cep.Enabled = false;
+                Estado.Enabled = false;
 
-                default:
-                    entidade = entidadeDAO.RecuperarPorId(int.Parse(Id.Text));
-                    RazaoSocial.Text = entidade.RazaoSocial;
-                    Telefone.Text = entidade.Telefone.ToString();
-                    Email.Text = entidade.Email;
-                    DataCredenciamento.Text = entidade.DataCredenciamento.ToString();
-                    if (entidade.DataDescredenciamento.Date != Convert.ToDateTime("01/01/0001").Date)
-                    {
-                        DataDescredenciamento.Text = entidade.DataDescredenciamento.ToString();
-                    }
-                    Observacao.Text = entidade.Observacao;
-
-                    Rua.Text = entidade.Endereco.Rua;
-                    Numero.Text = entidade.Endereco.Numero.ToString();
-                    Complemento.Text = entidade.Endereco.Complemento;
-                    Bairro.Text = entidade.Endereco.Bairro;
-                    Municipio.Text = entidade.Endereco.Municipio;
-                    Cep.Text = entidade.Endereco.Cep;
-                    Estado.Text = entidade.Endereco.Estado;
-
-                    RazaoSocial.Enabled = false;
-                    Telefone.Enabled = false;
-                    Email.Enabled = false;
-                    DataCredenciamento.Enabled = false;
-                    DataDescredenciamento.Enabled = false;
-                    Observacao.Enabled = false;
-                    Rua.Enabled = false;
-                    Numero.Enabled = false;
-                    Complemento.Enabled = false;
-                    Bairro.Enabled = false;
-                    Municipio.Enabled = false;
-                    Cep.Enabled = false;
-                    Estado.Enabled = false;
-                    Salvar.Visible = false;
-                    break;
+                Salvar.Visible = false;
             }
         }
 

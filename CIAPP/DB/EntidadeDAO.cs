@@ -8,11 +8,11 @@ public class EntidadeDAO
 {
     public void Insert(Entidade entidade)
     {
+        entidade = VerificaEspacosEmBranco(entidade);
+
         using (NpgsqlConnection connection = new NpgsqlConnection(StringConexao.stringConexao))
         {
             string sql;
-
-            entidade = VerificaEspacosEmBranco(entidade);
 
             if (entidade.DataDescredenciamento.Date == Convert.ToDateTime("01/01/0001").Date)
             {
@@ -21,7 +21,7 @@ public class EntidadeDAO
                                              (@id, @razaosocial, @telefone, @email, @datacredenciamento, @observacao,
                                               @rua, @numero, @complemento, @bairro, @municipio, @cep, @estado)";
 
-                connection.Query(sql, param: new
+                connection.Execute(sql, param: new
                 {
                     id = entidade.Id,
                     razaosocial = entidade.RazaoSocial,
@@ -43,7 +43,7 @@ public class EntidadeDAO
                 sql = @"insert into entidade values (@id, @razaosocial, @telefone, @email, @datacredenciamento, @datadescredenciamento, @observacao,
                                                      @rua, @numero, @complemento, @bairro, @municipio, @cep, @estado)";
 
-                connection.Query(sql, param: new
+                connection.Execute(sql, param: new
                 {
                     id = entidade.Id,
                     razaosocial = entidade.RazaoSocial,
@@ -66,11 +66,11 @@ public class EntidadeDAO
 
     public void Update(Entidade entidade)
     {
+        entidade = VerificaEspacosEmBranco(entidade);
+
         using (NpgsqlConnection connection = new NpgsqlConnection(StringConexao.stringConexao))
         {
             string sql;
-
-            entidade = VerificaEspacosEmBranco(entidade);
 
             if (entidade.DataDescredenciamento.Date == Convert.ToDateTime("01/01/0001").Date)
             {
@@ -90,7 +90,7 @@ public class EntidadeDAO
                                estado = @estado
                          where id = @id";
 
-                connection.Query(sql, param: new
+                connection.Execute(sql, param: new
                 {
                     razaosocial = entidade.RazaoSocial,
                     telefone = entidade.Telefone,
@@ -125,7 +125,7 @@ public class EntidadeDAO
                                estado = @estado
                          where id = @id";
 
-                connection.Query(sql, param: new
+                connection.Execute(sql, param: new
                 {
                     razaosocial = entidade.RazaoSocial,
                     telefone = entidade.Telefone,
@@ -146,6 +146,17 @@ public class EntidadeDAO
         }
     }
 
+    public void Delete(int idEntidade)
+    {
+        using (NpgsqlConnection connection = new NpgsqlConnection(StringConexao.stringConexao))
+        {
+            string sql = @"delete from entidade
+                            where id = @id";
+
+            connection.Execute(sql, param: new { id = idEntidade });
+        }
+    }
+
     private Entidade VerificaEspacosEmBranco(Entidade entidade)
     {
         if (string.IsNullOrWhiteSpace(entidade.Observacao))
@@ -159,17 +170,6 @@ public class EntidadeDAO
         }
 
         return entidade;
-    }
-
-    public void Delete(int idEntidade)
-    {
-        using (NpgsqlConnection connection = new NpgsqlConnection(StringConexao.stringConexao))
-        {
-            string sql = @"delete from entidade
-                            where id = @id";
-
-            connection.Query(sql, param: new { id = idEntidade });
-        }
     }
 
     public IEnumerable<Entidade> RecuperarTodosFiltrado(string razaoSocial, string dataCredenciamento)

@@ -3,15 +3,21 @@ using System.Text;
 using System.Windows.Forms;
 using System.Security.Cryptography;
 
-namespace CIAPP
+namespace CIAPPentidade
 {
     public partial class LoginScreen : Form
     {
+        private readonly CreateTables createTables = new CreateTables();
         private readonly ValidationLogin validacaoLogin = new ValidationLogin();
 
         public LoginScreen()
         {
             InitializeComponent();
+        }
+
+        private void LoginScreen_Load(object sender, EventArgs e)
+        {
+            createTables.CriaTabelas();
         }
 
         private void Entrar_Click(object sender, EventArgs e)
