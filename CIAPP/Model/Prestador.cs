@@ -9,9 +9,11 @@ public class Prestador
     public string Naturalidade { get; set; }
     public string EstadoCivil { get; set; }
     public byte[] Foto { get; set; }
-    public string Etnia { get; set; }
-    public string Profissao { get; set; }
     public long Telefone { get; set; }
+    public string Etnia { get; set; }
+    public string Sexo { get; set; }
+    public string Profissao { get; set; }
+    public decimal RendaFamiliar { get; set; }
     public string Religiao { get; set; }
     public string GrauInstrucao { get; set; }
     public bool RecebeBeneficio { get; set; }

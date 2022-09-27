@@ -36,7 +36,7 @@ namespace CIAPP
                 }
                 Observacao.Text = entidade.Observacao;
 
-                Rua.Text = entidade.Endereco.Rua;
+                Logradouro.Text = entidade.Endereco.Logradouro;
                 Numero.Text = entidade.Endereco.Numero.ToString();
                 Complemento.Text = entidade.Endereco.Complemento;
                 Bairro.Text = entidade.Endereco.Bairro;
@@ -53,7 +53,7 @@ namespace CIAPP
                 DataCredenciamento.Enabled = false;
                 DataDescredenciamento.Enabled = false;
                 Observacao.Enabled = false;
-                Rua.Enabled = false;
+                Logradouro.Enabled = false;
                 Numero.Enabled = false;
                 Complemento.Enabled = false;
                 Bairro.Enabled = false;
@@ -144,9 +144,9 @@ namespace CIAPP
                 return;
             }
 
-            if (!validacaoEndereco.RuaEntrada(Rua.Text))
+            if (!validacaoEndereco.LogradouroEntrada(Logradouro.Text))
             {
-                Rua.Focus();
+                Logradouro.Focus();
                 return;
             }
 
@@ -194,7 +194,7 @@ namespace CIAPP
                     Observacao = Observacao.Text,
                     Endereco = new Endereco
                     {
-                        Rua = Rua.Text,
+                        Logradouro = Logradouro.Text,
                         Numero = int.Parse(Numero.Text),
                         Complemento = Complemento.Text,
                         Bairro = Bairro.Text,
@@ -217,7 +217,7 @@ namespace CIAPP
                     Observacao = Observacao.Text,
                     Endereco = new Endereco
                     {
-                        Rua = Rua.Text,
+                        Logradouro = Logradouro.Text,
                         Numero = int.Parse(Numero.Text),
                         Complemento = Complemento.Text,
                         Bairro = Bairro.Text,

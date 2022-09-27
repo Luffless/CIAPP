@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
@@ -40,13 +41,16 @@ namespace CIAPP
                 Prestador prestador = prestadorDAO.RecuperarPorId(int.Parse(Id.Text));
                 Nome.Text = prestador.Nome;
                 DataNascimento.Text = prestador.DataNascimento.ToString();
+                Idade.Text = CalculaIdade();
                 Naturalidade.Text = prestador.Naturalidade;
                 EstadoCivil.Text = prestador.EstadoCivil;
                 Foto.Image = Image.FromStream(new MemoryStream(prestador.Foto));
                 bytes = prestador.Foto;
-                Etnia.Text = prestador.Etnia;
-                Profissao.Text = prestador.Profissao;
                 Telefone.Text = prestador.Telefone.ToString();
+                Etnia.Text = prestador.Etnia;
+                Sexo.Text = prestador.Sexo;
+                Profissao.Text = prestador.Profissao;
+                RendaFamiliar.Text = prestador.RendaFamiliar.ToString("0.00", CultureInfo.InvariantCulture);
                 Religiao.Text = prestador.Religiao;
                 GrauInstrucao.Text = prestador.GrauInstrucao;
                 RecebeBeneficio.Checked = prestador.RecebeBeneficio;
@@ -54,7 +58,7 @@ namespace CIAPP
                 UsaDrogas.Checked = prestador.UsaDrogas;
                 Observacao.Text = prestador.Observacao;
 
-                Rua.Text = prestador.Endereco.Rua;
+                Logradouro.Text = prestador.Endereco.Logradouro;
                 Numero.Text = prestador.Endereco.Numero.ToString();
                 Complemento.Text = prestador.Endereco.Complemento;
                 Bairro.Text = prestador.Endereco.Bairro;
@@ -106,16 +110,18 @@ namespace CIAPP
                 DataNascimento.Enabled = false;
                 Naturalidade.Enabled = false;
                 EstadoCivil.Enabled = false;
-                Etnia.Enabled = false;
-                Profissao.Enabled = false;
                 Telefone.Enabled = false;
+                Etnia.Enabled = false;
+                Sexo.Enabled = false;
+                Profissao.Enabled = false;
+                RendaFamiliar.Enabled = false;
                 Religiao.Enabled = false;
                 GrauInstrucao.Enabled = false;
                 RecebeBeneficio.Enabled = false;
                 UsaAlcool.Enabled = false;
                 UsaDrogas.Enabled = false;
                 Observacao.Enabled = false;
-                Rua.Enabled = false;
+                Logradouro.Enabled = false;
                 Numero.Enabled = false;
                 Complemento.Enabled = false;
                 Bairro.Enabled = false;
@@ -192,6 +198,7 @@ namespace CIAPP
         private void DataNascimento_ValueChanged(object sender, EventArgs e)
         {
             DataNascimento.CustomFormat = "dd/MM/yyyy";
+            Idade.Text = CalculaIdade();
         }
 
         private void DataNascimento_KeyDown(object sender, KeyEventArgs e)
@@ -199,6 +206,38 @@ namespace CIAPP
             if ((e.KeyCode == Keys.Back) || (e.KeyCode == Keys.Delete))
             {
                 DataNascimento.CustomFormat = " ";
+                Idade.Text = null;
+            }
+        }
+
+        private string CalculaIdade()
+        {
+            int idade = DateTime.Now.Year - DataNascimento.Value.Year;
+
+            if (DateTime.Now.Month < DataNascimento.Value.Month || (DateTime.Now.Month == DataNascimento.Value.Month && DateTime.Now.Day < DataNascimento.Value.Day))
+            {
+                idade--;
+            }
+
+            return idade.ToString();
+        }
+
+        private void RendaFamiliar_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // allows 0-9, backspace, and decimal
+            if (((e.KeyChar < 48 || e.KeyChar > 57) && e.KeyChar != 8 && e.KeyChar != 46))
+            {
+                e.Handled = true;
+                return;
+            }
+
+            // checks to make sure only 1 decimal is allowed
+            if (e.KeyChar == 46)
+            {
+                if ((sender as TextBox).Text.IndexOf(e.KeyChar) != -1)
+                {
+                    e.Handled = true;
+                }        
             }
         }
 
@@ -379,9 +418,21 @@ namespace CIAPP
                 return;
             }
 
+            if (!validacaoPrestador.TelefoneEntrada(Telefone.Text))
+            {
+                Telefone.Focus();
+                return;
+            }
+
             if (!validacaoPrestador.EtniaEntrada(Etnia.Text))
             {
                 Etnia.Focus();
+                return;
+            }
+
+            if (!validacaoPrestador.SexoEntrada(Sexo.Text))
+            {
+                Sexo.Focus();
                 return;
             }
 
@@ -391,9 +442,9 @@ namespace CIAPP
                 return;
             }
 
-            if (!validacaoPrestador.TelefoneEntrada(Telefone.Text))
+            if (!validacaoPrestador.RendaFamiliarEntrada(RendaFamiliar.Text))
             {
-                Telefone.Focus();
+                RendaFamiliar.Focus();
                 return;
             }
 
@@ -409,9 +460,9 @@ namespace CIAPP
                 return;
             }
 
-            if (!validacaoEndereco.RuaEntrada(Rua.Text))
+            if (!validacaoEndereco.LogradouroEntrada(Logradouro.Text))
             {
-                Rua.Focus();
+                Logradouro.Focus();
                 return;
             }
 
@@ -463,9 +514,11 @@ namespace CIAPP
                 Naturalidade = Naturalidade.Text,
                 EstadoCivil = EstadoCivil.Text,
                 Foto = bytes,
-                Etnia = Etnia.Text,
-                Profissao = Profissao.Text,
                 Telefone = long.Parse(Telefone.Text),
+                Etnia = Etnia.Text,
+                Sexo = Sexo.Text,
+                Profissao = Profissao.Text,
+                RendaFamiliar = Convert.ToDecimal(RendaFamiliar.Text, new CultureInfo("en-US")),
                 Religiao = Religiao.Text,
                 GrauInstrucao = GrauInstrucao.Text,
                 RecebeBeneficio = RecebeBeneficio.Checked,
@@ -474,7 +527,7 @@ namespace CIAPP
                 Observacao = Observacao.Text,
                 Endereco = new Endereco
                 {
-                    Rua = Rua.Text,
+                    Logradouro = Logradouro.Text,
                     Numero = int.Parse(Numero.Text),
                     Complemento = Complemento.Text,
                     Bairro = Bairro.Text,

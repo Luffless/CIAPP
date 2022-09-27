@@ -39,7 +39,7 @@
             this.Bairro = new System.Windows.Forms.TextBox();
             this.Complemento = new System.Windows.Forms.TextBox();
             this.Numero = new System.Windows.Forms.TextBox();
-            this.Rua = new System.Windows.Forms.TextBox();
+            this.Logradouro = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
@@ -99,7 +99,7 @@
             this.groupBox1.Controls.Add(this.Bairro);
             this.groupBox1.Controls.Add(this.Complemento);
             this.groupBox1.Controls.Add(this.Numero);
-            this.groupBox1.Controls.Add(this.Rua);
+            this.groupBox1.Controls.Add(this.Logradouro);
             this.groupBox1.Controls.Add(this.label14);
             this.groupBox1.Controls.Add(this.label13);
             this.groupBox1.Controls.Add(this.label12);
@@ -200,13 +200,13 @@
             this.Numero.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OnKeyDown);
             this.Numero.KeyUp += new System.Windows.Forms.KeyEventHandler(this.OnKeyUp);
             // 
-            // Rua
+            // Logradouro
             // 
-            this.Rua.Location = new System.Drawing.Point(131, 26);
-            this.Rua.Name = "Rua";
-            this.Rua.Size = new System.Drawing.Size(498, 26);
-            this.Rua.TabIndex = 8;
-            this.Rua.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OnKeyDown);
+            this.Logradouro.Location = new System.Drawing.Point(131, 26);
+            this.Logradouro.Name = "Logradouro";
+            this.Logradouro.Size = new System.Drawing.Size(498, 26);
+            this.Logradouro.TabIndex = 8;
+            this.Logradouro.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OnKeyDown);
             // 
             // label14
             // 
@@ -265,11 +265,11 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(83, 27);
+            this.label8.Location = new System.Drawing.Point(25, 28);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(41, 20);
+            this.label8.Size = new System.Drawing.Size(99, 20);
             this.label8.TabIndex = 0;
-            this.label8.Text = "Rua:";
+            this.label8.Text = "Logradouro:";
             // 
             // label3
             // 
@@ -464,7 +464,7 @@
         private System.Windows.Forms.TextBox Bairro;
         private System.Windows.Forms.TextBox Complemento;
         private System.Windows.Forms.TextBox Numero;
-        private System.Windows.Forms.TextBox Rua;
+        private System.Windows.Forms.TextBox Logradouro;
         private System.Windows.Forms.TextBox RazaoSocial;
         private System.Windows.Forms.TextBox Telefone;
         private System.Windows.Forms.TextBox Email;
