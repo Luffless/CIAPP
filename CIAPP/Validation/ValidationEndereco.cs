@@ -3,11 +3,11 @@ using System.Windows.Forms;
 
 public class ValidationEndereco
 {
-    public bool RuaEntrada(string rua)
+    public bool LogradouroEntrada(string rua)
     {
         if (string.IsNullOrWhiteSpace(rua))
         {
-            MessageBox.Show("Informe a rua!", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            MessageBox.Show("Informe o logradouro!", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             return false;
         }
 

@@ -16,11 +16,11 @@ public class PrestadorDAO
         {
             connection.Open();
 
-            using (var transaction = connection.BeginTransaction())
+            using (NpgsqlTransaction transaction = connection.BeginTransaction())
             {
-                sql = @"insert into prestador values (@id, @nome, @datanascimento, @naturalidade, @estadocivil, @foto, @etnia, @profissao, 
-                                                      @telefone, @religiao, @grauinstrucao, @recebebeneficio, @usaalcool, @usadrogas, @observacao,
-                                                      @rua, @numero, @complemento, @bairro, @municipio, @cep, @estado)";
+                sql = @"insert into prestador values (@id, @nome, @datanascimento, @naturalidade, @estadocivil, @foto, @telefone, @etnia, @sexo, @profissao, 
+                                                      @rendafamiliar, @religiao, @grauinstrucao, @recebebeneficio, @usaalcool, @usadrogas, @observacao,
+                                                      @logradouro, @numero, @complemento, @bairro, @municipio, @cep, @estado)";
 
                 connection.Execute(sql, param: new
                 {
@@ -30,16 +30,18 @@ public class PrestadorDAO
                     naturalidade = prestador.Naturalidade,
                     estadocivil = prestador.EstadoCivil,
                     foto = prestador.Foto,
-                    etnia = prestador.Etnia,
-                    profissao = prestador.Profissao,
                     telefone = prestador.Telefone,
+                    etnia = prestador.Etnia,
+                    sexo = prestador.Sexo,
+                    profissao = prestador.Profissao,
+                    rendafamiliar = prestador.RendaFamiliar,
                     religiao = prestador.Religiao,
                     grauinstrucao = prestador.GrauInstrucao,
                     recebebeneficio = prestador.RecebeBeneficio,
                     usaalcool = prestador.UsaAlcool,
                     usadrogas = prestador.UsaDrogas,
                     observacao = prestador.Observacao,
-                    rua = prestador.Endereco.Rua,
+                    logradouro = prestador.Endereco.Logradouro,
                     numero = prestador.Endereco.Numero,
                     complemento = prestador.Endereco.Complemento,
                     bairro = prestador.Endereco.Bairro,
@@ -109,24 +111,26 @@ public class PrestadorDAO
         {
             connection.Open();
 
-            using (var transaction = connection.BeginTransaction())
+            using (NpgsqlTransaction transaction = connection.BeginTransaction())
             {
                 sql = @"update prestador 
                            set nome = @nome, 
                                datanascimento = @datanascimento, 
                                naturalidade = @naturalidade, 
                                estadocivil = @estadocivil, 
-                               foto = @foto, 
+                               foto = @foto,
+                               telefone = @telefone,
                                etnia = @etnia, 
+                               sexo = @sexo,
                                profissao = @profissao, 
-                               telefone = @telefone, 
+                               rendafamiliar = @rendafamiliar,
                                religiao = @religiao, 
                                grauinstrucao = @grauinstrucao, 
                                recebebeneficio = @recebebeneficio, 
                                usaalcool = @usaalcool,
                                usadrogas = @usadrogas,
                                observacao = @observacao,
-                               rua = @rua, 
+                               logradouro = @logradouro, 
                                numero = @numero, 
                                complemento = @complemento, 
                                bairro = @bairro, 
@@ -142,16 +146,18 @@ public class PrestadorDAO
                     naturalidade = prestador.Naturalidade,
                     estadocivil = prestador.EstadoCivil,
                     foto = prestador.Foto,
-                    etnia = prestador.Etnia,
-                    profissao = prestador.Profissao,
                     telefone = prestador.Telefone,
+                    etnia = prestador.Etnia,
+                    sexo = prestador.Sexo,
+                    profissao = prestador.Profissao,
+                    rendafamiliar = prestador.RendaFamiliar,
                     religiao = prestador.Religiao,
                     grauinstrucao = prestador.GrauInstrucao,
                     recebebeneficio = prestador.RecebeBeneficio,
                     usaalcool = prestador.UsaAlcool,
                     usadrogas = prestador.UsaDrogas,
                     observacao = prestador.Observacao,
-                    rua = prestador.Endereco.Rua,
+                    logradouro = prestador.Endereco.Logradouro,
                     numero = prestador.Endereco.Numero,
                     complemento = prestador.Endereco.Complemento,
                     bairro = prestador.Endereco.Bairro,
@@ -239,7 +245,7 @@ public class PrestadorDAO
         {
             connection.Open();
 
-            using (var transaction = connection.BeginTransaction())
+            using (NpgsqlTransaction transaction = connection.BeginTransaction())
             {
                 sql = @"delete from parentesco
                          where id_prestador = @id_prestador";
@@ -312,7 +318,7 @@ public class PrestadorDAO
                        entidade.Endereco = endereco;
                        return entidade;
                    },
-                   splitOn: "Rua",
+                   splitOn: "Logradouro",
                    param: new
                    {
                        nome = nomePrestador,
@@ -342,7 +348,7 @@ public class PrestadorDAO
                             entidade.Endereco = endereco;
                             return entidade;
                         },
-                        splitOn: "Rua",
+                        splitOn: "Logradouro",
                         param: new
                         {
                             id = idPrestador
@@ -350,7 +356,8 @@ public class PrestadorDAO
 
             sql = @"select nome, grauparentesco
                       from parentesco
-                     where id_prestador = @id";
+                     where id_prestador = @id
+                     order by nome";
 
             parentescoList = (List<Parentesco>)connection.Query<Parentesco>(sql,
                              param: new
@@ -360,7 +367,8 @@ public class PrestadorDAO
 
             sql = @"select descricao
                       from habilidade
-                     where id_prestador = @id";
+                     where id_prestador = @id
+                     order by descricao";
 
             habilidadeList = (List<Habilidade>)connection.Query<Habilidade>(sql,
                              param: new
@@ -370,7 +378,8 @@ public class PrestadorDAO
 
             sql = @"select descricao
                       from deficiencia
-                     where id_prestador = @id";
+                     where id_prestador = @id
+                     order by descricao";
 
             deficienciaList = (List<Deficiencia>)connection.Query<Deficiencia>(sql,
                               param: new
@@ -380,7 +389,8 @@ public class PrestadorDAO
 
             sql = @"select descricao
                       from doenca
-                     where id_prestador = @id";
+                     where id_prestador = @id
+                     order by descricao";
 
             doencaList = (List<Doenca>)connection.Query<Doenca>(sql,
                          param: new

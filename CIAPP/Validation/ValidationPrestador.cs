@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 
 public class ValidationPrestador
@@ -19,6 +20,12 @@ public class ValidationPrestador
         if (dataNascimento.CustomFormat == " ")
         {
             MessageBox.Show("Informe a data de nascimento!", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            return false;
+        }
+
+        if (dataNascimento.Value > DateTime.Today.Date)
+        {
+            MessageBox.Show("Data de nascimento inválida!", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             return false;
         }
 
@@ -58,11 +65,33 @@ public class ValidationPrestador
         return true;
     }
 
+    public bool TelefoneEntrada(string telefone)
+    {
+        if (string.IsNullOrWhiteSpace(telefone))
+        {
+            MessageBox.Show("Informe o telefone!", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            return false;
+        }
+
+        return true;
+    }
+
     public bool EtniaEntrada(string etnia)
     {
         if (string.IsNullOrWhiteSpace(etnia))
         {
             MessageBox.Show("Informe a etnia!", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            return false;
+        }
+
+        return true;
+    }
+
+    public bool SexoEntrada(string sexo)
+    {
+        if (string.IsNullOrWhiteSpace(sexo))
+        {
+            MessageBox.Show("Informe o sexo!", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             return false;
         }
 
@@ -80,11 +109,11 @@ public class ValidationPrestador
         return true;
     }
 
-    public bool TelefoneEntrada(string telefone)
+    public bool RendaFamiliarEntrada(string rendaFamiliar)
     {
-        if (string.IsNullOrWhiteSpace(telefone))
+        if (string.IsNullOrWhiteSpace(rendaFamiliar))
         {
-            MessageBox.Show("Informe o telefone!", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            MessageBox.Show("Informe a renda familiar!", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             return false;
         }
 

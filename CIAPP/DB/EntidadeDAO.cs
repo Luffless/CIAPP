@@ -17,9 +17,9 @@ public class EntidadeDAO
             if (entidade.DataDescredenciamento.Date == Convert.ToDateTime("01/01/0001").Date)
             {
                 sql = @"insert into entidade (id, razaosocial, telefone, email, datacredenciamento, observacao,
-                                              rua, numero, complemento, bairro, municipio, cep, estado) values 
+                                              logradouro, numero, complemento, bairro, municipio, cep, estado) values 
                                              (@id, @razaosocial, @telefone, @email, @datacredenciamento, @observacao,
-                                              @rua, @numero, @complemento, @bairro, @municipio, @cep, @estado)";
+                                              @logradouro, @numero, @complemento, @bairro, @municipio, @cep, @estado)";
 
                 connection.Execute(sql, param: new
                 {
@@ -29,7 +29,7 @@ public class EntidadeDAO
                     email = entidade.Email,
                     datacredenciamento = entidade.DataCredenciamento,
                     observacao = entidade.Observacao,
-                    rua = entidade.Endereco.Rua,
+                    logradouro = entidade.Endereco.Logradouro,
                     numero = entidade.Endereco.Numero,
                     complemento = entidade.Endereco.Complemento,
                     bairro = entidade.Endereco.Bairro,
@@ -41,7 +41,7 @@ public class EntidadeDAO
             else
             {
                 sql = @"insert into entidade values (@id, @razaosocial, @telefone, @email, @datacredenciamento, @datadescredenciamento, @observacao,
-                                                     @rua, @numero, @complemento, @bairro, @municipio, @cep, @estado)";
+                                                     @logradouro, @numero, @complemento, @bairro, @municipio, @cep, @estado)";
 
                 connection.Execute(sql, param: new
                 {
@@ -52,7 +52,7 @@ public class EntidadeDAO
                     datacredenciamento = entidade.DataCredenciamento,
                     datadescredenciamento = entidade.DataDescredenciamento,
                     observacao = entidade.Observacao,
-                    rua = entidade.Endereco.Rua,
+                    logradouro = entidade.Endereco.Logradouro,
                     numero = entidade.Endereco.Numero,
                     complemento = entidade.Endereco.Complemento,
                     bairro = entidade.Endereco.Bairro,
@@ -81,7 +81,7 @@ public class EntidadeDAO
                                datacredenciamento = @datacredenciamento,
                                datadescredenciamento = null,
                                observacao = @observacao,
-                               rua = @rua,
+                               logradouro = @logradouro,
                                numero = @numero,
                                complemento = @complemento,
                                bairro = @bairro,
@@ -97,7 +97,7 @@ public class EntidadeDAO
                     email = entidade.Email,
                     datacredenciamento = entidade.DataCredenciamento,
                     observacao = entidade.Observacao,
-                    rua = entidade.Endereco.Rua,
+                    logradouro = entidade.Endereco.Logradouro,
                     numero = entidade.Endereco.Numero,
                     complemento = entidade.Endereco.Complemento,
                     bairro = entidade.Endereco.Bairro,
@@ -116,7 +116,7 @@ public class EntidadeDAO
                                datacredenciamento = @dataCredenciamento,
                                datadescredenciamento = @dataDescredenciamento,
                                observacao = @observacao,
-                               rua = @rua,
+                               logradouro = @logradouro,
                                numero = @numero,
                                complemento = @complemento,
                                bairro = @bairro,
@@ -133,7 +133,7 @@ public class EntidadeDAO
                     datacredenciamento = entidade.DataCredenciamento,
                     datadescredenciamento = entidade.DataDescredenciamento,
                     observacao = entidade.Observacao,
-                    rua = entidade.Endereco.Rua,
+                    logradouro = entidade.Endereco.Logradouro,
                     numero = entidade.Endereco.Numero,
                     complemento = entidade.Endereco.Complemento,
                     bairro = entidade.Endereco.Bairro,
@@ -198,7 +198,7 @@ public class EntidadeDAO
                        entidade.Endereco = endereco;
                        return entidade;
                    },
-                   splitOn: "Rua",
+                   splitOn: "Logradouro",
                    param: new 
                    {
                        razaosocial = razaoSocial,
@@ -221,7 +221,7 @@ public class EntidadeDAO
                        entidade.Endereco = endereco;
                        return entidade;
                    },
-                   splitOn: "Rua",
+                   splitOn: "Logradouro",
                    param: new 
                    { 
                        id = idEntidade
