@@ -62,6 +62,8 @@ namespace CIAPP
             BtnUsuarios.BackColor = Color.FromArgb(45, 45, 48);
             BtnEntidades.BackColor = Color.FromArgb(25, 25, 112);
             BtnPrestadores.BackColor = Color.FromArgb(25, 25, 112);
+            BtnProcessos.BackColor = Color.FromArgb(25, 25, 112);
+            BtnRelatorios.BackColor = Color.FromArgb(25, 25, 112);
             AbrirFormInPainel(new Usuarios(this, loginUsuarioLogado));
         }
 
@@ -70,6 +72,8 @@ namespace CIAPP
             BtnUsuarios.BackColor = Color.FromArgb(25, 25, 112);
             BtnEntidades.BackColor = Color.FromArgb(45, 45, 48);
             BtnPrestadores.BackColor = Color.FromArgb(25, 25, 112);
+            BtnProcessos.BackColor = Color.FromArgb(25, 25, 112);
+            BtnRelatorios.BackColor = Color.FromArgb(25, 25, 112);
             AbrirFormInPainel(new Entidades(this));
         }
 
@@ -78,7 +82,30 @@ namespace CIAPP
             BtnUsuarios.BackColor = Color.FromArgb(25, 25, 112);
             BtnEntidades.BackColor = Color.FromArgb(25, 25, 112);
             BtnPrestadores.BackColor = Color.FromArgb(45, 45, 48);
+            BtnProcessos.BackColor = Color.FromArgb(25, 25, 112);
+            BtnRelatorios.BackColor = Color.FromArgb(25, 25, 112);
             AbrirFormInPainel(new Prestadores(this));
+        }
+
+        private void BtnProcessos_Click(object sender, EventArgs e)
+        {
+            //BtnUsuarios.BackColor = Color.FromArgb(25, 25, 112);
+            //BtnEntidades.BackColor = Color.FromArgb(25, 25, 112);
+            //BtnPrestadores.BackColor = Color.FromArgb(25, 25, 112);
+            //BtnProcessos.BackColor = Color.FromArgb(45, 45, 48);
+            //BtnRelatorios.BackColor = Color.FromArgb(25, 25, 112);
+            //AbrirFormInPainel(new Processos(this));
+            MessageBox.Show("Esta funcionalidade ainda não está implementada!", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        }
+
+        private void BtnRelatorios_Click(object sender, EventArgs e)
+        {
+            BtnUsuarios.BackColor = Color.FromArgb(25, 25, 112);
+            BtnEntidades.BackColor = Color.FromArgb(25, 25, 112);
+            BtnPrestadores.BackColor = Color.FromArgb(25, 25, 112);
+            BtnProcessos.BackColor = Color.FromArgb(25, 25, 112);
+            BtnRelatorios.BackColor = Color.FromArgb(45, 45, 48);
+            AbrirFormInPainel(new Relatorios(this));
         }
     }
 }

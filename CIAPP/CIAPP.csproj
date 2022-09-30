@@ -133,6 +133,12 @@
     <Compile Include="PrestadorForm.Designer.cs">
       <DependentUpon>PrestadorForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Relatorios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Relatorios.Designer.cs">
+      <DependentUpon>Relatorios.cs</DependentUpon>
+    </Compile>
     <Compile Include="UsuarioForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -186,6 +192,9 @@
     <EmbeddedResource Include="PrestadorForm.resx">
       <DependentUpon>PrestadorForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Relatorios.resx">
+      <DependentUpon>Relatorios.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UsuarioForm.resx">
       <DependentUpon>UsuarioForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -223,16 +232,18 @@
     <Content Include="Assets\im_ciapp.png" />
     <Content Include="Assets\im_alterar_registro.png" />
     <Content Include="Assets\im_detalhes.png" />
-    <Content Include="Assets\im_entidade.png" />
+    <Content Include="Assets\im_entidades.png" />
     <Content Include="Assets\im_excluir_registro.png" />
     <Content Include="Assets\im_icon.ico" />
     <Content Include="Assets\im_incluir_registro.png" />
     <Content Include="Assets\im_login.png" />
     <Content Include="Assets\im_logo.png" />
     <Content Include="Assets\im_pesquisar.png" />
-    <Content Include="Assets\im_prestadores.png" />
+    <Content Include="Assets\im_processos.png" />
+    <Content Include="Assets\im_relatorios.png" />
     <Content Include="Assets\im_sanduiche.png" />
     <Content Include="Assets\im_police.png" />
+    <Content Include="Assets\im_prestadores.png" />
     <Content Include="Assets\im_usuarios.png" />
     <Content Include="Script.sql" />
   </ItemGroup>
