@@ -30,6 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MenuPrincipal));
             this.MenuVertical = new System.Windows.Forms.Panel();
+            this.BtnRelatorios = new System.Windows.Forms.Button();
+            this.BtnProcessos = new System.Windows.Forms.Button();
             this.BtnPrestadores = new System.Windows.Forms.Button();
             this.BtnEntidades = new System.Windows.Forms.Button();
             this.BtnUsuarios = new System.Windows.Forms.Button();
@@ -49,6 +51,8 @@
             // MenuVertical
             // 
             this.MenuVertical.BackColor = System.Drawing.Color.MidnightBlue;
+            this.MenuVertical.Controls.Add(this.BtnRelatorios);
+            this.MenuVertical.Controls.Add(this.BtnProcessos);
             this.MenuVertical.Controls.Add(this.BtnPrestadores);
             this.MenuVertical.Controls.Add(this.BtnEntidades);
             this.MenuVertical.Controls.Add(this.BtnUsuarios);
@@ -59,6 +63,40 @@
             this.MenuVertical.Name = "MenuVertical";
             this.MenuVertical.Size = new System.Drawing.Size(250, 650);
             this.MenuVertical.TabIndex = 0;
+            // 
+            // BtnRelatorios
+            // 
+            this.BtnRelatorios.FlatAppearance.BorderSize = 0;
+            this.BtnRelatorios.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.BtnRelatorios.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnRelatorios.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnRelatorios.ForeColor = System.Drawing.Color.White;
+            this.BtnRelatorios.Image = ((System.Drawing.Image)(resources.GetObject("BtnRelatorios.Image")));
+            this.BtnRelatorios.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BtnRelatorios.Location = new System.Drawing.Point(0, 286);
+            this.BtnRelatorios.Name = "BtnRelatorios";
+            this.BtnRelatorios.Size = new System.Drawing.Size(250, 40);
+            this.BtnRelatorios.TabIndex = 6;
+            this.BtnRelatorios.Text = "Relatórios";
+            this.BtnRelatorios.UseVisualStyleBackColor = true;
+            this.BtnRelatorios.Click += new System.EventHandler(this.BtnRelatorios_Click);
+            // 
+            // BtnProcessos
+            // 
+            this.BtnProcessos.FlatAppearance.BorderSize = 0;
+            this.BtnProcessos.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.BtnProcessos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnProcessos.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnProcessos.ForeColor = System.Drawing.Color.White;
+            this.BtnProcessos.Image = ((System.Drawing.Image)(resources.GetObject("BtnProcessos.Image")));
+            this.BtnProcessos.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BtnProcessos.Location = new System.Drawing.Point(0, 240);
+            this.BtnProcessos.Name = "BtnProcessos";
+            this.BtnProcessos.Size = new System.Drawing.Size(250, 40);
+            this.BtnProcessos.TabIndex = 5;
+            this.BtnProcessos.Text = "Processos";
+            this.BtnProcessos.UseVisualStyleBackColor = true;
+            this.BtnProcessos.Click += new System.EventHandler(this.BtnProcessos_Click);
             // 
             // BtnPrestadores
             // 
@@ -209,5 +247,7 @@
         public System.Windows.Forms.Button BtnPrestadores;
         public System.Windows.Forms.Button BtnEntidades;
         private System.Windows.Forms.Label UsuarioLogado;
+        public System.Windows.Forms.Button BtnProcessos;
+        public System.Windows.Forms.Button BtnRelatorios;
     }
 }

@@ -18,9 +18,7 @@ namespace CIAPP
 
         private void BtnFechar_Click(object sender, EventArgs e)
         {
-            formMenuPrincipal.BtnUsuarios.BackColor = Color.FromArgb(25, 25, 112);
             formMenuPrincipal.BtnEntidades.BackColor = Color.FromArgb(25, 25, 112);
-            formMenuPrincipal.BtnPrestadores.BackColor = Color.FromArgb(25, 25, 112);
             Close();
         }
 
