@@ -16,14 +16,15 @@ public class EntidadeDAO
 
             if (entidade.DataDescredenciamento.Date == Convert.ToDateTime("01/01/0001").Date)
             {
-                sql = @"insert into entidade (id, razaosocial, telefone, email, datacredenciamento, observacao,
+                sql = @"insert into entidade (id, cnpj, razaosocial, telefone, email, datacredenciamento, observacao,
                                               logradouro, numero, complemento, bairro, municipio, cep, estado) values 
-                                             (@id, @razaosocial, @telefone, @email, @datacredenciamento, @observacao,
+                                             (@id, @cnpj, @razaosocial, @telefone, @email, @datacredenciamento, @observacao,
                                               @logradouro, @numero, @complemento, @bairro, @municipio, @cep, @estado)";
 
                 connection.Execute(sql, param: new
                 {
                     id = entidade.Id,
+                    cnpj = entidade.Cnpj,
                     razaosocial = entidade.RazaoSocial,
                     telefone = entidade.Telefone,
                     email = entidade.Email,
@@ -40,12 +41,13 @@ public class EntidadeDAO
             }
             else
             {
-                sql = @"insert into entidade values (@id, @razaosocial, @telefone, @email, @datacredenciamento, @datadescredenciamento, @observacao,
+                sql = @"insert into entidade values (@id, @cnpj, @razaosocial, @telefone, @email, @datacredenciamento, @datadescredenciamento, @observacao,
                                                      @logradouro, @numero, @complemento, @bairro, @municipio, @cep, @estado)";
 
                 connection.Execute(sql, param: new
                 {
                     id = entidade.Id,
+                    cnpj = entidade.Cnpj,
                     razaosocial = entidade.RazaoSocial,
                     telefone = entidade.Telefone,
                     email = entidade.Email,
@@ -75,7 +77,8 @@ public class EntidadeDAO
             if (entidade.DataDescredenciamento.Date == Convert.ToDateTime("01/01/0001").Date)
             {
                 sql = @"update entidade
-                           set razaosocial = @razaosocial,
+                           set cnpj = @cnpj,
+                               razaosocial = @razaosocial,
                                telefone = @telefone,
                                email = @email,
                                datacredenciamento = @datacredenciamento,
@@ -92,6 +95,7 @@ public class EntidadeDAO
 
                 connection.Execute(sql, param: new
                 {
+                    cnpj = entidade.Cnpj,
                     razaosocial = entidade.RazaoSocial,
                     telefone = entidade.Telefone,
                     email = entidade.Email,
@@ -110,7 +114,8 @@ public class EntidadeDAO
             else
             {
                 sql = @"update entidade
-                           set razaosocial = @razaoSocial,
+                           set cnpj = @cnpj,
+                               razaosocial = @razaoSocial,
                                telefone = @telefone,
                                email = @email,
                                datacredenciamento = @dataCredenciamento,
@@ -127,6 +132,7 @@ public class EntidadeDAO
 
                 connection.Execute(sql, param: new
                 {
+                    cnpj = entidade.Cnpj,
                     razaosocial = entidade.RazaoSocial,
                     telefone = entidade.Telefone,
                     email = entidade.Email,
@@ -172,7 +178,7 @@ public class EntidadeDAO
         return entidade;
     }
 
-    public IEnumerable<Entidade> RecuperarTodosFiltrado(string razaoSocial, string dataCredenciamento)
+    public IEnumerable<Entidade> RecuperarTodosFiltrado(string cnpjEntidade, string razaoSocial)
     {
         using (NpgsqlConnection connection = new NpgsqlConnection(StringConexao.stringConexao))
         {
@@ -180,14 +186,14 @@ public class EntidadeDAO
                              from entidade
                             where 1 = 1";
 
+            if (!string.IsNullOrWhiteSpace(cnpjEntidade))
+            {
+                sql += " and cnpj like CONCAT('%', @cnpj, '%')";
+            }
+
             if (!string.IsNullOrWhiteSpace(razaoSocial))
             {
                 sql += " and upper(razaosocial) like upper(CONCAT('%', @razaosocial, '%'))";
-            }
-
-            if (!string.IsNullOrWhiteSpace(dataCredenciamento))
-            {
-                sql += " and datacredenciamento = date(@datacredenciamento)";
             }
 
             sql += " order by id";
@@ -201,8 +207,8 @@ public class EntidadeDAO
                    splitOn: "Logradouro",
                    param: new 
                    {
-                       razaosocial = razaoSocial,
-                       datacredenciamento = dataCredenciamento
+                       cnpj = cnpjEntidade,
+                       razaosocial = razaoSocial
                    });
         }
     }
@@ -237,6 +243,23 @@ public class EntidadeDAO
                              from entidade";
 
             return connection.QuerySingle<int>(sql);
+        }
+    }
+
+    public bool ExisteCnpj(int idEntidade, string cnpjEntidade)
+    {
+        using (NpgsqlConnection connection = new NpgsqlConnection(StringConexao.stringConexao))
+        {
+            string sql = @"select count(*)
+                             from entidade
+                            where id <> @id
+                              and cnpj = @cnpj";
+
+            return connection.QuerySingle<bool>(sql, param: new
+            {
+                id = idEntidade,
+                cnpj = cnpjEntidade
+            });
         }
     }
 

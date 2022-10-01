@@ -32,28 +32,16 @@ namespace CIAPP
         {
             ListView.Font = new Font(ListView.Font, FontStyle.Bold);
             ListView.Columns.Add("ID", 30);
+            ListView.Columns.Add("CPF", 165);
             ListView.Columns.Add("Nome", 330);
             ListView.Columns.Add("Data Nascimento", 140);
             ListView.Columns.Add("Naturalidade", 165);
-            ListView.Columns.Add("Profissão", 165);
         }
 
         private void CarregarRegistros()
         {
-            string dataNascimento;
-
             ListView.Items.Clear();
-
-            if (DataNascimentoFiltro.CustomFormat == " ")
-            {
-                dataNascimento = null;
-            }
-            else
-            {
-                dataNascimento = DataNascimentoFiltro.Value.Date.ToString();
-            }
-
-            List<Prestador> itemList = (List<Prestador>)prestadorDAO.RecuperarTodosFiltrado(NomeFiltro.Text, dataNascimento);
+            List<Prestador> itemList = (List<Prestador>)prestadorDAO.RecuperarTodosFiltrado(CpfFiltro.Text, NomeFiltro.Text);
 
             for (int i = 0; i < itemList.Count; i++)
             {
@@ -61,24 +49,11 @@ namespace CIAPP
                 {
                     Font = new Font(ListView.Font, FontStyle.Regular)
                 };
+                listItem.SubItems.Add(new ListViewItem.ListViewSubItem(listItem, itemList[i].Cpf));
                 listItem.SubItems.Add(new ListViewItem.ListViewSubItem(listItem, itemList[i].Nome));
                 listItem.SubItems.Add(new ListViewItem.ListViewSubItem(listItem, itemList[i].DataNascimento.ToString("dd/MM/yyyy")));
                 listItem.SubItems.Add(new ListViewItem.ListViewSubItem(listItem, itemList[i].Naturalidade));
-                listItem.SubItems.Add(new ListViewItem.ListViewSubItem(listItem, itemList[i].Profissao));
                 ListView.Items.Add(listItem);
-            }
-        }
-
-        private void DataNascimentoFiltro_ValueChanged(object sender, EventArgs e)
-        {
-            DataNascimentoFiltro.CustomFormat = "dd/MM/yyyy";
-        }
-
-        private void DataNascimentoFiltro_KeyDown(object sender, KeyEventArgs e)
-        {
-            if ((e.KeyCode == Keys.Back) || (e.KeyCode == Keys.Delete))
-            {
-                DataNascimentoFiltro.CustomFormat = " ";
             }
         }
 
@@ -116,7 +91,7 @@ namespace CIAPP
 
             ListViewItem item = ListView.SelectedItems[0];
 
-            //Verificar se o prestador já possui algum Processo Judicial vinculado
+            //Verificar se o prestador já possui algum Processo vinculado
             //(será implementado futuramente)
 
             if (MessageBox.Show("Confirma excluir este registro?", "Selecione a opção", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)

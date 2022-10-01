@@ -39,6 +39,7 @@ namespace CIAPP
             else
             {
                 Prestador prestador = prestadorDAO.RecuperarPorId(int.Parse(Id.Text));
+                Cpf.Text = prestador.Cpf;
                 Nome.Text = prestador.Nome;
                 DataNascimento.Text = prestador.DataNascimento.ToString();
                 Idade.Text = CalculaIdade();
@@ -107,6 +108,7 @@ namespace CIAPP
             if (manutencao == "Detalhes")
             {
                 Nome.Enabled = false;
+                Cpf.Enabled = false;
                 DataNascimento.Enabled = false;
                 Naturalidade.Enabled = false;
                 EstadoCivil.Enabled = false;
@@ -224,14 +226,12 @@ namespace CIAPP
 
         private void RendaFamiliar_KeyPress(object sender, KeyPressEventArgs e)
         {
-            // allows 0-9, backspace, and decimal
             if (((e.KeyChar < 48 || e.KeyChar > 57) && e.KeyChar != 8 && e.KeyChar != 46))
             {
                 e.Handled = true;
                 return;
             }
 
-            // checks to make sure only 1 decimal is allowed
             if (e.KeyChar == 46)
             {
                 if ((sender as TextBox).Text.IndexOf(e.KeyChar) != -1)
@@ -389,6 +389,12 @@ namespace CIAPP
 
         private void Salvar_Click(object sender, EventArgs e)
         {
+            if (!validacaoPrestador.CpfEntrada(int.Parse(Id.Text), Cpf.Text))
+            {
+                Cpf.Focus();
+                return;
+            }
+
             if (!validacaoPrestador.NomeEntrada(Nome.Text))
             {
                 Nome.Focus();
@@ -509,6 +515,7 @@ namespace CIAPP
             Prestador prestador = new Prestador
             {
                 Id = int.Parse(Id.Text),
+                Cpf = Cpf.Text,
                 Nome = Nome.Text,
                 DataNascimento = DataNascimento.Value.Date,
                 Naturalidade = Naturalidade.Text,

@@ -61,7 +61,7 @@
             // 
             // EntidadesRelatorio
             // 
-            this.EntidadesRelatorio.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.EntidadesRelatorio.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.EntidadesRelatorio.BackColor = System.Drawing.Color.MidnightBlue;
             this.EntidadesRelatorio.FlatAppearance.BorderSize = 0;
             this.EntidadesRelatorio.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
@@ -79,7 +79,7 @@
             // 
             // PrestadoresRelatorio
             // 
-            this.PrestadoresRelatorio.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.PrestadoresRelatorio.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.PrestadoresRelatorio.BackColor = System.Drawing.Color.MidnightBlue;
             this.PrestadoresRelatorio.FlatAppearance.BorderSize = 0;
             this.PrestadoresRelatorio.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));

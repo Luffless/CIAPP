@@ -1,9 +1,37 @@
 ﻿using System;
 using System.Drawing;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 public class ValidationPrestador
 {
+    private readonly PrestadorDAO prestadorDAO = new PrestadorDAO();
+
+    public bool CpfEntrada(int id, string cpf)
+    {
+        if (string.IsNullOrWhiteSpace(cpf))
+        {
+            MessageBox.Show("Informe o CPF!", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            return false;
+        }
+
+        Regex r = new Regex("^[0-9]{3}[\\.]?[0-9]{3}[\\.]?[0-9]{3}-[0-9]{2}$");
+
+        if (!r.IsMatch(cpf))
+        {
+            MessageBox.Show("CPF inválido!", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            return false;
+        }
+
+        if (prestadorDAO.ExisteCpf(id, cpf))
+        {
+            MessageBox.Show("CPF informado já existe!", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            return false;
+        }
+
+        return true;
+    }
+
     public bool NomeEntrada(string nome)
     {
         if (string.IsNullOrWhiteSpace(nome))

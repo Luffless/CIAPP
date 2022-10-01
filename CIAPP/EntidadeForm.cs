@@ -26,6 +26,7 @@ namespace CIAPP
             else
             {
                 Entidade entidade = entidadeDAO.RecuperarPorId(int.Parse(Id.Text));
+                Cnpj.Text = entidade.Cnpj;
                 RazaoSocial.Text = entidade.RazaoSocial;
                 Telefone.Text = entidade.Telefone.ToString();
                 Email.Text = entidade.Email;
@@ -47,6 +48,7 @@ namespace CIAPP
 
             if (manutencao == "Detalhes")
             {
+                Cnpj.Enabled = false;
                 RazaoSocial.Enabled = false;
                 Telefone.Enabled = false;
                 Email.Enabled = false;
@@ -114,6 +116,12 @@ namespace CIAPP
 
         private void Salvar_Click(object sender, EventArgs e)
         {
+            if (!validacaoEntidade.CnpjEntrada(int.Parse(Id.Text), Cnpj.Text))
+            {
+                Cnpj.Focus();
+                return;
+            }
+
             if (!validacaoEntidade.RazaoSocialEntrada(RazaoSocial.Text))
             {
                 RazaoSocial.Focus();
@@ -187,6 +195,7 @@ namespace CIAPP
                 entidade = new Entidade
                 {
                     Id = int.Parse(Id.Text),
+                    Cnpj = Cnpj.Text,
                     RazaoSocial = RazaoSocial.Text,
                     Telefone = long.Parse(Telefone.Text),
                     Email = Email.Text,
@@ -209,6 +218,7 @@ namespace CIAPP
                 entidade = new Entidade
                 {
                     Id = int.Parse(Id.Text),
+                    Cnpj = Cnpj.Text,
                     RazaoSocial = RazaoSocial.Text,
                     Telefone = long.Parse(Telefone.Text),
                     Email = Email.Text,

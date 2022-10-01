@@ -59,6 +59,8 @@
             this.Observacao = new System.Windows.Forms.TextBox();
             this.DataCredenciamento = new System.Windows.Forms.DateTimePicker();
             this.DataDescredenciamento = new System.Windows.Forms.DateTimePicker();
+            this.label15 = new System.Windows.Forms.Label();
+            this.Cnpj = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -150,7 +152,7 @@
             this.Estado.Location = new System.Drawing.Point(131, 233);
             this.Estado.Name = "Estado";
             this.Estado.Size = new System.Drawing.Size(161, 28);
-            this.Estado.TabIndex = 14;
+            this.Estado.TabIndex = 15;
             // 
             // Cep
             // 
@@ -158,7 +160,7 @@
             this.Cep.MaxLength = 9;
             this.Cep.Name = "Cep";
             this.Cep.Size = new System.Drawing.Size(100, 26);
-            this.Cep.TabIndex = 13;
+            this.Cep.TabIndex = 14;
             this.Cep.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OnKeyDown);
             this.Cep.KeyUp += new System.Windows.Forms.KeyEventHandler(this.OnKeyUp);
             // 
@@ -167,7 +169,7 @@
             this.Municipio.Location = new System.Drawing.Point(131, 164);
             this.Municipio.Name = "Municipio";
             this.Municipio.Size = new System.Drawing.Size(309, 26);
-            this.Municipio.TabIndex = 12;
+            this.Municipio.TabIndex = 13;
             this.Municipio.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OnKeyDown);
             this.Municipio.KeyUp += new System.Windows.Forms.KeyEventHandler(this.OnKeyUp);
             // 
@@ -176,7 +178,7 @@
             this.Bairro.Location = new System.Drawing.Point(131, 129);
             this.Bairro.Name = "Bairro";
             this.Bairro.Size = new System.Drawing.Size(309, 26);
-            this.Bairro.TabIndex = 11;
+            this.Bairro.TabIndex = 12;
             this.Bairro.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OnKeyDown);
             this.Bairro.KeyUp += new System.Windows.Forms.KeyEventHandler(this.OnKeyUp);
             // 
@@ -185,7 +187,7 @@
             this.Complemento.Location = new System.Drawing.Point(131, 94);
             this.Complemento.Name = "Complemento";
             this.Complemento.Size = new System.Drawing.Size(309, 26);
-            this.Complemento.TabIndex = 10;
+            this.Complemento.TabIndex = 11;
             this.Complemento.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OnKeyDown);
             this.Complemento.KeyUp += new System.Windows.Forms.KeyEventHandler(this.OnKeyUp);
             // 
@@ -195,7 +197,7 @@
             this.Numero.MaxLength = 5;
             this.Numero.Name = "Numero";
             this.Numero.Size = new System.Drawing.Size(100, 26);
-            this.Numero.TabIndex = 9;
+            this.Numero.TabIndex = 10;
             this.Numero.TextChanged += new System.EventHandler(this.Numero_TextChanged);
             this.Numero.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OnKeyDown);
             this.Numero.KeyUp += new System.Windows.Forms.KeyEventHandler(this.OnKeyUp);
@@ -205,7 +207,7 @@
             this.Logradouro.Location = new System.Drawing.Point(131, 26);
             this.Logradouro.Name = "Logradouro";
             this.Logradouro.Size = new System.Drawing.Size(498, 26);
-            this.Logradouro.TabIndex = 8;
+            this.Logradouro.TabIndex = 9;
             this.Logradouro.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OnKeyDown);
             // 
             // label14
@@ -343,8 +345,9 @@
             this.RazaoSocial.Location = new System.Drawing.Point(120, 64);
             this.RazaoSocial.Name = "RazaoSocial";
             this.RazaoSocial.Size = new System.Drawing.Size(389, 26);
-            this.RazaoSocial.TabIndex = 2;
+            this.RazaoSocial.TabIndex = 3;
             this.RazaoSocial.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OnKeyDown);
+            this.RazaoSocial.KeyUp += new System.Windows.Forms.KeyEventHandler(this.OnKeyUp);
             // 
             // Telefone
             // 
@@ -352,7 +355,7 @@
             this.Telefone.Location = new System.Drawing.Point(120, 96);
             this.Telefone.Name = "Telefone";
             this.Telefone.Size = new System.Drawing.Size(100, 26);
-            this.Telefone.TabIndex = 3;
+            this.Telefone.TabIndex = 4;
             this.Telefone.TextChanged += new System.EventHandler(this.Telefone_TextChanged);
             this.Telefone.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OnKeyDown);
             this.Telefone.KeyUp += new System.Windows.Forms.KeyEventHandler(this.OnKeyUp);
@@ -363,7 +366,7 @@
             this.Email.Location = new System.Drawing.Point(120, 128);
             this.Email.Name = "Email";
             this.Email.Size = new System.Drawing.Size(389, 26);
-            this.Email.TabIndex = 4;
+            this.Email.TabIndex = 5;
             this.Email.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OnKeyDown);
             this.Email.KeyUp += new System.Windows.Forms.KeyEventHandler(this.OnKeyUp);
             // 
@@ -375,7 +378,7 @@
             this.Observacao.Name = "Observacao";
             this.Observacao.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.Observacao.Size = new System.Drawing.Size(531, 66);
-            this.Observacao.TabIndex = 7;
+            this.Observacao.TabIndex = 8;
             // 
             // DataCredenciamento
             // 
@@ -385,7 +388,7 @@
             this.DataCredenciamento.Location = new System.Drawing.Point(193, 163);
             this.DataCredenciamento.Name = "DataCredenciamento";
             this.DataCredenciamento.Size = new System.Drawing.Size(122, 26);
-            this.DataCredenciamento.TabIndex = 5;
+            this.DataCredenciamento.TabIndex = 6;
             this.DataCredenciamento.ValueChanged += new System.EventHandler(this.DataCredenciamento_ValueChanged);
             this.DataCredenciamento.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DataCredenciamento_KeyDown);
             this.DataCredenciamento.KeyUp += new System.Windows.Forms.KeyEventHandler(this.OnKeyUp);
@@ -398,10 +401,30 @@
             this.DataDescredenciamento.Location = new System.Drawing.Point(529, 166);
             this.DataDescredenciamento.Name = "DataDescredenciamento";
             this.DataDescredenciamento.Size = new System.Drawing.Size(122, 26);
-            this.DataDescredenciamento.TabIndex = 6;
+            this.DataDescredenciamento.TabIndex = 7;
             this.DataDescredenciamento.ValueChanged += new System.EventHandler(this.DataDescredenciamento_ValueChanged);
             this.DataDescredenciamento.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DataDescredenciamento_KeyDown);
             this.DataDescredenciamento.KeyUp += new System.Windows.Forms.KeyEventHandler(this.OnKeyUp);
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Location = new System.Drawing.Point(252, 33);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(52, 20);
+            this.label15.TabIndex = 17;
+            this.label15.Text = "CNPJ:";
+            // 
+            // Cnpj
+            // 
+            this.Cnpj.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Cnpj.Location = new System.Drawing.Point(310, 30);
+            this.Cnpj.MaxLength = 18;
+            this.Cnpj.Name = "Cnpj";
+            this.Cnpj.Size = new System.Drawing.Size(199, 26);
+            this.Cnpj.TabIndex = 2;
+            this.Cnpj.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OnKeyDown);
             // 
             // EntidadeForm
             // 
@@ -409,6 +432,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(673, 611);
+            this.Controls.Add(this.Cnpj);
+            this.Controls.Add(this.label15);
             this.Controls.Add(this.DataDescredenciamento);
             this.Controls.Add(this.DataCredenciamento);
             this.Controls.Add(this.Observacao);
@@ -471,5 +496,7 @@
         private System.Windows.Forms.TextBox Observacao;
         private System.Windows.Forms.DateTimePicker DataCredenciamento;
         private System.Windows.Forms.DateTimePicker DataDescredenciamento;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.TextBox Cnpj;
     }
 }

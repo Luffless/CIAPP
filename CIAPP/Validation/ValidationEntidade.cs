@@ -5,6 +5,32 @@ public class ValidationEntidade
 {
     private readonly EntidadeDAO entidadeDAO = new EntidadeDAO();
 
+    public bool CnpjEntrada(int id, string cnpj)
+    {
+        if (string.IsNullOrWhiteSpace(cnpj))
+        {
+            MessageBox.Show("Informe o CNPJ!", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            return false;
+        }
+        //XX.XXX.XXX/0001-XX
+        //Regex r = new Regex("^[0-9]{3}[\\.]?[0-9]{3}[\\.]?[0-9]{3}-[0-9]{2}$");
+        Regex r = new Regex("^[0-9]{2}[\\.]?[0-9]{3}[\\.]?[0-9]{3}/[0-9]{4}[\\.]?-[0-9]{2}$");
+
+        if (!r.IsMatch(cnpj))
+        {
+            MessageBox.Show("CNPJ inválido!", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            return false;
+        }
+
+        if (entidadeDAO.ExisteCnpj(id, cnpj))
+        {
+            MessageBox.Show("CNPJ informado já existe!", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            return false;
+        }
+
+        return true;
+    }
+
     public bool RazaoSocialEntrada(string razaoSocial)
     {
         if (string.IsNullOrWhiteSpace(razaoSocial))

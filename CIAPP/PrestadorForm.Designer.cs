@@ -106,6 +106,8 @@
             this.Idade = new System.Windows.Forms.TextBox();
             this.label20 = new System.Windows.Forms.Label();
             this.RendaFamiliar = new System.Windows.Forms.TextBox();
+            this.label21 = new System.Windows.Forms.Label();
+            this.Cpf = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -151,7 +153,7 @@
             this.Estado.Location = new System.Drawing.Point(133, 226);
             this.Estado.Name = "Estado";
             this.Estado.Size = new System.Drawing.Size(161, 28);
-            this.Estado.TabIndex = 24;
+            this.Estado.TabIndex = 25;
             this.Estado.KeyUp += new System.Windows.Forms.KeyEventHandler(this.OnKeyUp);
             // 
             // Cep
@@ -160,7 +162,7 @@
             this.Cep.MaxLength = 9;
             this.Cep.Name = "Cep";
             this.Cep.Size = new System.Drawing.Size(100, 26);
-            this.Cep.TabIndex = 23;
+            this.Cep.TabIndex = 24;
             this.Cep.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OnKeyDown);
             this.Cep.KeyUp += new System.Windows.Forms.KeyEventHandler(this.OnKeyUp);
             // 
@@ -169,7 +171,7 @@
             this.Municipio.Location = new System.Drawing.Point(133, 157);
             this.Municipio.Name = "Municipio";
             this.Municipio.Size = new System.Drawing.Size(309, 26);
-            this.Municipio.TabIndex = 22;
+            this.Municipio.TabIndex = 23;
             this.Municipio.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OnKeyDown);
             this.Municipio.KeyUp += new System.Windows.Forms.KeyEventHandler(this.OnKeyUp);
             // 
@@ -178,7 +180,7 @@
             this.Bairro.Location = new System.Drawing.Point(133, 120);
             this.Bairro.Name = "Bairro";
             this.Bairro.Size = new System.Drawing.Size(309, 26);
-            this.Bairro.TabIndex = 21;
+            this.Bairro.TabIndex = 22;
             this.Bairro.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OnKeyDown);
             this.Bairro.KeyUp += new System.Windows.Forms.KeyEventHandler(this.OnKeyUp);
             // 
@@ -187,7 +189,7 @@
             this.Complemento.Location = new System.Drawing.Point(133, 85);
             this.Complemento.Name = "Complemento";
             this.Complemento.Size = new System.Drawing.Size(309, 26);
-            this.Complemento.TabIndex = 20;
+            this.Complemento.TabIndex = 21;
             this.Complemento.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OnKeyDown);
             this.Complemento.KeyUp += new System.Windows.Forms.KeyEventHandler(this.OnKeyUp);
             // 
@@ -197,7 +199,7 @@
             this.Numero.MaxLength = 5;
             this.Numero.Name = "Numero";
             this.Numero.Size = new System.Drawing.Size(100, 26);
-            this.Numero.TabIndex = 19;
+            this.Numero.TabIndex = 20;
             this.Numero.TextChanged += new System.EventHandler(this.Numero_TextChanged);
             this.Numero.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OnKeyDown);
             this.Numero.KeyUp += new System.Windows.Forms.KeyEventHandler(this.OnKeyUp);
@@ -207,7 +209,7 @@
             this.Logradouro.Location = new System.Drawing.Point(133, 16);
             this.Logradouro.Name = "Logradouro";
             this.Logradouro.Size = new System.Drawing.Size(544, 26);
-            this.Logradouro.TabIndex = 18;
+            this.Logradouro.TabIndex = 19;
             this.Logradouro.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OnKeyDown);
             // 
             // label14
@@ -373,7 +375,7 @@
             this.GrauParentesco.Location = new System.Drawing.Point(150, 46);
             this.GrauParentesco.Name = "GrauParentesco";
             this.GrauParentesco.Size = new System.Drawing.Size(361, 28);
-            this.GrauParentesco.TabIndex = 26;
+            this.GrauParentesco.TabIndex = 27;
             this.GrauParentesco.KeyUp += new System.Windows.Forms.KeyEventHandler(this.OnKeyUp);
             // 
             // NomeParentesco
@@ -381,7 +383,7 @@
             this.NomeParentesco.Location = new System.Drawing.Point(150, 16);
             this.NomeParentesco.Name = "NomeParentesco";
             this.NomeParentesco.Size = new System.Drawing.Size(361, 26);
-            this.NomeParentesco.TabIndex = 25;
+            this.NomeParentesco.TabIndex = 26;
             this.NomeParentesco.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OnKeyDown);
             // 
             // GrauParentescoLabel
@@ -446,7 +448,7 @@
             this.ListViewParentesco.Location = new System.Drawing.Point(6, 80);
             this.ListViewParentesco.Name = "ListViewParentesco";
             this.ListViewParentesco.Size = new System.Drawing.Size(505, 185);
-            this.ListViewParentesco.TabIndex = 27;
+            this.ListViewParentesco.TabIndex = 28;
             this.ListViewParentesco.UseCompatibleStateImageBehavior = false;
             this.ListViewParentesco.View = System.Windows.Forms.View.Details;
             // 
@@ -470,7 +472,7 @@
             this.DescricaoHabilidade.Location = new System.Drawing.Point(100, 16);
             this.DescricaoHabilidade.Name = "DescricaoHabilidade";
             this.DescricaoHabilidade.Size = new System.Drawing.Size(411, 26);
-            this.DescricaoHabilidade.TabIndex = 28;
+            this.DescricaoHabilidade.TabIndex = 29;
             // 
             // DescricaoHabilidadeLabel
             // 
@@ -525,7 +527,7 @@
             this.ListViewHabilidade.Location = new System.Drawing.Point(6, 55);
             this.ListViewHabilidade.Name = "ListViewHabilidade";
             this.ListViewHabilidade.Size = new System.Drawing.Size(505, 208);
-            this.ListViewHabilidade.TabIndex = 29;
+            this.ListViewHabilidade.TabIndex = 30;
             this.ListViewHabilidade.UseCompatibleStateImageBehavior = false;
             this.ListViewHabilidade.View = System.Windows.Forms.View.Details;
             // 
@@ -557,7 +559,7 @@
             this.DescricaoDeficiencia.Location = new System.Drawing.Point(101, 17);
             this.DescricaoDeficiencia.Name = "DescricaoDeficiencia";
             this.DescricaoDeficiencia.Size = new System.Drawing.Size(410, 28);
-            this.DescricaoDeficiencia.TabIndex = 30;
+            this.DescricaoDeficiencia.TabIndex = 31;
             // 
             // DescricaoDeficienciaLabel
             // 
@@ -612,7 +614,7 @@
             this.ListViewDeficiencia.Location = new System.Drawing.Point(6, 55);
             this.ListViewDeficiencia.Name = "ListViewDeficiencia";
             this.ListViewDeficiencia.Size = new System.Drawing.Size(505, 208);
-            this.ListViewDeficiencia.TabIndex = 31;
+            this.ListViewDeficiencia.TabIndex = 32;
             this.ListViewDeficiencia.UseCompatibleStateImageBehavior = false;
             this.ListViewDeficiencia.View = System.Windows.Forms.View.Details;
             // 
@@ -636,7 +638,7 @@
             this.DescricaoDoenca.Location = new System.Drawing.Point(100, 16);
             this.DescricaoDoenca.Name = "DescricaoDoenca";
             this.DescricaoDoenca.Size = new System.Drawing.Size(411, 26);
-            this.DescricaoDoenca.TabIndex = 32;
+            this.DescricaoDoenca.TabIndex = 33;
             // 
             // DescricaoDoencaLabel
             // 
@@ -691,7 +693,7 @@
             this.ListViewDoenca.Location = new System.Drawing.Point(6, 55);
             this.ListViewDoenca.Name = "ListViewDoenca";
             this.ListViewDoenca.Size = new System.Drawing.Size(505, 208);
-            this.ListViewDoenca.TabIndex = 33;
+            this.ListViewDoenca.TabIndex = 34;
             this.ListViewDoenca.UseCompatibleStateImageBehavior = false;
             this.ListViewDoenca.View = System.Windows.Forms.View.Details;
             // 
@@ -759,8 +761,9 @@
             this.Nome.Location = new System.Drawing.Point(255, 54);
             this.Nome.Name = "Nome";
             this.Nome.Size = new System.Drawing.Size(448, 26);
-            this.Nome.TabIndex = 2;
+            this.Nome.TabIndex = 3;
             this.Nome.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OnKeyDown);
+            this.Nome.KeyUp += new System.Windows.Forms.KeyEventHandler(this.OnKeyUp);
             // 
             // label2
             // 
@@ -790,7 +793,7 @@
             this.DataNascimento.Location = new System.Drawing.Point(341, 87);
             this.DataNascimento.Name = "DataNascimento";
             this.DataNascimento.Size = new System.Drawing.Size(122, 26);
-            this.DataNascimento.TabIndex = 3;
+            this.DataNascimento.TabIndex = 4;
             this.DataNascimento.ValueChanged += new System.EventHandler(this.DataNascimento_ValueChanged);
             this.DataNascimento.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DataNascimento_KeyDown);
             this.DataNascimento.KeyUp += new System.Windows.Forms.KeyEventHandler(this.OnKeyUp);
@@ -831,7 +834,7 @@
             this.Profissao.Location = new System.Drawing.Point(272, 189);
             this.Profissao.Name = "Profissao";
             this.Profissao.Size = new System.Drawing.Size(431, 26);
-            this.Profissao.TabIndex = 10;
+            this.Profissao.TabIndex = 11;
             this.Profissao.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OnKeyDown);
             this.Profissao.KeyUp += new System.Windows.Forms.KeyEventHandler(this.OnKeyUp);
             // 
@@ -871,7 +874,7 @@
             this.GrauInstrucao.Location = new System.Drawing.Point(324, 254);
             this.GrauInstrucao.Name = "GrauInstrucao";
             this.GrauInstrucao.Size = new System.Drawing.Size(379, 28);
-            this.GrauInstrucao.TabIndex = 13;
+            this.GrauInstrucao.TabIndex = 14;
             // 
             // label16
             // 
@@ -889,7 +892,7 @@
             this.Religiao.Location = new System.Drawing.Point(543, 223);
             this.Religiao.Name = "Religiao";
             this.Religiao.Size = new System.Drawing.Size(160, 26);
-            this.Religiao.TabIndex = 12;
+            this.Religiao.TabIndex = 13;
             this.Religiao.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OnKeyDown);
             this.Religiao.KeyUp += new System.Windows.Forms.KeyEventHandler(this.OnKeyUp);
             // 
@@ -900,7 +903,7 @@
             this.RecebeBeneficio.Location = new System.Drawing.Point(199, 291);
             this.RecebeBeneficio.Name = "RecebeBeneficio";
             this.RecebeBeneficio.Size = new System.Drawing.Size(160, 24);
-            this.RecebeBeneficio.TabIndex = 14;
+            this.RecebeBeneficio.TabIndex = 15;
             this.RecebeBeneficio.Text = "Recebe Benefício";
             this.RecebeBeneficio.UseVisualStyleBackColor = true;
             this.RecebeBeneficio.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OnKeyDown);
@@ -913,7 +916,7 @@
             this.UsaAlcool.Location = new System.Drawing.Point(420, 291);
             this.UsaAlcool.Name = "UsaAlcool";
             this.UsaAlcool.Size = new System.Drawing.Size(106, 24);
-            this.UsaAlcool.TabIndex = 15;
+            this.UsaAlcool.TabIndex = 16;
             this.UsaAlcool.Text = "Usa Álcool";
             this.UsaAlcool.UseVisualStyleBackColor = true;
             this.UsaAlcool.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OnKeyDown);
@@ -926,7 +929,7 @@
             this.UsaDrogas.Location = new System.Drawing.Point(592, 291);
             this.UsaDrogas.Name = "UsaDrogas";
             this.UsaDrogas.Size = new System.Drawing.Size(111, 24);
-            this.UsaDrogas.TabIndex = 16;
+            this.UsaDrogas.TabIndex = 17;
             this.UsaDrogas.Text = "Usa Drogas";
             this.UsaDrogas.UseVisualStyleBackColor = true;
             this.UsaDrogas.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OnKeyDown);
@@ -950,7 +953,7 @@
             this.Observacao.Name = "Observacao";
             this.Observacao.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.Observacao.Size = new System.Drawing.Size(395, 56);
-            this.Observacao.TabIndex = 17;
+            this.Observacao.TabIndex = 18;
             // 
             // EstadoCivil
             // 
@@ -966,7 +969,7 @@
             this.EstadoCivil.Location = new System.Drawing.Point(570, 121);
             this.EstadoCivil.Name = "EstadoCivil";
             this.EstadoCivil.Size = new System.Drawing.Size(133, 28);
-            this.EstadoCivil.TabIndex = 6;
+            this.EstadoCivil.TabIndex = 7;
             // 
             // label23
             // 
@@ -984,7 +987,7 @@
             this.Telefone.Location = new System.Drawing.Point(272, 156);
             this.Telefone.Name = "Telefone";
             this.Telefone.Size = new System.Drawing.Size(100, 26);
-            this.Telefone.TabIndex = 7;
+            this.Telefone.TabIndex = 8;
             this.Telefone.TextChanged += new System.EventHandler(this.Telefone_TextChanged);
             this.Telefone.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OnKeyDown);
             this.Telefone.KeyUp += new System.Windows.Forms.KeyEventHandler(this.OnKeyUp);
@@ -1017,7 +1020,7 @@
             this.Naturalidade.Location = new System.Drawing.Point(308, 121);
             this.Naturalidade.Name = "Naturalidade";
             this.Naturalidade.Size = new System.Drawing.Size(155, 28);
-            this.Naturalidade.TabIndex = 5;
+            this.Naturalidade.TabIndex = 6;
             // 
             // Etnia
             // 
@@ -1033,7 +1036,7 @@
             this.Etnia.Location = new System.Drawing.Point(430, 155);
             this.Etnia.Name = "Etnia";
             this.Etnia.Size = new System.Drawing.Size(106, 28);
-            this.Etnia.TabIndex = 8;
+            this.Etnia.TabIndex = 9;
             // 
             // label18
             // 
@@ -1056,7 +1059,7 @@
             this.Sexo.Location = new System.Drawing.Point(592, 156);
             this.Sexo.Name = "Sexo";
             this.Sexo.Size = new System.Drawing.Size(111, 28);
-            this.Sexo.TabIndex = 9;
+            this.Sexo.TabIndex = 10;
             // 
             // label19
             // 
@@ -1075,7 +1078,7 @@
             this.Idade.Location = new System.Drawing.Point(570, 88);
             this.Idade.Name = "Idade";
             this.Idade.Size = new System.Drawing.Size(43, 26);
-            this.Idade.TabIndex = 4;
+            this.Idade.TabIndex = 5;
             // 
             // label20
             // 
@@ -1093,16 +1096,38 @@
             this.RendaFamiliar.Location = new System.Drawing.Point(324, 223);
             this.RendaFamiliar.Name = "RendaFamiliar";
             this.RendaFamiliar.Size = new System.Drawing.Size(139, 26);
-            this.RendaFamiliar.TabIndex = 11;
+            this.RendaFamiliar.TabIndex = 12;
             this.RendaFamiliar.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OnKeyDown);
             this.RendaFamiliar.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.RendaFamiliar_KeyPress);
             this.RendaFamiliar.KeyUp += new System.Windows.Forms.KeyEventHandler(this.OnKeyUp);
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label21.Location = new System.Drawing.Point(469, 25);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(41, 20);
+            this.label21.TabIndex = 45;
+            this.label21.Text = "CPF:";
+            // 
+            // Cpf
+            // 
+            this.Cpf.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Cpf.Location = new System.Drawing.Point(516, 22);
+            this.Cpf.MaxLength = 14;
+            this.Cpf.Name = "Cpf";
+            this.Cpf.Size = new System.Drawing.Size(186, 26);
+            this.Cpf.TabIndex = 2;
+            this.Cpf.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OnKeyDown);
             // 
             // PrestadorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(710, 745);
+            this.Controls.Add(this.Cpf);
+            this.Controls.Add(this.label21);
             this.Controls.Add(this.RendaFamiliar);
             this.Controls.Add(this.label20);
             this.Controls.Add(this.Idade);
@@ -1240,5 +1265,7 @@
         private System.Windows.Forms.TextBox Idade;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.TextBox RendaFamiliar;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.TextBox Cpf;
     }
 }
