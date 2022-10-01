@@ -111,7 +111,7 @@
     <Compile Include="Entidades.Designer.cs">
       <DependentUpon>Entidades.cs</DependentUpon>
     </Compile>
-    <Compile Include="Model\Acesso.cs" />
+    <Compile Include="Model\Frequencia.cs" />
     <Compile Include="Model\Atividade.cs" />
     <Compile Include="Model\Crime.cs" />
     <Compile Include="Model\Deficiencia.cs" />
@@ -119,8 +119,8 @@
     <Compile Include="Model\Habilidade.cs" />
     <Compile Include="Model\Parentesco.cs" />
     <Compile Include="Model\Prestador.cs" />
-    <Compile Include="Model\ProcessoJudicial.cs" />
-    <Compile Include="Model\ProcessoJudicialEntidade.cs" />
+    <Compile Include="Model\Processo.cs" />
+    <Compile Include="Model\ProcessoEntidade.cs" />
     <Compile Include="Prestadores.cs">
       <SubType>Form</SubType>
     </Compile>

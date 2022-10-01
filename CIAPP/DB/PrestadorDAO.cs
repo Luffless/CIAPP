@@ -18,13 +18,14 @@ public class PrestadorDAO
 
             using (NpgsqlTransaction transaction = connection.BeginTransaction())
             {
-                sql = @"insert into prestador values (@id, @nome, @datanascimento, @naturalidade, @estadocivil, @foto, @telefone, @etnia, @sexo, @profissao, 
+                sql = @"insert into prestador values (@id, @cpf, @nome, @datanascimento, @naturalidade, @estadocivil, @foto, @telefone, @etnia, @sexo, @profissao, 
                                                       @rendafamiliar, @religiao, @grauinstrucao, @recebebeneficio, @usaalcool, @usadrogas, @observacao,
                                                       @logradouro, @numero, @complemento, @bairro, @municipio, @cep, @estado)";
 
                 connection.Execute(sql, param: new
                 {
                     id = prestador.Id,
+                    cpf = prestador.Cpf,
                     nome = prestador.Nome,
                     datanascimento = prestador.DataNascimento,
                     naturalidade = prestador.Naturalidade,
@@ -114,7 +115,8 @@ public class PrestadorDAO
             using (NpgsqlTransaction transaction = connection.BeginTransaction())
             {
                 sql = @"update prestador 
-                           set nome = @nome, 
+                           set cpf = @cpf,
+                               nome = @nome,
                                datanascimento = @datanascimento, 
                                naturalidade = @naturalidade, 
                                estadocivil = @estadocivil, 
@@ -141,6 +143,7 @@ public class PrestadorDAO
 
                 connection.Execute(sql, param: new
                 {
+                    cpf = prestador.Cpf,
                     nome = prestador.Nome,
                     datanascimento = prestador.DataNascimento,
                     naturalidade = prestador.Naturalidade,
@@ -292,7 +295,7 @@ public class PrestadorDAO
         return prestador;
     }
 
-    public IEnumerable<Prestador> RecuperarTodosFiltrado(string nomePrestador, string dataNascimento)
+    public IEnumerable<Prestador> RecuperarTodosFiltrado(string cpfPrestador, string nomePrestador)
     {
         using (NpgsqlConnection connection = new NpgsqlConnection(StringConexao.stringConexao))
         {
@@ -300,14 +303,14 @@ public class PrestadorDAO
                              from prestador
                             where 1 = 1";
 
+            if (!string.IsNullOrWhiteSpace(cpfPrestador))
+            {
+                sql += " and cpf like CONCAT('%', @cpf, '%')";
+            }
+
             if (!string.IsNullOrWhiteSpace(nomePrestador))
             {
                 sql += " and upper(nome) like upper(CONCAT('%', @nome, '%'))";
-            }
-
-            if (!string.IsNullOrWhiteSpace(dataNascimento))
-            {
-                sql += " and datanascimento = date(@datanascimento)";
             }
 
             sql += " order by id";
@@ -321,8 +324,8 @@ public class PrestadorDAO
                    splitOn: "Logradouro",
                    param: new
                    {
-                       nome = nomePrestador,
-                       datanascimento = dataNascimento
+                       cpf = cpfPrestador,
+                       nome = nomePrestador
                    });
         }
     }
@@ -415,6 +418,23 @@ public class PrestadorDAO
                              from prestador";
 
             return connection.QuerySingle<int>(sql);
+        }
+    }
+
+    public bool ExisteCpf(int idPrestador, string cpfPrestador)
+    {
+        using (NpgsqlConnection connection = new NpgsqlConnection(StringConexao.stringConexao))
+        {
+            string sql = @"select count(*)
+                             from prestador
+                            where id <> @id
+                              and cpf = @cpf";
+
+            return connection.QuerySingle<bool>(sql, param: new
+            {
+                id = idPrestador,
+                cpf = cpfPrestador
+            });
         }
     }
 }

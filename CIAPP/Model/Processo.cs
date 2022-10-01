@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-public class ProcessoJudicial
+public class Processo
 {
     public int Id { get; set; }
     public string VaraOrigem { get; set; }
@@ -12,5 +12,5 @@ public class ProcessoJudicial
     public DateTime DataTermino { get; set; }
     public Prestador Prestador { get; set; }
     public List<Crime> CrimeList { get; set; }
-    public List<ProcessoJudicialEntidade> ProcessoJudicialEntidadeList { get; set; }
+    public List<ProcessoEntidade> ProcessoEntidadeList { get; set; }
 }

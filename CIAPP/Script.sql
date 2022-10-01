@@ -13,6 +13,7 @@ insert into usuario values (0, 'Admin', 'admin@ucs.br', 'admin', '8a89e2c6bb99f4
 
 create table entidade (
     id int not null,
+	cnpj char(18) not null unique,
 	razaosocial varchar(60) not null,
     telefone bigint not null,
 	email varchar(60) not null unique,
@@ -33,6 +34,7 @@ add constraint pk_entidade primary key(id);
 
 create table prestador (
     id int not null,
+	cpf char(14) not null unique,
 	nome varchar(60) not null,
 	datanascimento date not null,
 	naturalidade varchar(30) not null,

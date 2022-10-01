@@ -32,28 +32,15 @@ namespace CIAPP
         {
             ListView.Font = new Font(ListView.Font, FontStyle.Bold);
             ListView.Columns.Add("ID", 30);
-            ListView.Columns.Add("Razão Social", 290);
-            ListView.Columns.Add("Telefone", 100);
+            ListView.Columns.Add("CNPJ", 250);
+            ListView.Columns.Add("Razão Social", 350);
             ListView.Columns.Add("Data Credenciamento", 200);
-            ListView.Columns.Add("Data Descredenciamento", 210);
         }
 
         private void CarregarRegistros()
         {
-            string dataCredenciamento;
-
             ListView.Items.Clear();
-
-            if (DataCredenciamentoFiltro.CustomFormat == " ")
-            {
-                dataCredenciamento = null;
-            }
-            else
-            {
-                dataCredenciamento = DataCredenciamentoFiltro.Value.Date.ToString();
-            }
-
-            List<Entidade> itemList = (List<Entidade>)entidadeDAO.RecuperarTodosFiltrado(RazaoSocialFiltro.Text, dataCredenciamento);
+            List<Entidade> itemList = (List<Entidade>)entidadeDAO.RecuperarTodosFiltrado(CnpjFiltro.Text, RazaoSocialFiltro.Text);
 
             for (int i = 0; i < itemList.Count; i++)
             {
@@ -61,27 +48,10 @@ namespace CIAPP
                 {
                     Font = new Font(ListView.Font, FontStyle.Regular)
                 };
+                listItem.SubItems.Add(new ListViewItem.ListViewSubItem(listItem, itemList[i].Cnpj));
                 listItem.SubItems.Add(new ListViewItem.ListViewSubItem(listItem, itemList[i].RazaoSocial));
-                listItem.SubItems.Add(new ListViewItem.ListViewSubItem(listItem, itemList[i].Telefone.ToString()));
                 listItem.SubItems.Add(new ListViewItem.ListViewSubItem(listItem, itemList[i].DataCredenciamento.ToString("dd/MM/yyyy")));
-                if (itemList[i].DataDescredenciamento.Date != Convert.ToDateTime("01/01/0001").Date)
-                {
-                    listItem.SubItems.Add(new ListViewItem.ListViewSubItem(listItem, itemList[i].DataDescredenciamento.ToString("dd/MM/yyyy")));
-                }
                 ListView.Items.Add(listItem);
-            }
-        }
-
-        private void DataCredenciamentoFiltro_ValueChanged(object sender, EventArgs e)
-        {
-            DataCredenciamentoFiltro.CustomFormat = "dd/MM/yyyy";
-        }
-
-        private void DataCredenciamentoFiltro_KeyDown(object sender, KeyEventArgs e)
-        {
-            if ((e.KeyCode == Keys.Back) || (e.KeyCode == Keys.Delete))
-            {
-                DataCredenciamentoFiltro.CustomFormat = " ";
             }
         }
 
@@ -119,7 +89,7 @@ namespace CIAPP
 
             ListViewItem item = ListView.SelectedItems[0];
 
-            //Verificar se a entidade já possui algum Processo Judicial vinculado
+            //Verificar se a entidade já possui algum Processo vinculado
             //(será implementado futuramente)
 
             if (MessageBox.Show("Confirma excluir este registro?", "Selecione a opção", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)

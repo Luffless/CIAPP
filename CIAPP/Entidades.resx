@@ -159,17 +159,17 @@
   </data>
   <data name="Detalhes.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAAAGEAAABhAVUrkL0AAAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwa
-        AAACAUlEQVQ4T4WTO2/TYBSGLaFK0IqBPwAjCKkSqhBiQ5WYWYpATDCy0A0hVJD4BQgQLExMXUBJI+VC
-        S0pK0zg0F5PY8S12E19om6ahXIpoaSAv3+fWjmMSGJ7lHL+Pz/n8mQHgYRj2bcOw2gQMQqoosyxbGHUz
-        AYGVVRQN6UW2D1nUagZ4XlxkM7mmKwkK3vvf1g9BkJeIAK6kK+CYi7vls19+c0fRKQ5hhz+PlvoQYkXu
-        mYBIfomimhNFZVmR1LgbvrWXHwH/5gbmIk+RCD9H/vUkdnLHsF25hnrdRKkkoPShi6rqVNZgUGDG2vnD
-        SEYe4dXLSA/R0AvQ3mb1GRld6kHTVjzBtDI/4QTCoShpig4z4ZhTo73d8hiqVd13oKyz2r6gyHDp6AMn
-        kEqle6A1ulKHGyYPmzQQxBEIbPzuQEEmdg/t0vF/TMAxj8134wNXkJJX8U28DlmuguPKHqqqHQjyzMlO
-        8dB3OgUN+MnEprBXGEZKSDiHRt/qouu1A8H+Z5ygEmNhHNn4HSzF7kN7e8kJX54v4sjMFqaFVUii0meF
-        7kU6sV25sv6Dv4Cf5dP4Kt2ErCZxKvEJTOizJyEhPz4BgRT+usqcbnuSkcgWpJrt1NcbG7Csj82gIOsP
-        u1DJubkWzsy2sFK3sLbWwEZzk/aCE/z/d6bY9ipM0+4YhvnkD3eGOAdShF+CAAAAAElFTkSuQmCC
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAA
+        YAAAAGABh2xyWQAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAIBSURBVDhPhZM7
+        b9NgFIYtoUrQioE/ACMIqRKqEGJDlZhZikBMMLLQDSFUkPgFCBAsTExdQEkj5UJLSkrTODQXk9jxLXYT
+        X2ibpqFcimhpIC/f59aOYxIYnuUcv4/P+fyZAeBhGPZtw7DaBAxCqiizLFsYdTMBgZVVFA3pRbYPWdRq
+        BnheXGQzuaYrCQre+9/WD0GQl4gArqQr4JiLu+WzX35zR9EpDmGHP4+W+hBiRe6ZgEh+iaKaE0VlWZHU
+        uBu+tZcfAf/mBuYiT5EIP0f+9SR2csewXbmGet1EqSSg9KGLqupU1mBQYMba+cNIRh7h1ctID9HQC9De
+        ZvUZGV3qQdNWPMG0Mj/hBMKhKGmKDjPhmFOjvd3yGKpV3XegrLPavqDIcOnoAyeQSqV7oDW6UocbJg+b
+        NBDEEQhs/O5AQSZ2D+3S8X9MwDGPzXfjA1eQklfxTbwOWa6C48oeqqodCPLMyU7x0Hc6BQ34ycSmsFcY
+        RkpIOIdG3+qi67UDwf5nnKASY2Ec2fgdLMXuQ3t7yQlfni/iyMwWpoVVSKLSZ4XuRTqxXbmy/oO/gJ/l
+        0/gq3YSsJnEq8QlM6LMnISE/PgGBFP66ypxue5KRyBakmu3U1xsbsKyPzaAg6w+7UMm5uRbOzLawUrew
+        ttbARnOT9oIT/P93ptj2KkzT7hiG+eQPd4Y4B1KEX4IAAAAASUVORK5CYII=
 </value>
   </data>
   <data name="Pesquisar.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
