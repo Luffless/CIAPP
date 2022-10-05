@@ -113,7 +113,6 @@
     </Compile>
     <Compile Include="Model\Frequencia.cs" />
     <Compile Include="Model\Atividade.cs" />
-    <Compile Include="Model\Crime.cs" />
     <Compile Include="Model\Deficiencia.cs" />
     <Compile Include="Model\Doenca.cs" />
     <Compile Include="Model\Habilidade.cs" />
