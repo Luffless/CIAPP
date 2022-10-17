@@ -132,6 +132,12 @@
     <Compile Include="PrestadorForm.Designer.cs">
       <DependentUpon>PrestadorForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Processos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Processos.Designer.cs">
+      <DependentUpon>Processos.cs</DependentUpon>
+    </Compile>
     <Compile Include="Relatorios.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -190,6 +196,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PrestadorForm.resx">
       <DependentUpon>PrestadorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Processos.resx">
+      <DependentUpon>Processos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Relatorios.resx">
       <DependentUpon>Relatorios.cs</DependentUpon>
