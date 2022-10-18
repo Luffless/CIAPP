@@ -97,6 +97,7 @@
   <ItemGroup>
     <Compile Include="DB\EntidadeDAO.cs" />
     <Compile Include="DB\PrestadorDAO.cs" />
+    <Compile Include="DB\ProcessoDAO.cs" />
     <Compile Include="DB\StringConexao.cs" />
     <Compile Include="DB\UsuarioDAO.cs" />
     <Compile Include="EntidadeForm.cs">
