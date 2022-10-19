@@ -40,7 +40,7 @@
             this.NumeroArtigoPenalFiltro = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.PrestadorFiltro = new System.Windows.Forms.TextBox();
+            this.NomePrestadorFiltro = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -161,7 +161,7 @@
             this.groupBox1.Controls.Add(this.NumeroArtigoPenalFiltro);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.PrestadorFiltro);
+            this.groupBox1.Controls.Add(this.NomePrestadorFiltro);
             this.groupBox1.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(7, 37);
             this.groupBox1.Name = "groupBox1";
@@ -197,12 +197,12 @@
             this.label3.TabIndex = 11;
             this.label3.Text = "Número Artigo Penal:";
             // 
-            // PrestadorFiltro
+            // NomePrestadorFiltro
             // 
-            this.PrestadorFiltro.Location = new System.Drawing.Point(95, 24);
-            this.PrestadorFiltro.Name = "PrestadorFiltro";
-            this.PrestadorFiltro.Size = new System.Drawing.Size(470, 26);
-            this.PrestadorFiltro.TabIndex = 9;
+            this.NomePrestadorFiltro.Location = new System.Drawing.Point(95, 24);
+            this.NomePrestadorFiltro.Name = "NomePrestadorFiltro";
+            this.NomePrestadorFiltro.Size = new System.Drawing.Size(470, 26);
+            this.NomePrestadorFiltro.TabIndex = 9;
             // 
             // Processos
             // 
@@ -242,6 +242,6 @@
         private System.Windows.Forms.TextBox NumeroArtigoPenalFiltro;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox PrestadorFiltro;
+        private System.Windows.Forms.TextBox NomePrestadorFiltro;
     }
 }
