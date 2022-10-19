@@ -99,3 +99,56 @@ create table doenca (
 alter table doenca
 add constraint pk_doenca primary key(id_prestador, descricao),
 add constraint fk_doenca foreign key(id_prestador) references prestador(id);
+
+create table processo (
+	id int not null,
+	varaorigem varchar(60) not null,
+	numeroartigopenal int not null,
+	penaoriginaria varchar(60) not null,
+	horascumprir int not null,
+	acordopersecucaopenal boolean not null,
+	datainicio date not null,
+	datatermino date not null,
+	id_prestador int not null
+);
+
+alter table processo
+add constraint pk_processo primary key(id),
+add constraint fk_processo foreign key(id_prestador) references prestador(id);
+
+create table processo_entidade (
+	id_processo int not null,
+	id_entidade int not null,
+	horascumprir int not null,
+	datainicio date not null,
+	datatermino date not null
+);
+
+alter table processo
+add constraint pk_processo_entidade primary key(id_processo, id_entidade),
+add constraint fk_processo_entidade_1 foreign key(id_processo) references processo(id),
+add constraint fk_processo_entidade_2 foreign key(id_entidade) references entidade(id);
+
+create table atividade (
+	id_processo int not null,
+	id_entidade int not null,
+	descricao varchar(60) not null
+);
+
+alter table atividade
+add constraint pk_atividade primary key(id_processo, id_entidade, descricao),
+add constraint fk_atividade_1 foreign key(id_processo) references processo(id),
+add constraint fk_atividade_2 foreign key(id_entidade) references entidade(id);
+
+create table frequencia (
+	id_processo int not null,
+	id_entidade int not null,
+	datafrequencia date not null,
+	horascumpridas int not null,
+	observacao varchar(255)
+);
+
+alter table frequencia
+add constraint pk_frequencia primary key(id_processo, id_entidade, datafrequencia),
+add constraint fk_frequencia_1 foreign key(id_processo) references processo(id),
+add constraint fk_frequencia_2 foreign key(id_entidade) references entidade(id);

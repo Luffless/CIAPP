@@ -32,29 +32,29 @@ namespace CIAPP
         {
             ListView.Font = new Font(ListView.Font, FontStyle.Bold);
             ListView.Columns.Add("ID", 30);
-            ListView.Columns.Add("Prestador", 165);
-            ListView.Columns.Add("Número Artigo Penal", 140);
-            ListView.Columns.Add("Horas a cumprir", 165);
-            ListView.Columns.Add("Data de início", 330);
+            ListView.Columns.Add("Prestador", 395);
+            ListView.Columns.Add("Número Artigo Penal", 165);
+            ListView.Columns.Add("Horas a cumprir", 130);
+            ListView.Columns.Add("Data de início", 120);
         }
 
         private void CarregarRegistros()
         {
             ListView.Items.Clear();
-            //List<Processo> itemList = (List<Processo>)processoDAO.RecuperarTodosFiltrado(PrestadorFiltro.Text, NumeroArtigoPenalFiltro.Text);
+            List<Processo> itemList = (List<Processo>)processoDAO.RecuperarTodosFiltrado(NomePrestadorFiltro.Text, NumeroArtigoPenalFiltro.Text);
 
-            //for (int i = 0; i < itemList.Count; i++)
-            //{
-            //    ListViewItem listItem = new ListViewItem(itemList[i].Id.ToString())
-            //    {
-            //        Font = new Font(ListView.Font, FontStyle.Regular)
-            //    };
-            //    listItem.SubItems.Add(new ListViewItem.ListViewSubItem(listItem, itemList[i].Prestador.Nome));
-            //    listItem.SubItems.Add(new ListViewItem.ListViewSubItem(listItem, itemList[i].NumeroArtigoPenal.ToString()));
-            //    listItem.SubItems.Add(new ListViewItem.ListViewSubItem(listItem, itemList[i].HorasCumprir.ToString()));
-            //    listItem.SubItems.Add(new ListViewItem.ListViewSubItem(listItem, itemList[i].DataInicio.ToString("dd/MM/yyyy")));
-            //    ListView.Items.Add(listItem);
-            //}
+            for (int i = 0; i < itemList.Count; i++)
+            {
+                ListViewItem listItem = new ListViewItem(itemList[i].Id.ToString())
+                {
+                    Font = new Font(ListView.Font, FontStyle.Regular)
+                };
+                listItem.SubItems.Add(new ListViewItem.ListViewSubItem(listItem, itemList[i].Prestador.Nome));
+                listItem.SubItems.Add(new ListViewItem.ListViewSubItem(listItem, itemList[i].NumeroArtigoPenal.ToString()));
+                listItem.SubItems.Add(new ListViewItem.ListViewSubItem(listItem, itemList[i].HorasCumprir.ToString()));
+                listItem.SubItems.Add(new ListViewItem.ListViewSubItem(listItem, itemList[i].DataInicio.ToString("dd/MM/yyyy")));
+                ListView.Items.Add(listItem);
+            }
         }
     }
 }
