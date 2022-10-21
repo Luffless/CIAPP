@@ -84,6 +84,7 @@
             this.Pesquisar.Size = new System.Drawing.Size(54, 54);
             this.Pesquisar.TabIndex = 29;
             this.Pesquisar.UseVisualStyleBackColor = false;
+            this.Pesquisar.Click += new System.EventHandler(this.Pesquisar_Click);
             // 
             // Detalhes
             // 
@@ -102,6 +103,7 @@
             this.Detalhes.TabIndex = 28;
             this.Detalhes.Text = "DETALHES";
             this.Detalhes.UseVisualStyleBackColor = false;
+            this.Detalhes.Click += new System.EventHandler(this.Detalhes_Click);
             // 
             // Editar
             // 
@@ -120,6 +122,7 @@
             this.Editar.TabIndex = 27;
             this.Editar.Text = "EDITAR";
             this.Editar.UseVisualStyleBackColor = false;
+            this.Editar.Click += new System.EventHandler(this.Editar_Click);
             // 
             // Novo
             // 
@@ -138,6 +141,7 @@
             this.Novo.TabIndex = 26;
             this.Novo.Text = "NOVO";
             this.Novo.UseVisualStyleBackColor = false;
+            this.Novo.Click += new System.EventHandler(this.Novo_Click);
             // 
             // ListView
             // 
@@ -153,6 +157,7 @@
             this.ListView.TabIndex = 30;
             this.ListView.UseCompatibleStateImageBehavior = false;
             this.ListView.View = System.Windows.Forms.View.Details;
+            this.ListView.DoubleClick += new System.EventHandler(this.DoubleClick_Click);
             // 
             // groupBox1
             // 
