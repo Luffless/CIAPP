@@ -124,7 +124,7 @@ create table processo_entidade (
 	datatermino date not null
 );
 
-alter table processo
+alter table processo_entidade
 add constraint pk_processo_entidade primary key(id_processo, id_entidade),
 add constraint fk_processo_entidade_1 foreign key(id_processo) references processo(id),
 add constraint fk_processo_entidade_2 foreign key(id_entidade) references entidade(id);
