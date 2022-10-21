@@ -56,5 +56,65 @@ namespace CIAPP
                 ListView.Items.Add(listItem);
             }
         }
+
+        private void Pesquisar_Click(object sender, EventArgs e)
+        {
+            CarregarRegistros();
+        }
+
+        private void Novo_Click(object sender, EventArgs e)
+        {
+            //new ProcessoForm("Incluir").ShowDialog();
+            CarregarRegistros();
+        }
+
+        private void Editar_Click(object sender, EventArgs e)
+        {
+            if (!VerificaList())
+            {
+                return;
+            }
+
+            //ListViewItem item = ListView.SelectedItems[0];
+            //ProcessoForm form = new ProcessoForm("Editar");
+            //form.Id.Text = item.SubItems[0].Text;
+            //form.ShowDialog();
+            CarregarRegistros();
+        }
+
+        private void Detalhes_Click(object sender, EventArgs e)
+        {
+            if (!VerificaList())
+            {
+                return;
+            }
+
+            //ListViewItem item = ListView.SelectedItems[0];
+            //ProcessoForm form = new ProcessoForm("Detalhes");
+            //form.Id.Text = item.SubItems[0].Text;
+            //form.ShowDialog();
+        }
+
+        private void DoubleClick_Click(object sender, EventArgs e)
+        {
+            Detalhes_Click(sender, e);
+        }
+
+        private bool VerificaList()
+        {
+            if (ListView.Items.Count == 0)
+            {
+                MessageBox.Show("Não há nenhum registro!", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            if (ListView.SelectedItems.Count == 0)
+            {
+                MessageBox.Show("Selecione um registro antes!", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            return true;
+        }
     }
 }

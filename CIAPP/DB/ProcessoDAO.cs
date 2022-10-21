@@ -10,7 +10,7 @@ public class ProcessoDAO
         {
             string sql = @"select processo.*
                              from processo, prestador
-                            where 1 = 1";
+                            where processo.id_prestador = prestador.id";
 
             if (!string.IsNullOrWhiteSpace(nomePrestador))
             {
@@ -22,8 +22,7 @@ public class ProcessoDAO
                 sql += " and processo.numeroartigopenal = @numeroartigopenal";
             }
 
-            sql += @" and processo.id_prestador = prestador.id
-                    order by processo.datainicio desc";
+            sql += " order by processo.datainicio desc";
 
             return connection.Query<Processo>(sql,
                    param: new
