@@ -14,7 +14,7 @@ namespace CIAPP
         private readonly ProcessoDAO processoDAO = new ProcessoDAO();
         private readonly PrestadorDAO prestadorDAO = new PrestadorDAO();
         private readonly EntidadeDAO entidadeDAO = new EntidadeDAO();
-        //private readonly EnvioEmail envioEmail = new EnvioEmail();
+        private readonly EnvioEmail envioEmail = new EnvioEmail();
         private readonly string manutencao;
 
         public ProcessoForm(string man)
@@ -382,7 +382,7 @@ namespace CIAPP
 
             processoDAO.Insert(processo);
 
-            //envioEmail.EnviarEmailEntidade();
+            envioEmail.EnviarEmailEntidade(processo);
 
             Close();
         }
