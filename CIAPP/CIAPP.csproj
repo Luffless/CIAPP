@@ -263,6 +263,7 @@
     <Content Include="Assets\im_entidades.png" />
     <Content Include="Assets\im_excluir_registro.png" />
     <Content Include="Assets\im_icon.ico" />
+    <Content Include="Assets\im_importar.png" />
     <Content Include="Assets\im_incluir_registro.png" />
     <Content Include="Assets\im_login.png" />
     <Content Include="Assets\im_logo.png" />
