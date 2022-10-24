@@ -97,7 +97,7 @@ public class ValidationPrestador
             return false;
         }
 
-        if (prestadorDAO.ExisteCpf(id, cpf))
+        if (prestadorDAO.ExisteCpfIdDiferente(id, cpf))
         {
             MessageBox.Show("CPF informado já existe!", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             return false;

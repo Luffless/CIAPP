@@ -228,7 +228,7 @@ public class EntidadeDAO
                        return entidade;
                    },
                    splitOn: "Logradouro",
-                   param: new 
+                   param: new
                    { 
                        id = idEntidade
                    }).Single();
@@ -246,7 +246,7 @@ public class EntidadeDAO
         }
     }
 
-    public bool ExisteCnpj(int idEntidade, string cnpjEntidade)
+    public bool ExisteCnpjIdDiferente(int idEntidade, string cnpjEntidade)
     {
         using (NpgsqlConnection connection = new NpgsqlConnection(StringConexao.stringConexao))
         {
@@ -263,7 +263,7 @@ public class EntidadeDAO
         }
     }
 
-    public bool ExisteEmail(int idEntidade, string emailEntidade)
+    public bool ExisteEmailIdDiferente(int idEntidade, string emailEntidade)
     {
         using (NpgsqlConnection connection = new NpgsqlConnection(StringConexao.stringConexao))
         {
@@ -277,6 +277,53 @@ public class EntidadeDAO
                        id = idEntidade,
                        email = emailEntidade
                    });
+        }
+    }
+
+    public bool ExisteCnpj(string cnpjEntidade)
+    {
+        using (NpgsqlConnection connection = new NpgsqlConnection(StringConexao.stringConexao))
+        {
+            string sql = @"select count(*)
+                             from entidade
+                            where cnpj = @cnpj";
+
+            return connection.QuerySingle<bool>(sql, param: new
+            {
+                cnpj = cnpjEntidade
+            });
+        }
+    }
+
+    public Entidade RecuperarPorCnpj(string cnpjEntidade)
+    {
+        using (NpgsqlConnection connection = new NpgsqlConnection(StringConexao.stringConexao))
+        {
+            string sql = @"select *
+                             from entidade
+                            where cnpj = @cnpj";
+
+            return connection.Query<Entidade>(sql,
+                   param: new
+                   {
+                       cnpj = cnpjEntidade
+                   }).Single();
+        }
+    }
+
+    public bool ExisteEntidadeDescredenciada(string cnpjEntidade)
+    {
+        using (NpgsqlConnection connection = new NpgsqlConnection(StringConexao.stringConexao))
+        {
+            string sql = @"select count(*)
+                             from entidade
+                            where cnpj = @cnpj
+                              and datadescredenciamento is not null";
+
+            return connection.QuerySingle<bool>(sql, param: new
+            {
+                cnpj = cnpjEntidade
+            });
         }
     }
 }

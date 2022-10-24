@@ -100,6 +100,7 @@
     <Compile Include="DB\ProcessoDAO.cs" />
     <Compile Include="DB\StringConexao.cs" />
     <Compile Include="DB\UsuarioDAO.cs" />
+    <Compile Include="Email\EnvioEmail.cs" />
     <Compile Include="EntidadeForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -113,7 +114,6 @@
       <DependentUpon>Entidades.cs</DependentUpon>
     </Compile>
     <Compile Include="Model\Frequencia.cs" />
-    <Compile Include="Model\Atividade.cs" />
     <Compile Include="Model\Deficiencia.cs" />
     <Compile Include="Model\Doenca.cs" />
     <Compile Include="Model\Habilidade.cs" />
@@ -121,6 +121,12 @@
     <Compile Include="Model\Prestador.cs" />
     <Compile Include="Model\Processo.cs" />
     <Compile Include="Model\ProcessoEntidade.cs" />
+    <Compile Include="Observacao.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Observacao.Designer.cs">
+      <DependentUpon>Observacao.cs</DependentUpon>
+    </Compile>
     <Compile Include="Prestadores.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -132,6 +138,12 @@
     </Compile>
     <Compile Include="PrestadorForm.Designer.cs">
       <DependentUpon>PrestadorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProcessoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProcessoForm.Designer.cs">
+      <DependentUpon>ProcessoForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Processos.cs">
       <SubType>Form</SubType>
@@ -182,6 +194,7 @@
     <Compile Include="Validation\ValidationLogin.cs" />
     <Compile Include="Validation\ValidationParentesco.cs" />
     <Compile Include="Validation\ValidationPrestador.cs" />
+    <Compile Include="Validation\ValidationProcesso.cs" />
     <Compile Include="Validation\ValidationUsuario.cs" />
     <EmbeddedResource Include="EntidadeForm.resx">
       <DependentUpon>EntidadeForm.cs</DependentUpon>
@@ -192,11 +205,17 @@
     <EmbeddedResource Include="LoginScreen.resx">
       <DependentUpon>LoginScreen.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Observacao.resx">
+      <DependentUpon>Observacao.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Prestadores.resx">
       <DependentUpon>Prestadores.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PrestadorForm.resx">
       <DependentUpon>PrestadorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProcessoForm.resx">
+      <DependentUpon>ProcessoForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Processos.resx">
       <DependentUpon>Processos.cs</DependentUpon>
