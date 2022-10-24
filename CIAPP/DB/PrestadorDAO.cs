@@ -333,7 +333,7 @@ public class PrestadorDAO
     public Prestador RecuperarPorId(int idPrestador)
     {
         string sql;
-        Prestador prestador;
+        Prestador prestadorRegistro;
         List<Parentesco> parentescoList;
         List<Habilidade> habilidadeList;
         List<Deficiencia> deficienciaList;
@@ -345,17 +345,17 @@ public class PrestadorDAO
                       from prestador
                      where id = @id";
 
-            prestador = connection.Query<Prestador, Endereco, Prestador>(sql,
-                        (entidade, endereco) =>
-                        {
-                            entidade.Endereco = endereco;
-                            return entidade;
-                        },
-                        splitOn: "Logradouro",
-                        param: new
-                        {
-                            id = idPrestador
-                        }).Single();
+            prestadorRegistro = connection.Query<Prestador, Endereco, Prestador>(sql,
+                                (prestador, endereco) =>
+                                {
+                                    prestador.Endereco = endereco;
+                                    return prestador;
+                                },
+                                splitOn: "Logradouro",
+                                param: new
+                                {
+                                    id = idPrestador
+                                }).Single();
 
             sql = @"select nome, grauparentesco
                       from parentesco
@@ -401,12 +401,12 @@ public class PrestadorDAO
                              id = idPrestador
                          });
 
-            prestador.ParentescoList = parentescoList;
-            prestador.HabilidadeList = habilidadeList;
-            prestador.DeficienciaList = deficienciaList;
-            prestador.DoencaList = doencaList;
+            prestadorRegistro.ParentescoList = parentescoList;
+            prestadorRegistro.HabilidadeList = habilidadeList;
+            prestadorRegistro.DeficienciaList = deficienciaList;
+            prestadorRegistro.DoencaList = doencaList;
 
-            return prestador;
+            return prestadorRegistro;
         }
     }
 
@@ -421,7 +421,22 @@ public class PrestadorDAO
         }
     }
 
-    public bool ExisteCpf(int idPrestador, string cpfPrestador)
+    public bool ExisteCpf(string cpfPrestador)
+    {
+        using (NpgsqlConnection connection = new NpgsqlConnection(StringConexao.stringConexao))
+        {
+            string sql = @"select count(*)
+                             from prestador
+                            where cpf = @cpf";
+
+            return connection.QuerySingle<bool>(sql, param: new
+            {
+                cpf = cpfPrestador
+            });
+        }
+    }
+
+    public bool ExisteCpfIdDiferente(int idPrestador, string cpfPrestador)
     {
         using (NpgsqlConnection connection = new NpgsqlConnection(StringConexao.stringConexao))
         {
@@ -435,6 +450,24 @@ public class PrestadorDAO
                 id = idPrestador,
                 cpf = cpfPrestador
             });
+        }
+    }
+
+    public Prestador RecuperarPorCpf(string cpfPrestador)
+    {
+        string sql;
+
+        using (NpgsqlConnection connection = new NpgsqlConnection(StringConexao.stringConexao))
+        {
+            sql = @"select *
+                      from prestador
+                     where cpf = @cpf";
+
+            return connection.Query<Prestador>(sql,
+                   param: new
+                   {
+                       cpf = cpfPrestador
+                   }).SingleOrDefault();
         }
     }
 }

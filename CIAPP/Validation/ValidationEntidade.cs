@@ -78,7 +78,7 @@ public class ValidationEntidade
             return false;
         }
 
-        if (entidadeDAO.ExisteCnpj(id, cnpj))
+        if (entidadeDAO.ExisteCnpjIdDiferente(id, cnpj))
         {
             MessageBox.Show("CNPJ informado já existe!", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             return false;
@@ -125,7 +125,7 @@ public class ValidationEntidade
             return false;
         }
 
-        if (entidadeDAO.ExisteEmail(id, email))
+        if (entidadeDAO.ExisteEmailIdDiferente(id, email))
         {
             MessageBox.Show("E-mail informado já existe!", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             return false;

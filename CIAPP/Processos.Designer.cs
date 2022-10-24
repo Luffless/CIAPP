@@ -33,7 +33,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.Pesquisar = new System.Windows.Forms.Button();
             this.Detalhes = new System.Windows.Forms.Button();
-            this.Editar = new System.Windows.Forms.Button();
             this.Novo = new System.Windows.Forms.Button();
             this.ListView = new System.Windows.Forms.ListView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -97,32 +96,13 @@
             this.Detalhes.ForeColor = System.Drawing.Color.White;
             this.Detalhes.Image = ((System.Drawing.Image)(resources.GetObject("Detalhes.Image")));
             this.Detalhes.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Detalhes.Location = new System.Drawing.Point(858, 220);
+            this.Detalhes.Location = new System.Drawing.Point(858, 171);
             this.Detalhes.Name = "Detalhes";
             this.Detalhes.Size = new System.Drawing.Size(180, 40);
             this.Detalhes.TabIndex = 28;
             this.Detalhes.Text = "DETALHES";
             this.Detalhes.UseVisualStyleBackColor = false;
             this.Detalhes.Click += new System.EventHandler(this.Detalhes_Click);
-            // 
-            // Editar
-            // 
-            this.Editar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.Editar.BackColor = System.Drawing.Color.MidnightBlue;
-            this.Editar.FlatAppearance.BorderSize = 0;
-            this.Editar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            this.Editar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Editar.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Editar.ForeColor = System.Drawing.Color.White;
-            this.Editar.Image = ((System.Drawing.Image)(resources.GetObject("Editar.Image")));
-            this.Editar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Editar.Location = new System.Drawing.Point(858, 153);
-            this.Editar.Name = "Editar";
-            this.Editar.Size = new System.Drawing.Size(180, 40);
-            this.Editar.TabIndex = 27;
-            this.Editar.Text = "EDITAR";
-            this.Editar.UseVisualStyleBackColor = false;
-            this.Editar.Click += new System.EventHandler(this.Editar_Click);
             // 
             // Novo
             // 
@@ -219,7 +199,6 @@
             this.Controls.Add(this.ListView);
             this.Controls.Add(this.Pesquisar);
             this.Controls.Add(this.Detalhes);
-            this.Controls.Add(this.Editar);
             this.Controls.Add(this.Novo);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.BtnFechar);
@@ -240,7 +219,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button Pesquisar;
         private System.Windows.Forms.Button Detalhes;
-        private System.Windows.Forms.Button Editar;
         private System.Windows.Forms.Button Novo;
         private System.Windows.Forms.ListView ListView;
         private System.Windows.Forms.GroupBox groupBox1;

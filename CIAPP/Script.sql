@@ -107,8 +107,6 @@ create table processo (
 	penaoriginaria varchar(60) not null,
 	horascumprir int not null,
 	acordopersecucaopenal boolean not null,
-	datainicio date not null,
-	datatermino date not null,
 	id_prestador int not null
 );
 
@@ -120,25 +118,13 @@ create table processo_entidade (
 	id_processo int not null,
 	id_entidade int not null,
 	horascumprir int not null,
-	datainicio date not null,
-	datatermino date not null
+	atividade varchar(60) not null
 );
 
 alter table processo_entidade
 add constraint pk_processo_entidade primary key(id_processo, id_entidade),
 add constraint fk_processo_entidade_1 foreign key(id_processo) references processo(id),
 add constraint fk_processo_entidade_2 foreign key(id_entidade) references entidade(id);
-
-create table atividade (
-	id_processo int not null,
-	id_entidade int not null,
-	descricao varchar(60) not null
-);
-
-alter table atividade
-add constraint pk_atividade primary key(id_processo, id_entidade, descricao),
-add constraint fk_atividade_1 foreign key(id_processo) references processo(id),
-add constraint fk_atividade_2 foreign key(id_entidade) references entidade(id);
 
 create table frequencia (
 	id_processo int not null,

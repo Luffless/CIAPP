@@ -8,6 +8,7 @@ namespace CIAPP
     public partial class Prestadores : Form
     {
         private readonly PrestadorDAO prestadorDAO = new PrestadorDAO();
+        private readonly ProcessoDAO processoDAO = new ProcessoDAO();
         private readonly MenuPrincipal formMenuPrincipal;
 
         public Prestadores(MenuPrincipal form)
@@ -91,8 +92,11 @@ namespace CIAPP
 
             ListViewItem item = ListView.SelectedItems[0];
 
-            //Verificar se o prestador já possui algum Processo vinculado
-            //(será implementado futuramente)
+            if (processoDAO.ExisteCpfProcesso(item.SubItems[1].Text))
+            {
+                MessageBox.Show("Não poderá excluir este prestador, pois o mesmo faz parte de um processo", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
             if (MessageBox.Show("Confirma excluir este registro?", "Selecione a opção", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {

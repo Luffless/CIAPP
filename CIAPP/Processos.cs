@@ -32,19 +32,30 @@ namespace CIAPP
         {
             ListView.Font = new Font(ListView.Font, FontStyle.Bold);
             ListView.Columns.Add("ID", 30);
-            ListView.Columns.Add("Prestador", 395);
+            ListView.Columns.Add("Prestador", 375);
             ListView.Columns.Add("Número Artigo Penal", 165);
-            ListView.Columns.Add("Horas a cumprir", 130);
-            ListView.Columns.Add("Data de início", 120);
+            ListView.Columns.Add("Horas a cumprir", 135);
+            ListView.Columns.Add("Horas cumpridas", 135);
         }
 
         private void CarregarRegistros()
         {
+            int horasCumpridas;
             ListView.Items.Clear();
             List<Processo> itemList = (List<Processo>)processoDAO.RecuperarTodosFiltrado(NomePrestadorFiltro.Text, NumeroArtigoPenalFiltro.Text);
 
             for (int i = 0; i < itemList.Count; i++)
             {
+                horasCumpridas = 0;
+
+                for (int j = 0; j < itemList[i].ProcessoEntidadeList.Count; j++)
+                {
+                    for (int k = 0; k < itemList[i].ProcessoEntidadeList[j].FrequenciaList.Count; k++)
+                    {
+                        horasCumpridas += itemList[i].ProcessoEntidadeList[j].FrequenciaList[k].HorasCumpridas;
+                    }
+                }
+
                 ListViewItem listItem = new ListViewItem(itemList[i].Id.ToString())
                 {
                     Font = new Font(ListView.Font, FontStyle.Regular)
@@ -52,7 +63,7 @@ namespace CIAPP
                 listItem.SubItems.Add(new ListViewItem.ListViewSubItem(listItem, itemList[i].Prestador.Nome));
                 listItem.SubItems.Add(new ListViewItem.ListViewSubItem(listItem, itemList[i].NumeroArtigoPenal.ToString()));
                 listItem.SubItems.Add(new ListViewItem.ListViewSubItem(listItem, itemList[i].HorasCumprir.ToString()));
-                listItem.SubItems.Add(new ListViewItem.ListViewSubItem(listItem, itemList[i].DataInicio.ToString("dd/MM/yyyy")));
+                listItem.SubItems.Add(new ListViewItem.ListViewSubItem(listItem, horasCumpridas.ToString()));
                 ListView.Items.Add(listItem);
             }
         }
@@ -64,21 +75,7 @@ namespace CIAPP
 
         private void Novo_Click(object sender, EventArgs e)
         {
-            //new ProcessoForm("Incluir").ShowDialog();
-            CarregarRegistros();
-        }
-
-        private void Editar_Click(object sender, EventArgs e)
-        {
-            if (!VerificaList())
-            {
-                return;
-            }
-
-            //ListViewItem item = ListView.SelectedItems[0];
-            //ProcessoForm form = new ProcessoForm("Editar");
-            //form.Id.Text = item.SubItems[0].Text;
-            //form.ShowDialog();
+            new ProcessoForm("Incluir").ShowDialog();
             CarregarRegistros();
         }
 
@@ -89,10 +86,10 @@ namespace CIAPP
                 return;
             }
 
-            //ListViewItem item = ListView.SelectedItems[0];
-            //ProcessoForm form = new ProcessoForm("Detalhes");
-            //form.Id.Text = item.SubItems[0].Text;
-            //form.ShowDialog();
+            ListViewItem item = ListView.SelectedItems[0];
+            ProcessoForm form = new ProcessoForm("Detalhes");
+            form.Id.Text = item.SubItems[0].Text;
+            form.ShowDialog();
         }
 
         private void DoubleClick_Click(object sender, EventArgs e)
