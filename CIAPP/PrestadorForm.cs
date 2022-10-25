@@ -249,6 +249,12 @@ namespace CIAPP
             };
             if (open.ShowDialog() == DialogResult.OK)
             {
+                if (new FileInfo(open.FileName).Length == 0)
+                {
+                    MessageBox.Show("O arquivo selecionado está vazio!", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
                 if (new FileInfo(open.FileName).Length > 1048576000) // 1GB
                 {
                     MessageBox.Show("A foto selecionada é muito grande!", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);

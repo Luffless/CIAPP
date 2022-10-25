@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 
 namespace CIAPP
@@ -77,6 +78,28 @@ namespace CIAPP
         {
             new ProcessoForm("Incluir").ShowDialog();
             CarregarRegistros();
+        }
+
+        private void Importar_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog open = new OpenFileDialog
+            {
+                Filter = "JSON Files(*.json)|*.json"
+            };
+            if (open.ShowDialog() == DialogResult.OK)
+            {
+                if (new FileInfo(open.FileName).Length == 0)
+                {
+                    MessageBox.Show("O arquivo selecionado está vazio!", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                using (StreamReader reader = new StreamReader(open.FileName))
+                {
+                    string json = reader.ReadToEnd();
+                    //Frequencia frequencia = JsonSerializer.Deserialize<Frequencia>(json); //try catch
+                }
+            }
         }
 
         private void Detalhes_Click(object sender, EventArgs e)

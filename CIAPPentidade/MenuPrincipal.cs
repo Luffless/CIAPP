@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Windows.Forms;
 
 namespace CIAPPentidade
@@ -34,6 +35,38 @@ namespace CIAPPentidade
         private void Close(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
+        }
+
+        private void Importar_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog open = new OpenFileDialog
+            {
+                Filter = "JSON Files(*.json)|*.json"
+            };
+            if (open.ShowDialog() == DialogResult.OK)
+            {
+                if (new FileInfo(open.FileName).Length == 0)
+                {
+                    MessageBox.Show("O arquivo selecionado está vazio!", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                using (StreamReader reader = new StreamReader(open.FileName))
+                {
+                    string json = reader.ReadToEnd();
+                    //Processo processo = JsonSerializer.Deserialize<Processo>(json); //try catch
+                }
+            }
+        }
+
+        private void Detalhes_Click(object sender, EventArgs e)
+        {
+            //abrir a tela dos detalhes, sendo que no registro selecionado poderá incluir registros de Frequência
+        }
+
+        private void DoubleClick_Click(object sender, EventArgs e)
+        {
+            Detalhes_Click(sender, e);
         }
     }
 }
