@@ -10,11 +10,13 @@ public class EnvioEmail
 {
     public void EnviarEmailEntidade(Processo processo)
     {
-        MailMessage message = new MailMessage("daniel.lazzari@tramontina.com", "daniel.lazzari@tramontina.com")
+        MailMessage message = new MailMessage("dlazzari3@ucs.br", "dlazzari3@ucs.br")
         {
             Subject = "Novo prestador - Central Integrada de Alternativas Penais!",
             Body = "Prezados!\n\nEstamos lhes entregando um novo prestador para que possa cumprir a pena realizando as atividades descritas conforme está no arquivo para ser carregado no sistema.\n\n\nAtenciosamente"
         };
+
+        processo.Prestador.Foto = null;
 
         //Central -> Entidade
         //processo
@@ -32,14 +34,14 @@ public class EnvioEmail
         //O equivalente do Stringify pra C# parece ser JsonConvert.SerializeObject(myObject)
 
         //update frequencia
-        //   set observacao = E'Teste\r\nteste'  usar \r\n pra quebrar uma linha (se tiver)
+        //   set observacao = E'Teste\r\nteste' usar \r\n pra quebrar uma linha (se tiver)
 
         string path = RetornaAnexoJson(processo);
 
         Attachment anexo = new Attachment(path);
         message.Attachments.Add(anexo);
 
-        SmtpClient smtpClient = new SmtpClient("10.1.1.250"); //Ver qual é da UCS, este é da Tramontina
+        SmtpClient smtpClient = new SmtpClient("smtp.gmail.com"); //Está ocorrendo erro ao enviar por ser algo externo pelo que parece
 
         try
         {
@@ -56,17 +58,15 @@ public class EnvioEmail
         string path = @"C:\Users\dlazz\Downloads\InformacoesPrestador" + processo.Prestador.Id + ".json";
         string json = JsonSerializer.Serialize(processo);
 
-        //using (FileStream fs = File.Create(path))
-
         //Aes (síncrona - uma só chave)
         EncryptDecrypt encryptTest = new EncryptDecrypt();
         string base64EncryptStringAes = encryptTest.Encrypt(json);
         File.WriteAllText(path, base64EncryptStringAes);
 
         //RSA (assíncrona - uma chave pública e uma chave privada)
-        RsaEnc rs = new RsaEnc();
-        string base64EncryptStringRSA = rs.Encrypt(json);
-        File.WriteAllText(path, base64EncryptStringRSA);
+        //RsaEnc rs = new RsaEnc();
+        //string base64EncryptStringRSA = rs.Encrypt(json);
+        //File.WriteAllText(path, base64EncryptStringRSA);
 
         return path;
     }

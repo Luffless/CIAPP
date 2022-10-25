@@ -456,6 +456,11 @@ public class PrestadorDAO
     public Prestador RecuperarPorCpf(string cpfPrestador)
     {
         string sql;
+        Prestador prestadorRegistro;
+        List<Parentesco> parentescoList;
+        List<Habilidade> habilidadeList;
+        List<Deficiencia> deficienciaList;
+        List<Doenca> doencaList;
 
         using (NpgsqlConnection connection = new NpgsqlConnection(StringConexao.stringConexao))
         {
@@ -463,11 +468,68 @@ public class PrestadorDAO
                       from prestador
                      where cpf = @cpf";
 
-            return connection.Query<Prestador>(sql,
-                   param: new
-                   {
-                       cpf = cpfPrestador
-                   }).SingleOrDefault();
+            prestadorRegistro = connection.Query<Prestador, Endereco, Prestador>(sql,
+                                (prestador, endereco) =>
+                                {
+                                    prestador.Endereco = endereco;
+                                    return prestador;
+                                },
+                                splitOn: "Logradouro",
+                                param: new
+                                {
+                                    cpf = cpfPrestador
+                                }).Single();
+
+            sql = @"select nome, grauparentesco
+                      from parentesco
+                     where id_prestador = @id
+                     order by nome";
+
+            parentescoList = (List<Parentesco>)connection.Query<Parentesco>(sql,
+                             param: new
+                             {
+                                 id = prestadorRegistro.Id
+                             });
+
+            sql = @"select descricao
+                      from habilidade
+                     where id_prestador = @id
+                     order by descricao";
+
+            habilidadeList = (List<Habilidade>)connection.Query<Habilidade>(sql,
+                             param: new
+                             {
+                                 id = prestadorRegistro.Id
+                             });
+
+            sql = @"select descricao
+                      from deficiencia
+                     where id_prestador = @id
+                     order by descricao";
+
+            deficienciaList = (List<Deficiencia>)connection.Query<Deficiencia>(sql,
+                              param: new
+                              {
+                                  id = prestadorRegistro.Id
+                              });
+
+            sql = @"select descricao
+                      from doenca
+                     where id_prestador = @id
+                     order by descricao";
+
+            doencaList = (List<Doenca>)connection.Query<Doenca>(sql,
+                         param: new
+                         {
+                             id = prestadorRegistro.Id
+                         });
+
+            prestadorRegistro.ParentescoList = parentescoList;
+            prestadorRegistro.HabilidadeList = habilidadeList;
+            prestadorRegistro.DeficienciaList = deficienciaList;
+            prestadorRegistro.DoencaList = doencaList;
+
+            return prestadorRegistro;
         }
     }
 }
