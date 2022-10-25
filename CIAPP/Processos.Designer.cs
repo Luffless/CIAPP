@@ -32,14 +32,15 @@
             this.BtnFechar = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.Pesquisar = new System.Windows.Forms.Button();
-            this.Detalhes = new System.Windows.Forms.Button();
-            this.Novo = new System.Windows.Forms.Button();
             this.ListView = new System.Windows.Forms.ListView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.NumeroArtigoPenalFiltro = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.NomePrestadorFiltro = new System.Windows.Forms.TextBox();
+            this.Novo = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.Importar = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -84,44 +85,6 @@
             this.Pesquisar.TabIndex = 29;
             this.Pesquisar.UseVisualStyleBackColor = false;
             this.Pesquisar.Click += new System.EventHandler(this.Pesquisar_Click);
-            // 
-            // Detalhes
-            // 
-            this.Detalhes.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.Detalhes.BackColor = System.Drawing.Color.MidnightBlue;
-            this.Detalhes.FlatAppearance.BorderSize = 0;
-            this.Detalhes.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            this.Detalhes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Detalhes.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Detalhes.ForeColor = System.Drawing.Color.White;
-            this.Detalhes.Image = ((System.Drawing.Image)(resources.GetObject("Detalhes.Image")));
-            this.Detalhes.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Detalhes.Location = new System.Drawing.Point(858, 171);
-            this.Detalhes.Name = "Detalhes";
-            this.Detalhes.Size = new System.Drawing.Size(180, 40);
-            this.Detalhes.TabIndex = 28;
-            this.Detalhes.Text = "DETALHES";
-            this.Detalhes.UseVisualStyleBackColor = false;
-            this.Detalhes.Click += new System.EventHandler(this.Detalhes_Click);
-            // 
-            // Novo
-            // 
-            this.Novo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.Novo.BackColor = System.Drawing.Color.MidnightBlue;
-            this.Novo.FlatAppearance.BorderSize = 0;
-            this.Novo.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            this.Novo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Novo.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Novo.ForeColor = System.Drawing.Color.White;
-            this.Novo.Image = ((System.Drawing.Image)(resources.GetObject("Novo.Image")));
-            this.Novo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Novo.Location = new System.Drawing.Point(858, 107);
-            this.Novo.Name = "Novo";
-            this.Novo.Size = new System.Drawing.Size(180, 40);
-            this.Novo.TabIndex = 26;
-            this.Novo.Text = "NOVO";
-            this.Novo.UseVisualStyleBackColor = false;
-            this.Novo.Click += new System.EventHandler(this.Novo_Click);
             // 
             // ListView
             // 
@@ -189,17 +152,75 @@
             this.NomePrestadorFiltro.Size = new System.Drawing.Size(470, 26);
             this.NomePrestadorFiltro.TabIndex = 9;
             // 
+            // Novo
+            // 
+            this.Novo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.Novo.BackColor = System.Drawing.Color.MidnightBlue;
+            this.Novo.FlatAppearance.BorderSize = 0;
+            this.Novo.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.Novo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Novo.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Novo.ForeColor = System.Drawing.Color.White;
+            this.Novo.Image = ((System.Drawing.Image)(resources.GetObject("Novo.Image")));
+            this.Novo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.Novo.Location = new System.Drawing.Point(858, 108);
+            this.Novo.Name = "Novo";
+            this.Novo.Size = new System.Drawing.Size(180, 40);
+            this.Novo.TabIndex = 33;
+            this.Novo.Text = "NOVO";
+            this.Novo.UseVisualStyleBackColor = false;
+            this.Novo.Click += new System.EventHandler(this.Novo_Click);
+            // 
+            // button1
+            // 
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button1.BackColor = System.Drawing.Color.MidnightBlue;
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.Color.White;
+            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button1.Location = new System.Drawing.Point(858, 244);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(180, 40);
+            this.button1.TabIndex = 36;
+            this.button1.Text = "DETALHES";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.Detalhes_Click);
+            // 
+            // Importar
+            // 
+            this.Importar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.Importar.BackColor = System.Drawing.Color.MidnightBlue;
+            this.Importar.FlatAppearance.BorderSize = 0;
+            this.Importar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.Importar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Importar.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Importar.ForeColor = System.Drawing.Color.White;
+            this.Importar.Image = ((System.Drawing.Image)(resources.GetObject("Importar.Image")));
+            this.Importar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.Importar.Location = new System.Drawing.Point(858, 176);
+            this.Importar.Name = "Importar";
+            this.Importar.Size = new System.Drawing.Size(180, 40);
+            this.Importar.TabIndex = 35;
+            this.Importar.Text = "IMPORTAR";
+            this.Importar.UseVisualStyleBackColor = false;
+            this.Importar.Click += new System.EventHandler(this.Importar_Click);
+            // 
             // Processos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(1050, 600);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.Importar);
+            this.Controls.Add(this.Novo);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.ListView);
             this.Controls.Add(this.Pesquisar);
-            this.Controls.Add(this.Detalhes);
-            this.Controls.Add(this.Novo);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.BtnFechar);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -218,13 +239,14 @@
         private System.Windows.Forms.Label BtnFechar;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button Pesquisar;
-        private System.Windows.Forms.Button Detalhes;
-        private System.Windows.Forms.Button Novo;
         private System.Windows.Forms.ListView ListView;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TextBox NumeroArtigoPenalFiltro;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox NomePrestadorFiltro;
+        private System.Windows.Forms.Button Novo;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button Importar;
     }
 }
