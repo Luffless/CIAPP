@@ -1,5 +1,4 @@
-﻿using System;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 
 public class ValidationProcesso
 {
@@ -48,7 +47,7 @@ public class ValidationProcesso
             return false;
         }
 
-        if (int.Parse(horasCumprir) <= 0)
+        if (int.Parse(horasCumprir) == 0)
         {
             MessageBox.Show("Horas a cumprir inválido!", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             return false;
@@ -118,7 +117,7 @@ public class ValidationProcesso
             return false;
         }
 
-        if (int.Parse(horasCumprirEntidade) <= 0)
+        if (int.Parse(horasCumprirEntidade) == 0)
         {
             MessageBox.Show("Horas a cumprir da entidade inválido!", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             return false;

@@ -181,31 +181,29 @@ namespace CIAPP
         {
             if (!string.IsNullOrWhiteSpace(Cpf.Text))
             {
-                Prestador prestador = prestadorDAO.RecuperarPorCpf(Cpf.Text);
-
-                if (prestador != null)
-                {
-                    Nome.Text = prestador.Nome;
-                    DataNascimento.Text = prestador.DataNascimento.ToString();
-                    Idade.Text = CalculaIdade();
-                    Naturalidade.Text = prestador.Naturalidade;
-                    EstadoCivil.Text = prestador.EstadoCivil;
-                    Foto.Image = Image.FromStream(new MemoryStream(prestador.Foto));
-                    Telefone.Text = prestador.Telefone.ToString();
-                    Etnia.Text = prestador.Etnia;
-                    Sexo.Text = prestador.Sexo;
-                    Profissao.Text = prestador.Profissao;
-                    RendaFamiliar.Text = prestador.RendaFamiliar.ToString("0.00", CultureInfo.InvariantCulture);
-                    Religiao.Text = prestador.Religiao;
-                    GrauInstrucao.Text = prestador.GrauInstrucao;
-                    RecebeBeneficio.Checked = prestador.RecebeBeneficio;
-                    UsaAlcool.Checked = prestador.UsaAlcool;
-                    UsaDrogas.Checked = prestador.UsaDrogas;
-                }
-                else
+                if (!prestadorDAO.ExisteCpf(Cpf.Text))
                 {
                     LimparCamposPrestador();
+                    return;
                 }
+
+                Prestador prestador = prestadorDAO.RecuperarPorCpf(Cpf.Text);
+                Nome.Text = prestador.Nome;
+                DataNascimento.Text = prestador.DataNascimento.ToString();
+                Idade.Text = CalculaIdade();
+                Naturalidade.Text = prestador.Naturalidade;
+                EstadoCivil.Text = prestador.EstadoCivil;
+                Foto.Image = Image.FromStream(new MemoryStream(prestador.Foto));
+                Telefone.Text = prestador.Telefone.ToString();
+                Etnia.Text = prestador.Etnia;
+                Sexo.Text = prestador.Sexo;
+                Profissao.Text = prestador.Profissao;
+                RendaFamiliar.Text = prestador.RendaFamiliar.ToString("0.00", CultureInfo.InvariantCulture);
+                Religiao.Text = prestador.Religiao;
+                GrauInstrucao.Text = prestador.GrauInstrucao;
+                RecebeBeneficio.Checked = prestador.RecebeBeneficio;
+                UsaAlcool.Checked = prestador.UsaAlcool;
+                UsaDrogas.Checked = prestador.UsaDrogas;
             }
             else
             {
@@ -373,10 +371,7 @@ namespace CIAPP
                 PenaOriginaria = PenaOriginaria.Text,
                 HorasCumprir = int.Parse(HorasCumprir.Text),
                 AcordoPersecucaoPenal = AcordoPersecucaoPenal.Checked,
-                Prestador = new Prestador
-                {
-                    Id = prestador.Id
-                },
+                Prestador = prestador,
                 ProcessoEntidadeList = processoEntidadeList
             };
 
