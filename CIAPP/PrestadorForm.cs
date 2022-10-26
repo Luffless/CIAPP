@@ -245,7 +245,7 @@ namespace CIAPP
         {
             OpenFileDialog open = new OpenFileDialog
             {
-                Filter = "Images Files(*.jpg; *.jpeg; *.png; *.bmp)|*.jpg; *.jpeg; *.png; *.bmp"
+                Filter = "Images Files (*.jpg; *.jpeg; *.png; *.bmp)|*.jpg; *.jpeg; *.png; *.bmp"
             };
             if (open.ShowDialog() == DialogResult.OK)
             {
