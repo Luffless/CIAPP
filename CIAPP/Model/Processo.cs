@@ -10,4 +10,5 @@ public class Processo
     public bool AcordoPersecucaoPenal { get; set; }
     public Prestador Prestador { get; set; }
     public List<ProcessoEntidade> ProcessoEntidadeList { get; set; }
+    public string EmailCentral { get; set; }
 }

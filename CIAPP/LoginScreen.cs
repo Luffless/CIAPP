@@ -11,7 +11,7 @@ namespace CIAPP
 
         public LoginScreen()
         {
-            InitializeComponent();
+            InitializeComponent();   
         }
 
         private void Entrar_Click(object sender, EventArgs e)

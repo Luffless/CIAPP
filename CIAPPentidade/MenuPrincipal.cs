@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.IO;
 using System.Text.Json;
 using System.Windows.Forms;
@@ -19,6 +20,17 @@ namespace CIAPPentidade
         private void MenuPrincipal_Load(object sender, EventArgs e)
         {
             UsuarioLogado.Text = usuarioDAO.RecuperarPorLogin(loginUsuarioLogado);
+            AdicionaColunas();
+        }
+
+        private void AdicionaColunas()
+        {
+            ListView.Font = new Font(ListView.Font, FontStyle.Bold);
+            ListView.Columns.Add("ID", 30);
+            ListView.Columns.Add("CPF", 165);
+            ListView.Columns.Add("Nome", 375);
+            ListView.Columns.Add("Horas a cumprir", 135);
+            ListView.Columns.Add("Horas cumpridas", 135);
         }
 
         private void BtnSlide_Click(object sender, EventArgs e)
@@ -44,7 +56,7 @@ namespace CIAPPentidade
 
             OpenFileDialog open = new OpenFileDialog
             {
-                Filter = "JSON Files(*.json)|*.json"
+                Filter = "JSON Files (*.json)|*.json"
             };
             if (open.ShowDialog() == DialogResult.OK)
             {
