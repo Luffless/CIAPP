@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Text.Json;
 using System.Windows.Forms;
 
 namespace CIAPPentidade
@@ -39,6 +40,8 @@ namespace CIAPPentidade
 
         private void Importar_Click(object sender, EventArgs e)
         {
+            Processo processo;
+
             OpenFileDialog open = new OpenFileDialog
             {
                 Filter = "JSON Files(*.json)|*.json"
@@ -54,19 +57,55 @@ namespace CIAPPentidade
                 using (StreamReader reader = new StreamReader(open.FileName))
                 {
                     string json = reader.ReadToEnd();
-                    //Processo processo = JsonSerializer.Deserialize<Processo>(json); //try catch
+
+                    EncryptDecrypt encryptTest = new EncryptDecrypt();
+                    string jsonDescrypted = encryptTest.Decrypt(json);
+
+                    try
+                    {
+                        processo = JsonSerializer.Deserialize<Processo>(jsonDescrypted);
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Arquivo JSON inválido!", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
                 }
+
+                //verificar se não existe o registro, se não existir então insere no banco SQLite os registros
             }
         }
 
         private void Detalhes_Click(object sender, EventArgs e)
         {
+            if (!VerificaList())
+            {
+                return;
+            }
+
             //abrir a tela dos detalhes, sendo que no registro selecionado poderá incluir registros de Frequência
         }
 
         private void DoubleClick_Click(object sender, EventArgs e)
         {
             Detalhes_Click(sender, e);
+        }
+
+        private bool VerificaList()
+        {
+            if (ListView.Items.Count == 0)
+            {
+                MessageBox.Show("Não há nenhum registro!", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            if (ListView.SelectedItems.Count == 0)
+            {
+                MessageBox.Show("Selecione um registro antes!", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            return true;
         }
     }
 }

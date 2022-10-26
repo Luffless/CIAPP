@@ -10,11 +10,13 @@ namespace CIAPP
     {
         private readonly ProcessoDAO processoDAO = new ProcessoDAO();
         private readonly MenuPrincipal formMenuPrincipal;
+        private readonly string loginUsuarioLogado;
 
-        public Processos(MenuPrincipal form)
+        public Processos(MenuPrincipal form, string usuarioLogado)
         {
             InitializeComponent();
             formMenuPrincipal = form;
+            loginUsuarioLogado = usuarioLogado;
         }
 
         private void BtnFechar_Click(object sender, EventArgs e)
@@ -76,7 +78,7 @@ namespace CIAPP
 
         private void Novo_Click(object sender, EventArgs e)
         {
-            new ProcessoForm("Incluir").ShowDialog();
+            new ProcessoForm("Incluir", loginUsuarioLogado).ShowDialog();
             CarregarRegistros();
         }
 
@@ -110,7 +112,7 @@ namespace CIAPP
             }
 
             ListViewItem item = ListView.SelectedItems[0];
-            ProcessoForm form = new ProcessoForm("Detalhes");
+            ProcessoForm form = new ProcessoForm("Detalhes", loginUsuarioLogado);
             form.Id.Text = item.SubItems[0].Text;
             form.ShowDialog();
         }

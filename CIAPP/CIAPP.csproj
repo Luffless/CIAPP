@@ -100,6 +100,7 @@
     <Compile Include="DB\ProcessoDAO.cs" />
     <Compile Include="DB\StringConexao.cs" />
     <Compile Include="DB\UsuarioDAO.cs" />
+    <Compile Include="Email\EncryptDecrypt.cs" />
     <Compile Include="Email\EnvioEmail.cs" />
     <Compile Include="EntidadeForm.cs">
       <SubType>Form</SubType>
