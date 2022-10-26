@@ -17,7 +17,8 @@ namespace CIAPP
 
         private void MenuPrincipal_Load(object sender, EventArgs e)
         {
-            UsuarioLogado.Text = usuarioDAO.RecuperarPorLogin(loginUsuarioLogado);
+            Usuario usuario = usuarioDAO.RecuperarPorLogin(loginUsuarioLogado);
+            UsuarioLogado.Text = usuario.Nome;
         }
 
         private void BtnSlide_Click(object sender, EventArgs e)
@@ -94,7 +95,7 @@ namespace CIAPP
             BtnPrestadores.BackColor = Color.FromArgb(25, 25, 112);
             BtnProcessos.BackColor = Color.FromArgb(45, 45, 48);
             BtnRelatorios.BackColor = Color.FromArgb(25, 25, 112);
-            AbrirFormInPainel(new Processos(this));
+            AbrirFormInPainel(new Processos(this, loginUsuarioLogado));
         }
 
         private void BtnRelatorios_Click(object sender, EventArgs e)

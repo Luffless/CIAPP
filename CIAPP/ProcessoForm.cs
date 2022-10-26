@@ -16,11 +16,13 @@ namespace CIAPP
         private readonly EntidadeDAO entidadeDAO = new EntidadeDAO();
         private readonly EnvioEmail envioEmail = new EnvioEmail();
         private readonly string manutencao;
+        private readonly string loginUsuarioLogado;
 
-        public ProcessoForm(string man)
+        public ProcessoForm(string man, string usuarioLogado)
         {
             InitializeComponent();
             manutencao = man;
+            loginUsuarioLogado = usuarioLogado;
         }
 
         private void ProcessoForm_Load(object sender, EventArgs e)
@@ -377,7 +379,7 @@ namespace CIAPP
 
             processoDAO.Insert(processo);
 
-            envioEmail.EnviarEmailEntidade(processo);
+            envioEmail.EnviarEmailEntidade(processo, processoEntidadeList, loginUsuarioLogado);
 
             Close();
         }
