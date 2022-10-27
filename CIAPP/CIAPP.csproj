@@ -223,10 +223,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Validation\ValidationAtividade.cs" />
     <Compile Include="Validation\ValidationDeficiencia.cs" />
     <Compile Include="Validation\ValidationDoenca.cs" />
     <Compile Include="Validation\ValidationEndereco.cs" />
     <Compile Include="Validation\ValidationEntidade.cs" />
+    <Compile Include="Validation\ValidationFrequencia.cs" />
     <Compile Include="Validation\ValidationHabilidade.cs" />
     <Compile Include="Validation\ValidationLogin.cs" />
     <Compile Include="Validation\ValidationParentesco.cs" />

@@ -83,14 +83,14 @@
             this.label12 = new System.Windows.Forms.Label();
             this.Salvar = new System.Windows.Forms.Button();
             this.FrequenciaGroupBox = new System.Windows.Forms.GroupBox();
+            this.HorasCumpridasFrequencia = new System.Windows.Forms.TextBox();
+            this.HorasCumpridasFrequenciaLabel = new System.Windows.Forms.Label();
+            this.DataFrequencia = new System.Windows.Forms.DateTimePicker();
+            this.DataFrequenciaLabel = new System.Windows.Forms.Label();
             this.RemoverFrequencia = new System.Windows.Forms.Button();
             this.IncluirFrequencia = new System.Windows.Forms.Button();
             this.Observacao = new System.Windows.Forms.Button();
             this.ListViewFrequencia = new System.Windows.Forms.ListView();
-            this.DataFrequenciaLabel = new System.Windows.Forms.Label();
-            this.DataFrequencia = new System.Windows.Forms.DateTimePicker();
-            this.HorasCumpridasFrequenciaLabel = new System.Windows.Forms.Label();
-            this.HorasCumpridasFrequencia = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -262,7 +262,9 @@
             this.DescricaoAtividade.Location = new System.Drawing.Point(102, 26);
             this.DescricaoAtividade.Name = "DescricaoAtividade";
             this.DescricaoAtividade.Size = new System.Drawing.Size(407, 27);
-            this.DescricaoAtividade.TabIndex = 30;
+            this.DescricaoAtividade.TabIndex = 9;
+            this.DescricaoAtividade.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OnKeyDown);
+            this.DescricaoAtividade.KeyUp += new System.Windows.Forms.KeyEventHandler(this.OnKeyUp);
             // 
             // DescricaoAtividadeLabel
             // 
@@ -388,6 +390,7 @@
             this.Cpf.Name = "Cpf";
             this.Cpf.Size = new System.Drawing.Size(186, 26);
             this.Cpf.TabIndex = 8;
+            this.Cpf.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OnKeyDown);
             this.Cpf.KeyUp += new System.Windows.Forms.KeyEventHandler(this.OnKeyUp);
             this.Cpf.Leave += new System.EventHandler(this.Cpf_Leave);
             // 
@@ -755,6 +758,45 @@
             this.FrequenciaGroupBox.TabStop = false;
             this.FrequenciaGroupBox.Text = "Frequência";
             // 
+            // HorasCumpridasFrequencia
+            // 
+            this.HorasCumpridasFrequencia.Location = new System.Drawing.Point(448, 27);
+            this.HorasCumpridasFrequencia.Name = "HorasCumpridasFrequencia";
+            this.HorasCumpridasFrequencia.Size = new System.Drawing.Size(63, 27);
+            this.HorasCumpridasFrequencia.TabIndex = 11;
+            this.HorasCumpridasFrequencia.KeyUp += new System.Windows.Forms.KeyEventHandler(this.OnKeyUp);
+            // 
+            // HorasCumpridasFrequenciaLabel
+            // 
+            this.HorasCumpridasFrequenciaLabel.AutoSize = true;
+            this.HorasCumpridasFrequenciaLabel.Location = new System.Drawing.Point(306, 29);
+            this.HorasCumpridasFrequenciaLabel.Name = "HorasCumpridasFrequenciaLabel";
+            this.HorasCumpridasFrequenciaLabel.Size = new System.Drawing.Size(143, 21);
+            this.HorasCumpridasFrequenciaLabel.TabIndex = 29;
+            this.HorasCumpridasFrequenciaLabel.Text = "Horas cumpridas:";
+            // 
+            // DataFrequencia
+            // 
+            this.DataFrequencia.CustomFormat = " ";
+            this.DataFrequencia.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DataFrequencia.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.DataFrequencia.Location = new System.Drawing.Point(181, 28);
+            this.DataFrequencia.Name = "DataFrequencia";
+            this.DataFrequencia.Size = new System.Drawing.Size(122, 26);
+            this.DataFrequencia.TabIndex = 10;
+            this.DataFrequencia.ValueChanged += new System.EventHandler(this.DataFrequencia_ValueChanged);
+            this.DataFrequencia.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DataFrequencia_KeyDown);
+            this.DataFrequencia.KeyUp += new System.Windows.Forms.KeyEventHandler(this.OnKeyUp);
+            // 
+            // DataFrequenciaLabel
+            // 
+            this.DataFrequenciaLabel.AutoSize = true;
+            this.DataFrequenciaLabel.Location = new System.Drawing.Point(7, 29);
+            this.DataFrequenciaLabel.Name = "DataFrequenciaLabel";
+            this.DataFrequenciaLabel.Size = new System.Drawing.Size(170, 21);
+            this.DataFrequenciaLabel.TabIndex = 27;
+            this.DataFrequenciaLabel.Text = "Data da frequência:";
+            // 
             // RemoverFrequencia
             // 
             this.RemoverFrequencia.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -771,6 +813,7 @@
             this.RemoverFrequencia.TabIndex = 26;
             this.RemoverFrequencia.Text = "Remover";
             this.RemoverFrequencia.UseVisualStyleBackColor = false;
+            this.RemoverFrequencia.Click += new System.EventHandler(this.RemoverFrequencia_Click);
             // 
             // IncluirFrequencia
             // 
@@ -788,6 +831,7 @@
             this.IncluirFrequencia.TabIndex = 25;
             this.IncluirFrequencia.Text = "Incluir";
             this.IncluirFrequencia.UseVisualStyleBackColor = false;
+            this.IncluirFrequencia.Click += new System.EventHandler(this.IncluirFrequencia_Click);
             // 
             // Observacao
             // 
@@ -818,41 +862,6 @@
             this.ListViewFrequencia.UseCompatibleStateImageBehavior = false;
             this.ListViewFrequencia.View = System.Windows.Forms.View.Details;
             this.ListViewFrequencia.DoubleClick += new System.EventHandler(this.DoubleClick_Click);
-            // 
-            // DataFrequenciaLabel
-            // 
-            this.DataFrequenciaLabel.AutoSize = true;
-            this.DataFrequenciaLabel.Location = new System.Drawing.Point(7, 29);
-            this.DataFrequenciaLabel.Name = "DataFrequenciaLabel";
-            this.DataFrequenciaLabel.Size = new System.Drawing.Size(170, 21);
-            this.DataFrequenciaLabel.TabIndex = 27;
-            this.DataFrequenciaLabel.Text = "Data da frequência:";
-            // 
-            // DataFrequencia
-            // 
-            this.DataFrequencia.CustomFormat = " ";
-            this.DataFrequencia.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DataFrequencia.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.DataFrequencia.Location = new System.Drawing.Point(181, 28);
-            this.DataFrequencia.Name = "DataFrequencia";
-            this.DataFrequencia.Size = new System.Drawing.Size(122, 26);
-            this.DataFrequencia.TabIndex = 28;
-            // 
-            // HorasCumpridasFrequenciaLabel
-            // 
-            this.HorasCumpridasFrequenciaLabel.AutoSize = true;
-            this.HorasCumpridasFrequenciaLabel.Location = new System.Drawing.Point(306, 29);
-            this.HorasCumpridasFrequenciaLabel.Name = "HorasCumpridasFrequenciaLabel";
-            this.HorasCumpridasFrequenciaLabel.Size = new System.Drawing.Size(143, 21);
-            this.HorasCumpridasFrequenciaLabel.TabIndex = 29;
-            this.HorasCumpridasFrequenciaLabel.Text = "Horas cumpridas:";
-            // 
-            // HorasCumpridasFrequencia
-            // 
-            this.HorasCumpridasFrequencia.Location = new System.Drawing.Point(448, 27);
-            this.HorasCumpridasFrequencia.Name = "HorasCumpridasFrequencia";
-            this.HorasCumpridasFrequencia.Size = new System.Drawing.Size(63, 27);
-            this.HorasCumpridasFrequencia.TabIndex = 30;
             // 
             // ProcessoForm
             // 
