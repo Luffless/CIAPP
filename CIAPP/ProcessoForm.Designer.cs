@@ -44,15 +44,11 @@
             this.NumeroArtigoPenal = new System.Windows.Forms.TextBox();
             this.VaraOrigem = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.Atividade = new System.Windows.Forms.TextBox();
-            this.AtividadeLabel = new System.Windows.Forms.Label();
-            this.HorasCumprirEntidade = new System.Windows.Forms.TextBox();
-            this.HorasCumprirLabel = new System.Windows.Forms.Label();
-            this.Cnpj = new System.Windows.Forms.TextBox();
-            this.CnpjLabel = new System.Windows.Forms.Label();
-            this.RemoverEntidade = new System.Windows.Forms.Button();
-            this.IncluirEntidade = new System.Windows.Forms.Button();
-            this.ListViewEntidade = new System.Windows.Forms.ListView();
+            this.DescricaoAtividade = new System.Windows.Forms.TextBox();
+            this.DescricaoAtividadeLabel = new System.Windows.Forms.Label();
+            this.RemoverAtividade = new System.Windows.Forms.Button();
+            this.IncluirAtividade = new System.Windows.Forms.Button();
+            this.ListViewAtividade = new System.Windows.Forms.ListView();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.Foto = new System.Windows.Forms.PictureBox();
@@ -87,8 +83,14 @@
             this.label12 = new System.Windows.Forms.Label();
             this.Salvar = new System.Windows.Forms.Button();
             this.FrequenciaGroupBox = new System.Windows.Forms.GroupBox();
-            this.VisualizarObservacoes = new System.Windows.Forms.Button();
+            this.RemoverFrequencia = new System.Windows.Forms.Button();
+            this.IncluirFrequencia = new System.Windows.Forms.Button();
+            this.Observacao = new System.Windows.Forms.Button();
             this.ListViewFrequencia = new System.Windows.Forms.ListView();
+            this.DataFrequenciaLabel = new System.Windows.Forms.Label();
+            this.DataFrequencia = new System.Windows.Forms.DateTimePicker();
+            this.HorasCumpridasFrequenciaLabel = new System.Windows.Forms.Label();
+            this.HorasCumpridasFrequencia = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -242,120 +244,81 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.Atividade);
-            this.groupBox2.Controls.Add(this.AtividadeLabel);
-            this.groupBox2.Controls.Add(this.HorasCumprirEntidade);
-            this.groupBox2.Controls.Add(this.HorasCumprirLabel);
-            this.groupBox2.Controls.Add(this.Cnpj);
-            this.groupBox2.Controls.Add(this.CnpjLabel);
-            this.groupBox2.Controls.Add(this.RemoverEntidade);
-            this.groupBox2.Controls.Add(this.IncluirEntidade);
-            this.groupBox2.Controls.Add(this.ListViewEntidade);
+            this.groupBox2.Controls.Add(this.DescricaoAtividade);
+            this.groupBox2.Controls.Add(this.DescricaoAtividadeLabel);
+            this.groupBox2.Controls.Add(this.RemoverAtividade);
+            this.groupBox2.Controls.Add(this.IncluirAtividade);
+            this.groupBox2.Controls.Add(this.ListViewAtividade);
             this.groupBox2.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.Location = new System.Drawing.Point(721, 12);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(618, 309);
+            this.groupBox2.Size = new System.Drawing.Size(685, 277);
             this.groupBox2.TabIndex = 8;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Entidades";
+            this.groupBox2.Text = "Atividades";
             // 
-            // Atividade
+            // DescricaoAtividade
             // 
-            this.Atividade.Location = new System.Drawing.Point(102, 61);
-            this.Atividade.Name = "Atividade";
-            this.Atividade.Size = new System.Drawing.Size(510, 27);
-            this.Atividade.TabIndex = 30;
+            this.DescricaoAtividade.Location = new System.Drawing.Point(102, 26);
+            this.DescricaoAtividade.Name = "DescricaoAtividade";
+            this.DescricaoAtividade.Size = new System.Drawing.Size(407, 27);
+            this.DescricaoAtividade.TabIndex = 30;
             // 
-            // AtividadeLabel
+            // DescricaoAtividadeLabel
             // 
-            this.AtividadeLabel.AutoSize = true;
-            this.AtividadeLabel.Location = new System.Drawing.Point(6, 61);
-            this.AtividadeLabel.Name = "AtividadeLabel";
-            this.AtividadeLabel.Size = new System.Drawing.Size(93, 21);
-            this.AtividadeLabel.TabIndex = 29;
-            this.AtividadeLabel.Text = "Atividade:";
+            this.DescricaoAtividadeLabel.AutoSize = true;
+            this.DescricaoAtividadeLabel.Location = new System.Drawing.Point(6, 26);
+            this.DescricaoAtividadeLabel.Name = "DescricaoAtividadeLabel";
+            this.DescricaoAtividadeLabel.Size = new System.Drawing.Size(91, 21);
+            this.DescricaoAtividadeLabel.TabIndex = 29;
+            this.DescricaoAtividadeLabel.Text = "Descrição:";
             // 
-            // HorasCumprirEntidade
+            // RemoverAtividade
             // 
-            this.HorasCumprirEntidade.Location = new System.Drawing.Point(549, 25);
-            this.HorasCumprirEntidade.Name = "HorasCumprirEntidade";
-            this.HorasCumprirEntidade.Size = new System.Drawing.Size(63, 27);
-            this.HorasCumprirEntidade.TabIndex = 28;
-            this.HorasCumprirEntidade.TextChanged += new System.EventHandler(this.HorasCumprirEntidade_TextChanged);
+            this.RemoverAtividade.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.RemoverAtividade.BackColor = System.Drawing.Color.MidnightBlue;
+            this.RemoverAtividade.FlatAppearance.BorderSize = 0;
+            this.RemoverAtividade.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.RemoverAtividade.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.RemoverAtividade.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RemoverAtividade.ForeColor = System.Drawing.Color.White;
+            this.RemoverAtividade.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.RemoverAtividade.Location = new System.Drawing.Point(515, 72);
+            this.RemoverAtividade.Name = "RemoverAtividade";
+            this.RemoverAtividade.Size = new System.Drawing.Size(160, 40);
+            this.RemoverAtividade.TabIndex = 24;
+            this.RemoverAtividade.Text = "Remover";
+            this.RemoverAtividade.UseVisualStyleBackColor = false;
+            this.RemoverAtividade.Click += new System.EventHandler(this.RemoverAtividade_Click);
             // 
-            // HorasCumprirLabel
+            // IncluirAtividade
             // 
-            this.HorasCumprirLabel.AutoSize = true;
-            this.HorasCumprirLabel.Location = new System.Drawing.Point(408, 28);
-            this.HorasCumprirLabel.Name = "HorasCumprirLabel";
-            this.HorasCumprirLabel.Size = new System.Drawing.Size(135, 21);
-            this.HorasCumprirLabel.TabIndex = 27;
-            this.HorasCumprirLabel.Text = "Horas a cumprir:";
+            this.IncluirAtividade.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.IncluirAtividade.BackColor = System.Drawing.Color.MidnightBlue;
+            this.IncluirAtividade.FlatAppearance.BorderSize = 0;
+            this.IncluirAtividade.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.IncluirAtividade.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.IncluirAtividade.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.IncluirAtividade.ForeColor = System.Drawing.Color.White;
+            this.IncluirAtividade.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.IncluirAtividade.Location = new System.Drawing.Point(515, 26);
+            this.IncluirAtividade.Name = "IncluirAtividade";
+            this.IncluirAtividade.Size = new System.Drawing.Size(160, 40);
+            this.IncluirAtividade.TabIndex = 23;
+            this.IncluirAtividade.Text = "Incluir";
+            this.IncluirAtividade.UseVisualStyleBackColor = false;
+            this.IncluirAtividade.Click += new System.EventHandler(this.IncluirAtividade_Click);
             // 
-            // Cnpj
+            // ListViewAtividade
             // 
-            this.Cnpj.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Cnpj.Location = new System.Drawing.Point(102, 28);
-            this.Cnpj.MaxLength = 18;
-            this.Cnpj.Name = "Cnpj";
-            this.Cnpj.Size = new System.Drawing.Size(199, 26);
-            this.Cnpj.TabIndex = 26;
-            // 
-            // CnpjLabel
-            // 
-            this.CnpjLabel.AutoSize = true;
-            this.CnpjLabel.Location = new System.Drawing.Point(43, 30);
-            this.CnpjLabel.Name = "CnpjLabel";
-            this.CnpjLabel.Size = new System.Drawing.Size(56, 21);
-            this.CnpjLabel.TabIndex = 25;
-            this.CnpjLabel.Text = "CNPJ:";
-            // 
-            // RemoverEntidade
-            // 
-            this.RemoverEntidade.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.RemoverEntidade.BackColor = System.Drawing.Color.MidnightBlue;
-            this.RemoverEntidade.FlatAppearance.BorderSize = 0;
-            this.RemoverEntidade.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            this.RemoverEntidade.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.RemoverEntidade.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RemoverEntidade.ForeColor = System.Drawing.Color.White;
-            this.RemoverEntidade.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.RemoverEntidade.Location = new System.Drawing.Point(282, 257);
-            this.RemoverEntidade.Name = "RemoverEntidade";
-            this.RemoverEntidade.Size = new System.Drawing.Size(160, 40);
-            this.RemoverEntidade.TabIndex = 24;
-            this.RemoverEntidade.Text = "Remover";
-            this.RemoverEntidade.UseVisualStyleBackColor = false;
-            this.RemoverEntidade.Click += new System.EventHandler(this.RemoverEntidade_Click);
-            // 
-            // IncluirEntidade
-            // 
-            this.IncluirEntidade.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.IncluirEntidade.BackColor = System.Drawing.Color.MidnightBlue;
-            this.IncluirEntidade.FlatAppearance.BorderSize = 0;
-            this.IncluirEntidade.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            this.IncluirEntidade.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.IncluirEntidade.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.IncluirEntidade.ForeColor = System.Drawing.Color.White;
-            this.IncluirEntidade.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.IncluirEntidade.Location = new System.Drawing.Point(452, 257);
-            this.IncluirEntidade.Name = "IncluirEntidade";
-            this.IncluirEntidade.Size = new System.Drawing.Size(160, 40);
-            this.IncluirEntidade.TabIndex = 23;
-            this.IncluirEntidade.Text = "Incluir";
-            this.IncluirEntidade.UseVisualStyleBackColor = false;
-            this.IncluirEntidade.Click += new System.EventHandler(this.IncluirEntidade_Click);
-            // 
-            // ListViewEntidade
-            // 
-            this.ListViewEntidade.FullRowSelect = true;
-            this.ListViewEntidade.HideSelection = false;
-            this.ListViewEntidade.Location = new System.Drawing.Point(6, 100);
-            this.ListViewEntidade.Name = "ListViewEntidade";
-            this.ListViewEntidade.Size = new System.Drawing.Size(606, 151);
-            this.ListViewEntidade.TabIndex = 0;
-            this.ListViewEntidade.UseCompatibleStateImageBehavior = false;
-            this.ListViewEntidade.View = System.Windows.Forms.View.Details;
+            this.ListViewAtividade.FullRowSelect = true;
+            this.ListViewAtividade.HideSelection = false;
+            this.ListViewAtividade.Location = new System.Drawing.Point(6, 59);
+            this.ListViewAtividade.Name = "ListViewAtividade";
+            this.ListViewAtividade.Size = new System.Drawing.Size(505, 206);
+            this.ListViewAtividade.TabIndex = 0;
+            this.ListViewAtividade.UseCompatibleStateImageBehavior = false;
+            this.ListViewAtividade.View = System.Windows.Forms.View.Details;
             // 
             // groupBox3
             // 
@@ -766,7 +729,7 @@
             this.Salvar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Salvar.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Salvar.ForeColor = System.Drawing.Color.White;
-            this.Salvar.Location = new System.Drawing.Point(1159, 577);
+            this.Salvar.Location = new System.Drawing.Point(1226, 577);
             this.Salvar.Name = "Salvar";
             this.Salvar.Size = new System.Drawing.Size(180, 40);
             this.Salvar.TabIndex = 15;
@@ -776,51 +739,126 @@
             // 
             // FrequenciaGroupBox
             // 
-            this.FrequenciaGroupBox.Controls.Add(this.VisualizarObservacoes);
+            this.FrequenciaGroupBox.Controls.Add(this.HorasCumpridasFrequencia);
+            this.FrequenciaGroupBox.Controls.Add(this.HorasCumpridasFrequenciaLabel);
+            this.FrequenciaGroupBox.Controls.Add(this.DataFrequencia);
+            this.FrequenciaGroupBox.Controls.Add(this.DataFrequenciaLabel);
+            this.FrequenciaGroupBox.Controls.Add(this.RemoverFrequencia);
+            this.FrequenciaGroupBox.Controls.Add(this.IncluirFrequencia);
+            this.FrequenciaGroupBox.Controls.Add(this.Observacao);
             this.FrequenciaGroupBox.Controls.Add(this.ListViewFrequencia);
             this.FrequenciaGroupBox.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FrequenciaGroupBox.Location = new System.Drawing.Point(721, 327);
+            this.FrequenciaGroupBox.Location = new System.Drawing.Point(721, 294);
             this.FrequenciaGroupBox.Name = "FrequenciaGroupBox";
-            this.FrequenciaGroupBox.Size = new System.Drawing.Size(618, 244);
+            this.FrequenciaGroupBox.Size = new System.Drawing.Size(685, 277);
             this.FrequenciaGroupBox.TabIndex = 16;
             this.FrequenciaGroupBox.TabStop = false;
             this.FrequenciaGroupBox.Text = "Frequência";
             // 
-            // VisualizarObservacoes
+            // RemoverFrequencia
             // 
-            this.VisualizarObservacoes.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.VisualizarObservacoes.BackColor = System.Drawing.Color.MidnightBlue;
-            this.VisualizarObservacoes.FlatAppearance.BorderSize = 0;
-            this.VisualizarObservacoes.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            this.VisualizarObservacoes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.VisualizarObservacoes.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.VisualizarObservacoes.ForeColor = System.Drawing.Color.White;
-            this.VisualizarObservacoes.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.VisualizarObservacoes.Location = new System.Drawing.Point(425, 198);
-            this.VisualizarObservacoes.Name = "VisualizarObservacoes";
-            this.VisualizarObservacoes.Size = new System.Drawing.Size(187, 40);
-            this.VisualizarObservacoes.TabIndex = 24;
-            this.VisualizarObservacoes.Text = "Visualizar Observações";
-            this.VisualizarObservacoes.UseVisualStyleBackColor = false;
-            this.VisualizarObservacoes.Click += new System.EventHandler(this.VisualizarObservacoes_Click);
+            this.RemoverFrequencia.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.RemoverFrequencia.BackColor = System.Drawing.Color.MidnightBlue;
+            this.RemoverFrequencia.FlatAppearance.BorderSize = 0;
+            this.RemoverFrequencia.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.RemoverFrequencia.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.RemoverFrequencia.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RemoverFrequencia.ForeColor = System.Drawing.Color.White;
+            this.RemoverFrequencia.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.RemoverFrequencia.Location = new System.Drawing.Point(515, 72);
+            this.RemoverFrequencia.Name = "RemoverFrequencia";
+            this.RemoverFrequencia.Size = new System.Drawing.Size(160, 40);
+            this.RemoverFrequencia.TabIndex = 26;
+            this.RemoverFrequencia.Text = "Remover";
+            this.RemoverFrequencia.UseVisualStyleBackColor = false;
+            // 
+            // IncluirFrequencia
+            // 
+            this.IncluirFrequencia.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.IncluirFrequencia.BackColor = System.Drawing.Color.MidnightBlue;
+            this.IncluirFrequencia.FlatAppearance.BorderSize = 0;
+            this.IncluirFrequencia.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.IncluirFrequencia.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.IncluirFrequencia.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.IncluirFrequencia.ForeColor = System.Drawing.Color.White;
+            this.IncluirFrequencia.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.IncluirFrequencia.Location = new System.Drawing.Point(517, 26);
+            this.IncluirFrequencia.Name = "IncluirFrequencia";
+            this.IncluirFrequencia.Size = new System.Drawing.Size(160, 40);
+            this.IncluirFrequencia.TabIndex = 25;
+            this.IncluirFrequencia.Text = "Incluir";
+            this.IncluirFrequencia.UseVisualStyleBackColor = false;
+            // 
+            // Observacao
+            // 
+            this.Observacao.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.Observacao.BackColor = System.Drawing.Color.MidnightBlue;
+            this.Observacao.FlatAppearance.BorderSize = 0;
+            this.Observacao.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.Observacao.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Observacao.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Observacao.ForeColor = System.Drawing.Color.White;
+            this.Observacao.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.Observacao.Location = new System.Drawing.Point(517, 230);
+            this.Observacao.Name = "Observacao";
+            this.Observacao.Size = new System.Drawing.Size(160, 40);
+            this.Observacao.TabIndex = 24;
+            this.Observacao.Text = "Observação";
+            this.Observacao.UseVisualStyleBackColor = false;
+            this.Observacao.Click += new System.EventHandler(this.Observacao_Click);
             // 
             // ListViewFrequencia
             // 
             this.ListViewFrequencia.FullRowSelect = true;
             this.ListViewFrequencia.HideSelection = false;
-            this.ListViewFrequencia.Location = new System.Drawing.Point(6, 26);
+            this.ListViewFrequencia.Location = new System.Drawing.Point(6, 61);
             this.ListViewFrequencia.Name = "ListViewFrequencia";
-            this.ListViewFrequencia.Size = new System.Drawing.Size(606, 166);
+            this.ListViewFrequencia.Size = new System.Drawing.Size(505, 209);
             this.ListViewFrequencia.TabIndex = 0;
             this.ListViewFrequencia.UseCompatibleStateImageBehavior = false;
             this.ListViewFrequencia.View = System.Windows.Forms.View.Details;
             this.ListViewFrequencia.DoubleClick += new System.EventHandler(this.DoubleClick_Click);
             // 
+            // DataFrequenciaLabel
+            // 
+            this.DataFrequenciaLabel.AutoSize = true;
+            this.DataFrequenciaLabel.Location = new System.Drawing.Point(7, 29);
+            this.DataFrequenciaLabel.Name = "DataFrequenciaLabel";
+            this.DataFrequenciaLabel.Size = new System.Drawing.Size(170, 21);
+            this.DataFrequenciaLabel.TabIndex = 27;
+            this.DataFrequenciaLabel.Text = "Data da frequência:";
+            // 
+            // DataFrequencia
+            // 
+            this.DataFrequencia.CustomFormat = " ";
+            this.DataFrequencia.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DataFrequencia.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.DataFrequencia.Location = new System.Drawing.Point(181, 28);
+            this.DataFrequencia.Name = "DataFrequencia";
+            this.DataFrequencia.Size = new System.Drawing.Size(122, 26);
+            this.DataFrequencia.TabIndex = 28;
+            // 
+            // HorasCumpridasFrequenciaLabel
+            // 
+            this.HorasCumpridasFrequenciaLabel.AutoSize = true;
+            this.HorasCumpridasFrequenciaLabel.Location = new System.Drawing.Point(306, 29);
+            this.HorasCumpridasFrequenciaLabel.Name = "HorasCumpridasFrequenciaLabel";
+            this.HorasCumpridasFrequenciaLabel.Size = new System.Drawing.Size(143, 21);
+            this.HorasCumpridasFrequenciaLabel.TabIndex = 29;
+            this.HorasCumpridasFrequenciaLabel.Text = "Horas cumpridas:";
+            // 
+            // HorasCumpridasFrequencia
+            // 
+            this.HorasCumpridasFrequencia.Location = new System.Drawing.Point(448, 27);
+            this.HorasCumpridasFrequencia.Name = "HorasCumpridasFrequencia";
+            this.HorasCumpridasFrequencia.Size = new System.Drawing.Size(63, 27);
+            this.HorasCumpridasFrequencia.TabIndex = 30;
+            // 
             // ProcessoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1351, 627);
+            this.ClientSize = new System.Drawing.Size(1413, 627);
             this.Controls.Add(this.FrequenciaGroupBox);
             this.Controls.Add(this.Salvar);
             this.Controls.Add(this.groupBox3);
@@ -842,6 +880,7 @@
             this.groupBox4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.Foto)).EndInit();
             this.FrequenciaGroupBox.ResumeLayout(false);
+            this.FrequenciaGroupBox.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -864,7 +903,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.ListView ListViewEntidade;
+        private System.Windows.Forms.ListView ListViewAtividade;
         private System.Windows.Forms.TextBox Cpf;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.TextBox RendaFamiliar;
@@ -896,17 +935,19 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.PictureBox Foto;
-        private System.Windows.Forms.Button RemoverEntidade;
-        private System.Windows.Forms.Button IncluirEntidade;
-        private System.Windows.Forms.Label CnpjLabel;
-        private System.Windows.Forms.TextBox Cnpj;
+        private System.Windows.Forms.Button RemoverAtividade;
+        private System.Windows.Forms.Button IncluirAtividade;
         private System.Windows.Forms.Button Salvar;
         private System.Windows.Forms.GroupBox FrequenciaGroupBox;
-        private System.Windows.Forms.TextBox Atividade;
-        private System.Windows.Forms.Label AtividadeLabel;
-        private System.Windows.Forms.TextBox HorasCumprirEntidade;
-        private System.Windows.Forms.Label HorasCumprirLabel;
+        private System.Windows.Forms.TextBox DescricaoAtividade;
+        private System.Windows.Forms.Label DescricaoAtividadeLabel;
         private System.Windows.Forms.ListView ListViewFrequencia;
-        private System.Windows.Forms.Button VisualizarObservacoes;
+        private System.Windows.Forms.Button Observacao;
+        private System.Windows.Forms.Button RemoverFrequencia;
+        private System.Windows.Forms.Button IncluirFrequencia;
+        private System.Windows.Forms.Label DataFrequenciaLabel;
+        private System.Windows.Forms.DateTimePicker DataFrequencia;
+        private System.Windows.Forms.Label HorasCumpridasFrequenciaLabel;
+        private System.Windows.Forms.TextBox HorasCumpridasFrequencia;
     }
 }

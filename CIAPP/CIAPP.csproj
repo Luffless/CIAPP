@@ -131,12 +131,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Criptografia\EncryptDecrypt.cs" />
     <Compile Include="DB\EntidadeDAO.cs" />
     <Compile Include="DB\PrestadorDAO.cs" />
     <Compile Include="DB\ProcessoDAO.cs" />
     <Compile Include="DB\StringConexao.cs" />
     <Compile Include="DB\UsuarioDAO.cs" />
-    <Compile Include="Email\EncryptDecrypt.cs" />
     <Compile Include="Email\EnvioEmail.cs" />
     <Compile Include="EntidadeForm.cs">
       <SubType>Form</SubType>
@@ -150,6 +150,7 @@
     <Compile Include="Entidades.Designer.cs">
       <DependentUpon>Entidades.cs</DependentUpon>
     </Compile>
+    <Compile Include="Model\Atividade.cs" />
     <Compile Include="Model\Frequencia.cs" />
     <Compile Include="Model\Deficiencia.cs" />
     <Compile Include="Model\Doenca.cs" />
@@ -157,7 +158,6 @@
     <Compile Include="Model\Parentesco.cs" />
     <Compile Include="Model\Prestador.cs" />
     <Compile Include="Model\Processo.cs" />
-    <Compile Include="Model\ProcessoEntidade.cs" />
     <Compile Include="Observacao.cs">
       <SubType>Form</SubType>
     </Compile>

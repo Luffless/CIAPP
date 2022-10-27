@@ -90,12 +90,6 @@ namespace CIAPP
 
             ListViewItem item = ListView.SelectedItems[0];
 
-            if (processoDAO.ExisteCnpjProcesso(item.SubItems[1].Text))
-            {
-                MessageBox.Show("Não poderá excluir esta entidade, pois o mesmo faz parte de um processo", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
             if (MessageBox.Show("Confirma excluir este registro?", "Selecione a opção", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 entidadeDAO.Delete(int.Parse(item.SubItems[0].Text));
