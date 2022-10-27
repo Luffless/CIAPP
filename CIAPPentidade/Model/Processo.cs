@@ -9,6 +9,6 @@ public class Processo
     public int HorasCumprir { get; set; }
     public bool AcordoPersecucaoPenal { get; set; }
     public Prestador Prestador { get; set; }
-    public List<ProcessoEntidade> ProcessoEntidadeList { get; set; }
-    public string EmailCentral { get; set; }
+    public List<Atividade> AtividadeList { get; set; }
+    public List<Frequencia> FrequenciaList { get; set; }
 }

@@ -135,10 +135,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Criptografia\EncryptDecrypt.cs" />
     <Compile Include="DB\CreateTables.cs" />
     <Compile Include="DB\StringConexao.cs" />
     <Compile Include="DB\UsuarioDAO.cs" />
-    <Compile Include="Email\EncryptDecrypt.cs" />
     <Compile Include="LoginScreen.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -151,16 +151,15 @@
     <Compile Include="MenuPrincipal.Designer.cs">
       <DependentUpon>MenuPrincipal.cs</DependentUpon>
     </Compile>
+    <Compile Include="Model\Atividade.cs" />
     <Compile Include="Model\Deficiencia.cs" />
     <Compile Include="Model\Doenca.cs" />
     <Compile Include="Model\Endereco.cs" />
-    <Compile Include="Model\Entidade.cs" />
     <Compile Include="Model\Frequencia.cs" />
     <Compile Include="Model\Habilidade.cs" />
     <Compile Include="Model\Parentesco.cs" />
     <Compile Include="Model\Prestador.cs" />
     <Compile Include="Model\Processo.cs" />
-    <Compile Include="Model\ProcessoEntidade.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Validation\ValidationLogin.cs" />

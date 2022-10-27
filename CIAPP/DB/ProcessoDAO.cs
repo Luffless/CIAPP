@@ -26,16 +26,14 @@ public class ProcessoDAO
                     id_prestador = processo.Prestador.Id
                 });
 
-                sql = "insert into processo_entidade values (@id_processo, @id_entidade, @horascumprir, @atividade)";
+                sql = "insert into atividade values (@id_processo, @descricao)";
 
-                for (int i = 0; i < processo.ProcessoEntidadeList.Count; i++)
+                for (int i = 0; i < processo.AtividadeList.Count; i++)
                 {
                     connection.Execute(sql, param: new
                     {
                         id_processo = processo.Id,
-                        id_entidade = processo.ProcessoEntidadeList[i].Entidade.Id,
-                        horascumprir = processo.ProcessoEntidadeList[i].HorasCumprir,
-                        atividade = processo.ProcessoEntidadeList[i].Atividade
+                        descricao = processo.AtividadeList[i].Descricao
                     }, transaction: transaction);
                 }
 
@@ -81,43 +79,33 @@ public class ProcessoDAO
 
             for (int i = 0; i < processoList.Count; i++)
             {
-                List<ProcessoEntidade> processoEntidadeList;
+                List<Atividade> atividadeList = new List<Atividade>();
+                List<Frequencia> frequenciaList = new List<Frequencia>();
 
                 sql = @"select *
-                          from processo_entidade, entidade
-                         where processo_entidade.id_entidade = entidade.id
-                           and processo_entidade.id_processo = @id
-                         order by processo_entidade.id_entidade";
+                          from atividade
+                         where id_processo = @id
+                         order by descricao";
 
-                processoEntidadeList = (List<ProcessoEntidade>)connection.Query<ProcessoEntidade, Entidade, ProcessoEntidade>(sql,
-                                       (processoentidade, entidade) =>
-                                       {
-                                           processoentidade.Entidade = entidade;
-                                           return processoentidade;
-                                       },
-                                       splitOn: "Id",
-                                       param: new
-                                       {
-                                           id = processoList[i].Id
-                                       });
+                atividadeList = (List<Atividade>)connection.Query<Atividade>(sql,
+                                param: new
+                                {
+                                    id = processoList[i].Id
+                                });
 
-                for (int j = 0; j < processoEntidadeList.Count; j++)
-                {
-                    sql = @"select *
+                sql = @"select *
                           from frequencia
-                         where id_processo = @id_processo
-                           and id_entidade = @id_entidade
+                         where id_processo = @id
                          order by datafrequencia";
 
-                    processoEntidadeList[j].FrequenciaList = (List<Frequencia>)connection.Query<Frequencia>(sql,
-                                                             param: new
-                                                             {
-                                                                 id_processo = processoList[i].Id,
-                                                                 id_entidade = processoEntidadeList[i].Entidade.Id
-                                                             });
-                }
+                frequenciaList = (List<Frequencia>)connection.Query<Frequencia>(sql,
+                                 param: new
+                                 {
+                                     id = processoList[i].Id
+                                 });
 
-                processoList[i].ProcessoEntidadeList = processoEntidadeList;
+                processoList[i].AtividadeList = atividadeList;
+                processoList[i].FrequenciaList = frequenciaList;
             }
 
             return processoList;
@@ -128,7 +116,8 @@ public class ProcessoDAO
     {
         string sql;
         Processo processo;
-        List<ProcessoEntidade> processoEntidadeList;
+        List<Atividade> atividadeList;
+        List<Frequencia> frequenciaList;
 
         using (NpgsqlConnection connection = new NpgsqlConnection(StringConexao.stringConexao))
         {
@@ -150,40 +139,29 @@ public class ProcessoDAO
                        }).Single();
 
             sql = @"select *
-                      from processo_entidade, entidade
-                     where processo_entidade.id_entidade = entidade.id
-                       and processo_entidade.id_processo = @id
-                     order by processo_entidade.id_entidade";
+                      from atividade
+                     where id_processo = @id
+                     order by descricao";
 
-            processoEntidadeList = (List<ProcessoEntidade>)connection.Query<ProcessoEntidade, Entidade, ProcessoEntidade>(sql,
-                                   (processoentidade, entidade) =>
-                                   {
-                                       processoentidade.Entidade = entidade;
-                                       return processoentidade;
-                                   },
-                                   splitOn: "Id",
-                                   param: new
-                                   {
-                                       id = idProcesso
-                                   });
+            atividadeList = (List<Atividade>)connection.Query<Atividade>(sql,
+                            param: new
+                            {
+                                id = idProcesso
+                            });
 
-            for (int i = 0; i < processoEntidadeList.Count; i++)
-            {
-                sql = @"select *
-                          from frequencia
-                         where id_processo = @id_processo
-                           and id_entidade = @id_entidade
-                         order by datafrequencia";
+            sql = @"select *
+                      from frequencia
+                     where id_processo = @id
+                     order by datafrequencia";
 
-                processoEntidadeList[i].FrequenciaList = (List<Frequencia>)connection.Query<Frequencia>(sql,
-                                                         param: new
-                                                         {
-                                                             id_processo = idProcesso,
-                                                             id_entidade = processoEntidadeList[i].Entidade.Id
-                                                         });
-            }
+            frequenciaList = (List<Frequencia>)connection.Query<Frequencia>(sql,
+                             param: new
+                             {
+                                 id = idProcesso
+                             });
 
-            processo.ProcessoEntidadeList = processoEntidadeList;
+            processo.AtividadeList = atividadeList;
+            processo.FrequenciaList = frequenciaList;
 
             return processo;
         }
@@ -212,22 +190,6 @@ public class ProcessoDAO
             return connection.QuerySingle<bool>(sql, param: new
             {
                 cpf = cpfPrestador
-            });
-        }
-    }
-
-    public bool ExisteCnpjProcesso(string cnpjEntidade)
-    {
-        using (NpgsqlConnection connection = new NpgsqlConnection(StringConexao.stringConexao))
-        {
-            string sql = @"select count(*)
-                             from processo_entidade, entidade
-                            where processo_entidade.id_entidade = entidade.id
-                              and entidade.cnpj = @cnpj";
-
-            return connection.QuerySingle<bool>(sql, param: new
-            {
-                cnpj = cnpjEntidade
             });
         }
     }

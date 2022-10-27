@@ -1,9 +1,7 @@
-﻿//http://leandrolisura.com.br/classe-para-encriptar-e-decriptar-strings-usando-c/
-using System;
+﻿using System;
 using System.IO;
 using System.Security.Cryptography;
 using System.Text;
-using System.Xml.Serialization;
 
 public class EncryptDecrypt
 {
@@ -21,7 +19,6 @@ public class EncryptDecrypt
     public string Encrypt(string entryText)
     {
         byte[] symEncryptedData;
-
         byte[] dataToProtectAsArray = Encoding.UTF8.GetBytes(entryText);
         using (ICryptoTransform encryptor = Algorithm.CreateEncryptor(Key, IniVetor))
         using (MemoryStream memoryStream = new MemoryStream())
@@ -49,46 +46,5 @@ public class EncryptDecrypt
         }
         Algorithm.Dispose();
         return Encoding.Default.GetString(symUnencryptedData);
-    }
-}
-
-//https://www.hardware.com.br/comunidade/trabalho-criptografia/1495305/
-public class RsaEnc
-{
-    private RSACryptoServiceProvider csp = new RSACryptoServiceProvider(2048);
-    private RSAParameters privateKey;
-    private RSAParameters publicKey;
-
-    public RsaEnc()
-    {
-        privateKey = csp.ExportParameters(true);
-        publicKey = csp.ExportParameters(false);
-    }
-
-    //ver como é a chave pública rs.PublicKeySring()
-    public string PublicKeySring()
-    {
-        StringWriter sw = new StringWriter();
-        XmlSerializer xs = new XmlSerializer(typeof(RSAParameters));
-        xs.Serialize(sw, publicKey);
-        return sw.ToString();
-    }
-
-    public string Encrypt(string plainText)
-    {
-        csp = new RSACryptoServiceProvider();
-        csp.ImportParameters(publicKey);
-
-        byte[] data = Encoding.Unicode.GetBytes(plainText);
-        byte[] symEncryptedData = csp.Encrypt(data, false);
-        return Convert.ToBase64String(symEncryptedData);
-    }
-
-    public string Decrypt(string cypherText)
-    {
-        byte[] dataBytes = Convert.FromBase64String(cypherText);
-        csp.ImportParameters(privateKey);
-        byte[] symUnencryptedData = csp.Decrypt(dataBytes, false);
-        return Encoding.Unicode.GetString(symUnencryptedData);
     }
 }

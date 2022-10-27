@@ -10,13 +10,11 @@ namespace CIAPP
     {
         private readonly ProcessoDAO processoDAO = new ProcessoDAO();
         private readonly MenuPrincipal formMenuPrincipal;
-        private readonly string loginUsuarioLogado;
 
-        public Processos(MenuPrincipal form, string usuarioLogado)
+        public Processos(MenuPrincipal form)
         {
             InitializeComponent();
             formMenuPrincipal = form;
-            loginUsuarioLogado = usuarioLogado;
         }
 
         private void BtnFechar_Click(object sender, EventArgs e)
@@ -51,12 +49,9 @@ namespace CIAPP
             {
                 horasCumpridas = 0;
 
-                for (int j = 0; j < itemList[i].ProcessoEntidadeList.Count; j++)
+                for (int j = 0; j < itemList[i].FrequenciaList.Count; j++)
                 {
-                    for (int k = 0; k < itemList[i].ProcessoEntidadeList[j].FrequenciaList.Count; k++)
-                    {
-                        horasCumpridas += itemList[i].ProcessoEntidadeList[j].FrequenciaList[k].HorasCumpridas;
-                    }
+                    horasCumpridas += itemList[i].FrequenciaList[j].HorasCumpridas;
                 }
 
                 ListViewItem listItem = new ListViewItem(itemList[i].Id.ToString())
@@ -78,7 +73,7 @@ namespace CIAPP
 
         private void Novo_Click(object sender, EventArgs e)
         {
-            new ProcessoForm("Incluir", loginUsuarioLogado).ShowDialog();
+            new ProcessoForm("Incluir").ShowDialog();
             CarregarRegistros();
         }
 
@@ -112,7 +107,7 @@ namespace CIAPP
             }
 
             ListViewItem item = ListView.SelectedItems[0];
-            ProcessoForm form = new ProcessoForm("Detalhes", loginUsuarioLogado);
+            ProcessoForm form = new ProcessoForm("Detalhes");
             form.Id.Text = item.SubItems[0].Text;
             form.ShowDialog();
         }

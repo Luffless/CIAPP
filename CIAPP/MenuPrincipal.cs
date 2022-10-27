@@ -95,7 +95,7 @@ namespace CIAPP
             BtnPrestadores.BackColor = Color.FromArgb(25, 25, 112);
             BtnProcessos.BackColor = Color.FromArgb(45, 45, 48);
             BtnRelatorios.BackColor = Color.FromArgb(25, 25, 112);
-            AbrirFormInPainel(new Processos(this, loginUsuarioLogado));
+            AbrirFormInPainel(new Processos(this));
         }
 
         private void BtnRelatorios_Click(object sender, EventArgs e)

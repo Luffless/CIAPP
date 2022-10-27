@@ -114,27 +114,22 @@ alter table processo
 add constraint pk_processo primary key(id),
 add constraint fk_processo foreign key(id_prestador) references prestador(id);
 
-create table processo_entidade (
+create table atividade (
 	id_processo int not null,
-	id_entidade int not null,
-	horascumprir int not null,
-	atividade varchar(60) not null
+	descricao varchar(60) not null
 );
 
-alter table processo_entidade
-add constraint pk_processo_entidade primary key(id_processo, id_entidade),
-add constraint fk_processo_entidade_1 foreign key(id_processo) references processo(id),
-add constraint fk_processo_entidade_2 foreign key(id_entidade) references entidade(id);
+alter table atividade
+add constraint pk_atividade primary key(id_processo, descricao),
+add constraint fk_atividade foreign key(id_processo) references processo(id);
 
 create table frequencia (
 	id_processo int not null,
-	id_entidade int not null,
 	datafrequencia date not null,
 	horascumpridas int not null,
 	observacao varchar(255)
 );
 
 alter table frequencia
-add constraint pk_frequencia primary key(id_processo, id_entidade, datafrequencia),
-add constraint fk_frequencia_1 foreign key(id_processo) references processo(id),
-add constraint fk_frequencia_2 foreign key(id_entidade) references entidade(id);
+add constraint pk_frequencia primary key(id_processo, datafrequencia),
+add constraint fk_frequencia foreign key(id_processo) references processo(id);
