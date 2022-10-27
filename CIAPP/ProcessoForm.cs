@@ -11,6 +11,8 @@ namespace CIAPP
     public partial class ProcessoForm : Form
     {
         private readonly ValidationProcesso validacaoProcesso = new ValidationProcesso();
+        private readonly ValidationAtividade validacaoAtividade = new ValidationAtividade();
+        private readonly ValidationFrequencia validacaoFrequencia = new ValidationFrequencia();
         private readonly ProcessoDAO processoDAO = new ProcessoDAO();
         private readonly PrestadorDAO prestadorDAO = new PrestadorDAO();
         private readonly string manutencao;
@@ -23,11 +25,14 @@ namespace CIAPP
 
         private void ProcessoForm_Load(object sender, EventArgs e)
         {
+            int i;
+
             AdicionaColunas();
 
             if (manutencao == "Incluir")
             {
                 Id.Text = processoDAO.RetornaProximoId().ToString();
+                HorasCumpridas.Text = "0";
             }
             else
             {
@@ -55,7 +60,7 @@ namespace CIAPP
                 UsaAlcool.Checked = processo.Prestador.UsaAlcool;
                 UsaDrogas.Checked = processo.Prestador.UsaDrogas;
 
-                for (int i = 0; i < processo.AtividadeList.Count; i++)
+                for (i = 0; i < processo.AtividadeList.Count; i++)
                 {
                     ListViewItem listItemAtividade = new ListViewItem(processo.AtividadeList[i].Descricao)
                     {
@@ -64,7 +69,7 @@ namespace CIAPP
                     ListViewAtividade.Items.Add(listItemAtividade);
                 }
 
-                for (int i = 0; i < processo.FrequenciaList.Count; i++)
+                for (i = 0; i < processo.FrequenciaList.Count; i++)
                 {
                     ListViewItem listItemFrequencia = new ListViewItem(processo.FrequenciaList[i].DataFrequencia.ToString("dd/MM/yyyy"))
                     {
@@ -78,13 +83,17 @@ namespace CIAPP
                 }
 
                 HorasCumpridas.Text = horasCumpridas.ToString();
+            }
 
+            if (manutencao == "Detalhes")
+            {
                 VaraOrigem.Enabled = false;
                 NumeroArtigoPenal.Enabled = false;
                 PenaOriginaria.Enabled = false;
                 HorasCumprir.Enabled = false;
                 AcordoPersecucaoPenal.Enabled = false;
                 Cpf.Enabled = false;
+
                 DescricaoAtividadeLabel.Visible = false;
                 DescricaoAtividade.Visible = false;
                 RemoverAtividade.Visible = false;
@@ -96,6 +105,7 @@ namespace CIAPP
                 IncluirFrequencia.Visible = false;
                 RemoverFrequencia.Visible = false;
                 Salvar.Visible = false;
+
                 ListViewAtividade.Dock = DockStyle.Fill;
                 ListViewFrequencia.Dock = DockStyle.Left;
             }
@@ -137,6 +147,21 @@ namespace CIAPP
             HorasCumprir.Text = EhSomenteNumeros(HorasCumprir.Text);
         }
 
+        private void DataFrequencia_ValueChanged(object sender, EventArgs e)
+        {
+            DataNascimento.CustomFormat = "dd/MM/yyyy";
+            Idade.Text = CalculaIdade();
+        }
+
+        private void DataFrequencia_KeyDown(object sender, KeyEventArgs e)
+        {
+            if ((e.KeyCode == Keys.Back) || (e.KeyCode == Keys.Delete))
+            {
+                DataNascimento.CustomFormat = " ";
+                Idade.Text = null;
+            }
+        }
+
         private string EhSomenteNumeros(string text)
         {
             if (Regex.IsMatch(text, "[^0-9]"))
@@ -170,7 +195,7 @@ namespace CIAPP
         {
             if (!string.IsNullOrWhiteSpace(Cpf.Text))
             {
-                if (!prestadorDAO.ExisteCpf(Cpf.Text))
+                if (!processoDAO.ExisteCpfProcessoDiferente(int.Parse(Id.Text), Cpf.Text))
                 {
                     LimparCamposPrestador();
                     return;
@@ -263,19 +288,19 @@ namespace CIAPP
 
         private void IncluirAtividade_Click(object sender, EventArgs e)
         {
-            //if (!validacaoDeficiencia.DeficienciaEntrada(ListViewDeficiencia, DescricaoDeficiencia.Text))
-            //{
-            //    return;
-            //}
+            if (!validacaoAtividade.AtividadeEntrada(ListViewAtividade, DescricaoAtividade.Text))
+            {
+                return;
+            }
 
-            //ListViewItem listItem = new ListViewItem(DescricaoDeficiencia.Text)
-            //{
-            //    Font = new Font(ListViewDeficiencia.Font, FontStyle.Regular)
-            //};
+            ListViewItem listItem = new ListViewItem(DescricaoAtividade.Text)
+            {
+                Font = new Font(ListViewAtividade.Font, FontStyle.Regular)
+            };
 
-            //ListViewDeficiencia.Items.Add(listItem);
+            ListViewAtividade.Items.Add(listItem);
 
-            //DescricaoDeficiencia.Text = null;
+            DescricaoAtividade.Text = null;
         }
 
         private void RemoverAtividade_Click(object sender, EventArgs e)
@@ -286,6 +311,49 @@ namespace CIAPP
             }
 
             ListViewAtividade.Items.RemoveAt(ListViewAtividade.SelectedIndices[0]);
+        }
+
+        private void IncluirFrequencia_Click(object sender, EventArgs e)
+        {
+            if (!validacaoFrequencia.DataFrequenciaHorasCumpridasEntrada(ListViewFrequencia, DataFrequencia, HorasCumpridasFrequencia.Text))
+            {
+                return;
+            }
+
+            ListViewItem listItem = new ListViewItem(DataFrequencia.Value.Date.ToString("dd/MM/yyyy"))
+            {
+                Font = new Font(ListViewFrequencia.Font, FontStyle.Regular)
+            };
+            listItem.SubItems.Add(new ListViewItem.ListViewSubItem(listItem, HorasCumpridasFrequencia.Text));
+
+            ListViewFrequencia.Items.Add(listItem);
+            HorasCumpridas.Text = AtualizaHorasCumpridas().ToString();
+
+            DataFrequencia.CustomFormat = " ";
+            HorasCumpridasFrequencia.Text = null;
+        }
+
+        private void RemoverFrequencia_Click(object sender, EventArgs e)
+        {
+            if (!VerificaList(ListViewFrequencia))
+            {
+                return;
+            }
+
+            ListViewFrequencia.Items.RemoveAt(ListViewFrequencia.SelectedIndices[0]);
+            HorasCumpridas.Text = AtualizaHorasCumpridas().ToString();
+        }
+
+        private int AtualizaHorasCumpridas()
+        {
+            int horasCumpridas = 0;
+
+            foreach (ListViewItem item in ListViewFrequencia.Items)
+            {
+                horasCumpridas += int.Parse(item.SubItems[1].Text);
+            }
+
+            return horasCumpridas;
         }
 
         private void Salvar_Click(object sender, EventArgs e)
@@ -320,18 +388,14 @@ namespace CIAPP
                 return;
             }
 
-            Prestador prestador = prestadorDAO.RecuperarPorCpf(Cpf.Text);
-            
-            List<Atividade> atividadeList = new List<Atividade>();
-
-            foreach (ListViewItem item in ListViewAtividade.Items)
+            if (!validacaoAtividade.VerificaAtividade(ListViewAtividade))
             {
-                Atividade atividade = new Atividade
-                {
-                    Descricao = item.SubItems[0].Text
-                };
+                return;
+            }
 
-                atividadeList.Add(atividade);
+            if (!validacaoFrequencia.VerificaFrequencia(ListViewFrequencia, int.Parse(HorasCumprir.Text)))
+            {
+                return;
             }
 
             Processo processo = new Processo
@@ -342,11 +406,41 @@ namespace CIAPP
                 PenaOriginaria = PenaOriginaria.Text,
                 HorasCumprir = int.Parse(HorasCumprir.Text),
                 AcordoPersecucaoPenal = AcordoPersecucaoPenal.Checked,
-                Prestador = prestador,
-                AtividadeList = atividadeList
+                Prestador = prestadorDAO.RecuperarPorCpf(Cpf.Text),
+                AtividadeList = new List<Atividade>(),
+                FrequenciaList = new List<Frequencia>()
             };
 
-            processoDAO.Insert(processo);
+            foreach (ListViewItem item in ListViewAtividade.Items)
+            {
+                Atividade atividade = new Atividade
+                {
+                    Descricao = item.SubItems[0].Text
+                };
+
+                processo.AtividadeList.Add(atividade);
+            }
+
+            foreach (ListViewItem item in ListViewFrequencia.Items)
+            {
+                Frequencia frequencia = new Frequencia
+                {
+                    DataFrequencia = DateTime.Parse(item.SubItems[0].Text).Date,
+                    HorasCumpridas = int.Parse(item.SubItems[1].Text),
+                    Observacao = item.SubItems[2].Text
+                };
+
+                processo.FrequenciaList.Add(frequencia);
+            }
+
+            if (manutencao == "Incluir")
+            {
+                processoDAO.Insert(processo);
+            }
+            else
+            {
+                processoDAO.Update(processo);
+            }
 
             Close();
         }

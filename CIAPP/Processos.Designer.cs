@@ -38,9 +38,10 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.NomePrestadorFiltro = new System.Windows.Forms.TextBox();
+            this.Detalhes = new System.Windows.Forms.Button();
+            this.Excluir = new System.Windows.Forms.Button();
+            this.Editar = new System.Windows.Forms.Button();
             this.Novo = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.Importar = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -152,6 +153,63 @@
             this.NomePrestadorFiltro.Size = new System.Drawing.Size(470, 26);
             this.NomePrestadorFiltro.TabIndex = 9;
             // 
+            // Detalhes
+            // 
+            this.Detalhes.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.Detalhes.BackColor = System.Drawing.Color.MidnightBlue;
+            this.Detalhes.FlatAppearance.BorderSize = 0;
+            this.Detalhes.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.Detalhes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Detalhes.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Detalhes.ForeColor = System.Drawing.Color.White;
+            this.Detalhes.Image = ((System.Drawing.Image)(resources.GetObject("Detalhes.Image")));
+            this.Detalhes.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.Detalhes.Location = new System.Drawing.Point(858, 268);
+            this.Detalhes.Name = "Detalhes";
+            this.Detalhes.Size = new System.Drawing.Size(180, 40);
+            this.Detalhes.TabIndex = 35;
+            this.Detalhes.Text = "DETALHES";
+            this.Detalhes.UseVisualStyleBackColor = false;
+            this.Detalhes.Click += new System.EventHandler(this.Detalhes_Click);
+            // 
+            // Excluir
+            // 
+            this.Excluir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.Excluir.BackColor = System.Drawing.Color.MidnightBlue;
+            this.Excluir.FlatAppearance.BorderSize = 0;
+            this.Excluir.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.Excluir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Excluir.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Excluir.ForeColor = System.Drawing.Color.White;
+            this.Excluir.Image = ((System.Drawing.Image)(resources.GetObject("Excluir.Image")));
+            this.Excluir.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.Excluir.Location = new System.Drawing.Point(858, 200);
+            this.Excluir.Name = "Excluir";
+            this.Excluir.Size = new System.Drawing.Size(180, 40);
+            this.Excluir.TabIndex = 34;
+            this.Excluir.Text = "EXCLUIR";
+            this.Excluir.UseVisualStyleBackColor = false;
+            this.Excluir.Click += new System.EventHandler(this.Excluir_Click);
+            // 
+            // Editar
+            // 
+            this.Editar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.Editar.BackColor = System.Drawing.Color.MidnightBlue;
+            this.Editar.FlatAppearance.BorderSize = 0;
+            this.Editar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.Editar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Editar.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Editar.ForeColor = System.Drawing.Color.White;
+            this.Editar.Image = ((System.Drawing.Image)(resources.GetObject("Editar.Image")));
+            this.Editar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.Editar.Location = new System.Drawing.Point(858, 154);
+            this.Editar.Name = "Editar";
+            this.Editar.Size = new System.Drawing.Size(180, 40);
+            this.Editar.TabIndex = 33;
+            this.Editar.Text = "EDITAR";
+            this.Editar.UseVisualStyleBackColor = false;
+            this.Editar.Click += new System.EventHandler(this.Editar_Click);
+            // 
             // Novo
             // 
             this.Novo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -166,48 +224,10 @@
             this.Novo.Location = new System.Drawing.Point(858, 108);
             this.Novo.Name = "Novo";
             this.Novo.Size = new System.Drawing.Size(180, 40);
-            this.Novo.TabIndex = 33;
+            this.Novo.TabIndex = 32;
             this.Novo.Text = "NOVO";
             this.Novo.UseVisualStyleBackColor = false;
             this.Novo.Click += new System.EventHandler(this.Novo_Click);
-            // 
-            // button1
-            // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.BackColor = System.Drawing.Color.MidnightBlue;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(858, 244);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(180, 40);
-            this.button1.TabIndex = 36;
-            this.button1.Text = "DETALHES";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.Detalhes_Click);
-            // 
-            // Importar
-            // 
-            this.Importar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.Importar.BackColor = System.Drawing.Color.MidnightBlue;
-            this.Importar.FlatAppearance.BorderSize = 0;
-            this.Importar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            this.Importar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Importar.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Importar.ForeColor = System.Drawing.Color.White;
-            this.Importar.Image = ((System.Drawing.Image)(resources.GetObject("Importar.Image")));
-            this.Importar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Importar.Location = new System.Drawing.Point(858, 176);
-            this.Importar.Name = "Importar";
-            this.Importar.Size = new System.Drawing.Size(180, 40);
-            this.Importar.TabIndex = 35;
-            this.Importar.Text = "IMPORTAR";
-            this.Importar.UseVisualStyleBackColor = false;
-            this.Importar.Click += new System.EventHandler(this.Importar_Click);
             // 
             // Processos
             // 
@@ -215,8 +235,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(1050, 600);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.Importar);
+            this.Controls.Add(this.Detalhes);
+            this.Controls.Add(this.Excluir);
+            this.Controls.Add(this.Editar);
             this.Controls.Add(this.Novo);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.ListView);
@@ -245,8 +266,9 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox NomePrestadorFiltro;
+        private System.Windows.Forms.Button Detalhes;
+        private System.Windows.Forms.Button Excluir;
+        private System.Windows.Forms.Button Editar;
         private System.Windows.Forms.Button Novo;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button Importar;
     }
 }

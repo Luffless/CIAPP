@@ -77,25 +77,33 @@ namespace CIAPP
             CarregarRegistros();
         }
 
-        private void Importar_Click(object sender, EventArgs e)
+        private void Editar_Click(object sender, EventArgs e)
         {
-            OpenFileDialog open = new OpenFileDialog
+            if (!VerificaList())
             {
-                Filter = "JSON Files(*.json)|*.json"
-            };
-            if (open.ShowDialog() == DialogResult.OK)
-            {
-                if (new FileInfo(open.FileName).Length == 0)
-                {
-                    MessageBox.Show("O arquivo selecionado está vazio!", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
+                return;
+            }
 
-                using (StreamReader reader = new StreamReader(open.FileName))
-                {
-                    string json = reader.ReadToEnd();
-                    //Frequencia frequencia = JsonSerializer.Deserialize<Frequencia>(json); //try catch
-                }
+            ListViewItem item = ListView.SelectedItems[0];
+            ProcessoForm form = new ProcessoForm("Editar");
+            form.Id.Text = item.SubItems[0].Text;
+            form.ShowDialog();
+            CarregarRegistros();
+        }
+
+        private void Excluir_Click(object sender, EventArgs e)
+        {
+            if (!VerificaList())
+            {
+                return;
+            }
+
+            ListViewItem item = ListView.SelectedItems[0];
+
+            if (MessageBox.Show("Confirma excluir este registro?", "Selecione a opção", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                processoDAO.Delete(int.Parse(item.SubItems[0].Text));
+                CarregarRegistros();
             }
         }
 

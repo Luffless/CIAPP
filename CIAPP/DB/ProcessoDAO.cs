@@ -7,6 +7,8 @@ public class ProcessoDAO
 {
     public void Insert(Processo processo)
     {
+        processo = VerificaEspacosEmBranco(processo);
+
         using (NpgsqlConnection connection = new NpgsqlConnection(StringConexao.stringConexao))
         {
             connection.Open();
@@ -37,9 +39,137 @@ public class ProcessoDAO
                     }, transaction: transaction);
                 }
 
+                sql = "insert into frequencia values (@id_processo, @datafrequencia, @horascumpridas, @observacao)";
+
+                for (int i = 0; i < processo.FrequenciaList.Count; i++)
+                {
+                    connection.Execute(sql, param: new
+                    {
+                        id_processo = processo.Id,
+                        datafrequencia = processo.FrequenciaList[i].DataFrequencia,
+                        horascumpridas = processo.FrequenciaList[i].HorasCumpridas,
+                        observacao = processo.FrequenciaList[i].Observacao
+                    }, transaction: transaction);
+                }
+
                 transaction.Commit();
             }
         }
+    }
+
+    public void Update(Processo processo)
+    {
+        string sql;
+        int i;
+
+        processo = VerificaEspacosEmBranco(processo);
+
+        using (NpgsqlConnection connection = new NpgsqlConnection(StringConexao.stringConexao))
+        {
+            connection.Open();
+
+            using (NpgsqlTransaction transaction = connection.BeginTransaction())
+            {
+                sql = @"update processo 
+                           set varaorigem = @varaorigem,
+                               numeroartigopenal = @numeroartigopenal,
+                               penaoriginaria = @penaoriginaria, 
+                               horascumprir = @horascumprir, 
+                               acordopersecucaopenal = @acordopersecucaopenal, 
+                               id_prestador = @id_prestador
+                         where id = @id";
+
+                connection.Execute(sql, param: new
+                {
+                    varaorigem = processo.VaraOrigem,
+                    numeroartigopenal = processo.NumeroArtigoPenal,
+                    penaoriginaria = processo.PenaOriginaria,
+                    horascumprir = processo.HorasCumprir,
+                    acordopersecucaopenal = processo.AcordoPersecucaoPenal,
+                    id_prestador = processo.Prestador.Id,
+                    id = processo.Id
+                }, transaction: transaction);
+
+                sql = @"delete from atividade
+                         where id_processo = @id_processo";
+
+                connection.Execute(sql, param: new { id_processo = processo.Id }, transaction: transaction);
+
+                sql = @"delete from frequencia
+                         where id_processo = @id_processo";
+
+                connection.Execute(sql, param: new { id_processo = processo.Id }, transaction: transaction);
+
+                sql = "insert into atividade values (@id_processo, @descricao)";
+
+                for (i = 0; i < processo.AtividadeList.Count; i++)
+                {
+                    connection.Execute(sql, param: new
+                    {
+                        id_processo = processo.Id,
+                        descricao = processo.AtividadeList[i].Descricao
+                    }, transaction: transaction);
+                }
+
+                sql = "insert into frequencia values (@id_processo, @datafrequencia, @horascumpridas, @observacao)";
+
+                for (i = 0; i < processo.FrequenciaList.Count; i++)
+                {
+                    connection.Execute(sql, param: new
+                    {
+                        id_processo = processo.Id,
+                        datafrequencia = processo.FrequenciaList[i].DataFrequencia,
+                        horascumpridas = processo.FrequenciaList[i].HorasCumpridas,
+                        observacao = processo.FrequenciaList[i].Observacao
+                    }, transaction: transaction);
+                }
+
+                transaction.Commit();
+            }
+        }
+    }
+
+    public void Delete(int idProcesso)
+    {
+        string sql;
+
+        using (NpgsqlConnection connection = new NpgsqlConnection(StringConexao.stringConexao))
+        {
+            connection.Open();
+
+            using (NpgsqlTransaction transaction = connection.BeginTransaction())
+            {
+                sql = @"delete from frequencia
+                         where id_processo = @id_processo";
+
+                connection.Execute(sql, param: new { id_processo = idProcesso }, transaction: transaction);
+
+                sql = @"delete from atividade
+                         where id_processo = @id_processo";
+
+                connection.Execute(sql, param: new { id_processo = idProcesso }, transaction: transaction);
+
+                sql = @"delete from processo
+                         where id = @id";
+
+                connection.Execute(sql, param: new { id = idProcesso }, transaction: transaction);
+
+                transaction.Commit();
+            }
+        }
+    }
+
+    private Processo VerificaEspacosEmBranco(Processo processo)
+    {
+        for (int i = 0; i < processo.FrequenciaList.Count; i++)
+        {
+            if (string.IsNullOrWhiteSpace(processo.FrequenciaList[i].Observacao))
+            {
+                processo.FrequenciaList[i].Observacao = null;
+            }
+        }
+
+        return processo;
     }
 
     public IEnumerable<Processo> RecuperarTodosFiltrado(string nomePrestador, string numeroArtigoPenal)
@@ -189,6 +319,24 @@ public class ProcessoDAO
 
             return connection.QuerySingle<bool>(sql, param: new
             {
+                cpf = cpfPrestador
+            });
+        }
+    }
+
+    public bool ExisteCpfProcessoDiferente(int idProcesso, string cpfPrestador)
+    {
+        using (NpgsqlConnection connection = new NpgsqlConnection(StringConexao.stringConexao))
+        {
+            string sql = @"select count(*)
+                             from processo, prestador
+                            where processo.id_prestador = prestador.id
+                              and processo.id <> @id
+                              and prestador.cpf = @cpf";
+
+            return connection.QuerySingle<bool>(sql, param: new
+            {
+                id = idProcesso,
                 cpf = cpfPrestador
             });
         }
