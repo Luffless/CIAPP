@@ -8,7 +8,6 @@ namespace CIAPP
     public partial class Entidades : Form
     {
         private readonly EntidadeDAO entidadeDAO = new EntidadeDAO();
-        private readonly ProcessoDAO processoDAO = new ProcessoDAO();
         private readonly MenuPrincipal formMenuPrincipal;
 
         public Entidades(MenuPrincipal form)

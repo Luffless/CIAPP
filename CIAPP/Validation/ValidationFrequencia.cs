@@ -10,7 +10,7 @@ public class ValidationFrequencia
             return false;
         }
 
-        if (!string.IsNullOrWhiteSpace(horasCumpridasFrequencia))
+        if (string.IsNullOrWhiteSpace(horasCumpridasFrequencia))
         {
             MessageBox.Show("Informe as horas cumpridas da frequência!", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             return false;

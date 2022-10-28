@@ -34,7 +34,6 @@
             // 
             // ObservacaoTexto
             // 
-            this.ObservacaoTexto.Enabled = false;
             this.ObservacaoTexto.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ObservacaoTexto.Location = new System.Drawing.Point(12, 12);
             this.ObservacaoTexto.Multiline = true;
@@ -53,6 +52,8 @@
             this.MinimizeBox = false;
             this.Name = "Observacao";
             this.Text = "Observação";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Close);
+            this.Load += new System.EventHandler(this.Observacao_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

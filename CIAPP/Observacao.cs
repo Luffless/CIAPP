@@ -1,13 +1,33 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using System.Windows.Forms;
 
 namespace CIAPP
 {
     public partial class Observacao : Form
     {
-        public Observacao(string observacao)
+        private readonly ProcessoForm formProcessoForm;
+        private readonly string manutencao;
+
+        public Observacao(ProcessoForm form, string observacao, string man)
         {
             InitializeComponent();
+            formProcessoForm = form;
             ObservacaoTexto.Text = observacao;
+            manutencao = man;
+        }
+
+        private void Observacao_Load(object sender, EventArgs e)
+        {
+            if (manutencao == "Detalhes")
+            {
+                ObservacaoTexto.Enabled = false;
+            }
+        }
+
+        private void Close(object sender, FormClosedEventArgs e)
+        {
+            formProcessoForm.ObservacaoRetorno = ObservacaoTexto.Text;
+            Close();
         }
     }
 }
