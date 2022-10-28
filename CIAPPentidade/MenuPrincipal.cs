@@ -21,6 +21,7 @@ namespace CIAPPentidade
         {
             UsuarioLogado.Text = usuarioDAO.RecuperarPorLogin(loginUsuarioLogado);
             AdicionaColunas();
+            CarregarRegistros();
         }
 
         private void AdicionaColunas()
@@ -31,6 +32,38 @@ namespace CIAPPentidade
             ListView.Columns.Add("Nome", 375);
             ListView.Columns.Add("Horas a cumprir", 135);
             ListView.Columns.Add("Horas cumpridas", 135);
+        }
+
+        private void CarregarRegistros()
+        {
+            int horasCumpridas;
+            ListView.Items.Clear();
+            //List<Processo> itemList = (List<Processo>)processoDAO.RecuperarTodosFiltrado(CpfFiltro.Text, NomeFiltro.Text);
+
+            //for (int i = 0; i < itemList.Count; i++)
+            //{
+            //    horasCumpridas = 0;
+
+            //    for (int j = 0; j < itemList[i].FrequenciaList.Count; j++)
+            //    {
+            //        horasCumpridas += itemList[i].FrequenciaList[j].HorasCumpridas;
+            //    }
+
+            //    ListViewItem listItem = new ListViewItem(itemList[i].Id.ToString())
+            //    {
+            //        Font = new Font(ListView.Font, FontStyle.Regular)
+            //    };
+            //    listItem.SubItems.Add(new ListViewItem.ListViewSubItem(listItem, itemList[i].Prestador.Cpf));
+            //    listItem.SubItems.Add(new ListViewItem.ListViewSubItem(listItem, itemList[i].Prestador.Nome));         
+            //    listItem.SubItems.Add(new ListViewItem.ListViewSubItem(listItem, itemList[i].HorasCumprir.ToString()));
+            //    listItem.SubItems.Add(new ListViewItem.ListViewSubItem(listItem, horasCumpridas.ToString()));
+            //    ListView.Items.Add(listItem);
+            //}
+        }
+
+        private void Pesquisar_Click(object sender, EventArgs e)
+        {
+            CarregarRegistros();
         }
 
         private void BtnSlide_Click(object sender, EventArgs e)
@@ -50,10 +83,38 @@ namespace CIAPPentidade
             Application.Exit();
         }
 
+        private void Editar_Click(object sender, EventArgs e)
+        {
+            if (!VerificaList())
+            {
+                return;
+            }
+
+            //ListViewItem item = ListView.SelectedItems[0];
+            //ProcessoForm form = new ProcessoForm("Editar");
+            //form.Id.Text = item.SubItems[0].Text;
+            //form.ShowDialog();
+            CarregarRegistros();
+        }
+
+        private void Excluir_Click(object sender, EventArgs e)
+        {
+            if (!VerificaList())
+            {
+                return;
+            }
+
+            ListViewItem item = ListView.SelectedItems[0];
+
+            if (MessageBox.Show("Confirma excluir este registro?", "Selecione a opção", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                //processoDAO.Delete(int.Parse(item.SubItems[0].Text));
+                CarregarRegistros();
+            }
+        }
+
         private void Importar_Click(object sender, EventArgs e)
         {
-            Processo processo;
-
             OpenFileDialog open = new OpenFileDialog
             {
                 Filter = "JSON Files (*.json)|*.json"
@@ -65,6 +126,8 @@ namespace CIAPPentidade
                     MessageBox.Show("O arquivo selecionado está vazio!", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
+
+                Processo processo;
 
                 using (StreamReader reader = new StreamReader(open.FileName))
                 {
@@ -84,7 +147,7 @@ namespace CIAPPentidade
                     }
                 }
 
-                //verificar se não existe o registro, se não existir então insere no banco SQLite os registros
+                //deletar e inserir o processo
             }
         }
 
@@ -95,7 +158,10 @@ namespace CIAPPentidade
                 return;
             }
 
-            //abrir a tela dos detalhes, sendo que no registro selecionado poderá incluir registros de Frequência
+            //ListViewItem item = ListView.SelectedItems[0];
+            //ProcessoForm form = new ProcessoForm("Detalhes");
+            //form.Id.Text = item.SubItems[0].Text;
+            //form.ShowDialog();
         }
 
         private void DoubleClick_Click(object sender, EventArgs e)

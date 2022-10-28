@@ -9,6 +9,7 @@ public class Prestador
     public DateTime DataNascimento { get; set; }
     public string Naturalidade { get; set; }
     public string EstadoCivil { get; set; }
+    public byte[] Foto { get; set; }
     public long Telefone { get; set; }
     public string Etnia { get; set; }
     public string Sexo { get; set; }
