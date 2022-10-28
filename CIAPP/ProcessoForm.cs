@@ -16,6 +16,7 @@ namespace CIAPP
         private readonly ProcessoDAO processoDAO = new ProcessoDAO();
         private readonly PrestadorDAO prestadorDAO = new PrestadorDAO();
         private readonly string manutencao;
+        public string ObservacaoRetorno;
 
         public ProcessoForm(string man)
         {
@@ -129,7 +130,8 @@ namespace CIAPP
             }
 
             ListViewItem item = ListViewFrequencia.SelectedItems[0];
-            new Observacao(item.SubItems[3].Text).ShowDialog();
+            new Observacao(this, item.SubItems[2].Text, manutencao).ShowDialog();
+            item.SubItems[2].Text = ObservacaoRetorno;
         }
 
         private void DoubleClick_Click(object sender, EventArgs e)
@@ -149,16 +151,14 @@ namespace CIAPP
 
         private void DataFrequencia_ValueChanged(object sender, EventArgs e)
         {
-            DataNascimento.CustomFormat = "dd/MM/yyyy";
-            Idade.Text = CalculaIdade();
+            DataFrequencia.CustomFormat = "dd/MM/yyyy";
         }
 
         private void DataFrequencia_KeyDown(object sender, KeyEventArgs e)
         {
             if ((e.KeyCode == Keys.Back) || (e.KeyCode == Keys.Delete))
             {
-                DataNascimento.CustomFormat = " ";
-                Idade.Text = null;
+                DataFrequencia.CustomFormat = " ";
             }
         }
 
@@ -325,6 +325,7 @@ namespace CIAPP
                 Font = new Font(ListViewFrequencia.Font, FontStyle.Regular)
             };
             listItem.SubItems.Add(new ListViewItem.ListViewSubItem(listItem, HorasCumpridasFrequencia.Text));
+            listItem.SubItems.Add(new ListViewItem.ListViewSubItem(listItem, null)); //Observação
 
             ListViewFrequencia.Items.Add(listItem);
             HorasCumpridas.Text = AtualizaHorasCumpridas().ToString();
