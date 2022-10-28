@@ -83,6 +83,7 @@
             this.label12 = new System.Windows.Forms.Label();
             this.Salvar = new System.Windows.Forms.Button();
             this.FrequenciaGroupBox = new System.Windows.Forms.GroupBox();
+            this.ImportarFrequencia = new System.Windows.Forms.Button();
             this.HorasCumpridasFrequencia = new System.Windows.Forms.TextBox();
             this.HorasCumpridasFrequenciaLabel = new System.Windows.Forms.Label();
             this.DataFrequencia = new System.Windows.Forms.DateTimePicker();
@@ -742,6 +743,7 @@
             // 
             // FrequenciaGroupBox
             // 
+            this.FrequenciaGroupBox.Controls.Add(this.ImportarFrequencia);
             this.FrequenciaGroupBox.Controls.Add(this.HorasCumpridasFrequencia);
             this.FrequenciaGroupBox.Controls.Add(this.HorasCumpridasFrequenciaLabel);
             this.FrequenciaGroupBox.Controls.Add(this.DataFrequencia);
@@ -757,6 +759,25 @@
             this.FrequenciaGroupBox.TabIndex = 16;
             this.FrequenciaGroupBox.TabStop = false;
             this.FrequenciaGroupBox.Text = "Frequência";
+            // 
+            // ImportarFrequencia
+            // 
+            this.ImportarFrequencia.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.ImportarFrequencia.BackColor = System.Drawing.Color.MidnightBlue;
+            this.ImportarFrequencia.FlatAppearance.BorderSize = 0;
+            this.ImportarFrequencia.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.ImportarFrequencia.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ImportarFrequencia.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ImportarFrequencia.ForeColor = System.Drawing.Color.White;
+            this.ImportarFrequencia.Image = ((System.Drawing.Image)(resources.GetObject("ImportarFrequencia.Image")));
+            this.ImportarFrequencia.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.ImportarFrequencia.Location = new System.Drawing.Point(517, 118);
+            this.ImportarFrequencia.Name = "ImportarFrequencia";
+            this.ImportarFrequencia.Size = new System.Drawing.Size(160, 40);
+            this.ImportarFrequencia.TabIndex = 30;
+            this.ImportarFrequencia.Text = "Importar";
+            this.ImportarFrequencia.UseVisualStyleBackColor = false;
+            this.ImportarFrequencia.Click += new System.EventHandler(this.Importar_Click);
             // 
             // HorasCumpridasFrequencia
             // 
@@ -807,7 +828,7 @@
             this.RemoverFrequencia.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.RemoverFrequencia.ForeColor = System.Drawing.Color.White;
             this.RemoverFrequencia.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.RemoverFrequencia.Location = new System.Drawing.Point(515, 72);
+            this.RemoverFrequencia.Location = new System.Drawing.Point(517, 72);
             this.RemoverFrequencia.Name = "RemoverFrequencia";
             this.RemoverFrequencia.Size = new System.Drawing.Size(160, 40);
             this.RemoverFrequencia.TabIndex = 26;
@@ -958,5 +979,6 @@
         private System.Windows.Forms.DateTimePicker DataFrequencia;
         private System.Windows.Forms.Label HorasCumpridasFrequenciaLabel;
         private System.Windows.Forms.TextBox HorasCumpridasFrequencia;
+        private System.Windows.Forms.Button ImportarFrequencia;
     }
 }

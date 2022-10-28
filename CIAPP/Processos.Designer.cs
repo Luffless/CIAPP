@@ -42,6 +42,7 @@
             this.Excluir = new System.Windows.Forms.Button();
             this.Editar = new System.Windows.Forms.Button();
             this.Novo = new System.Windows.Forms.Button();
+            this.Exportar = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -164,7 +165,7 @@
             this.Detalhes.ForeColor = System.Drawing.Color.White;
             this.Detalhes.Image = ((System.Drawing.Image)(resources.GetObject("Detalhes.Image")));
             this.Detalhes.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Detalhes.Location = new System.Drawing.Point(858, 268);
+            this.Detalhes.Location = new System.Drawing.Point(858, 312);
             this.Detalhes.Name = "Detalhes";
             this.Detalhes.Size = new System.Drawing.Size(180, 40);
             this.Detalhes.TabIndex = 35;
@@ -229,12 +230,32 @@
             this.Novo.UseVisualStyleBackColor = false;
             this.Novo.Click += new System.EventHandler(this.Novo_Click);
             // 
+            // Exportar
+            // 
+            this.Exportar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.Exportar.BackColor = System.Drawing.Color.MidnightBlue;
+            this.Exportar.FlatAppearance.BorderSize = 0;
+            this.Exportar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.Exportar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Exportar.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Exportar.ForeColor = System.Drawing.Color.White;
+            this.Exportar.Image = ((System.Drawing.Image)(resources.GetObject("Exportar.Image")));
+            this.Exportar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.Exportar.Location = new System.Drawing.Point(858, 266);
+            this.Exportar.Name = "Exportar";
+            this.Exportar.Size = new System.Drawing.Size(180, 40);
+            this.Exportar.TabIndex = 36;
+            this.Exportar.Text = "EXPORTAR";
+            this.Exportar.UseVisualStyleBackColor = false;
+            this.Exportar.Click += new System.EventHandler(this.Exportar_Click);
+            // 
             // Processos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(1050, 600);
+            this.Controls.Add(this.Exportar);
             this.Controls.Add(this.Detalhes);
             this.Controls.Add(this.Excluir);
             this.Controls.Add(this.Editar);
@@ -270,5 +291,6 @@
         private System.Windows.Forms.Button Excluir;
         private System.Windows.Forms.Button Editar;
         private System.Windows.Forms.Button Novo;
+        private System.Windows.Forms.Button Exportar;
     }
 }

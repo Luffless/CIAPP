@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
+using System.Text.Json;
 using System.Windows.Forms;
 
 namespace CIAPP
@@ -8,6 +10,7 @@ namespace CIAPP
     public partial class Processos : Form
     {
         private readonly ProcessoDAO processoDAO = new ProcessoDAO();
+        private readonly PrestadorDAO prestadorDAO = new PrestadorDAO();
         private readonly MenuPrincipal formMenuPrincipal;
 
         public Processos(MenuPrincipal form)
@@ -103,6 +106,42 @@ namespace CIAPP
             {
                 processoDAO.Delete(int.Parse(item.SubItems[0].Text));
                 CarregarRegistros();
+            }
+        }
+
+        private void Exportar_Click(object sender, EventArgs e)
+        {
+            if (!VerificaList())
+            {
+                return;
+            }
+
+            FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog
+            {
+                ShowNewFolderButton = false,
+                Description = "Selecione o diretório que você deseja usar para salvar o arquivo."
+            };
+            if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
+            {
+                ListViewItem item = ListView.SelectedItems[0];
+                Processo processo = processoDAO.RecuperarPorId(int.Parse(item.SubItems[0].Text));
+                Prestador prestador = prestadorDAO.RecuperarPorId(processo.Prestador.Id);
+                processo.Prestador = prestador;
+
+                string json = JsonSerializer.Serialize(processo);
+                EncryptDecrypt encryptTest = new EncryptDecrypt();
+                string base64EncryptStringAes = encryptTest.Encrypt(json);
+
+                folderBrowserDialog.SelectedPath += @"\InformacoesPrestador" + processo.Prestador.Id + ".json";
+
+                if (File.Exists(folderBrowserDialog.SelectedPath))
+                {
+                    File.Delete(folderBrowserDialog.SelectedPath);
+                }
+
+                File.WriteAllText(folderBrowserDialog.SelectedPath, base64EncryptStringAes);
+
+                MessageBox.Show(string.Format("Arquivo salvo no diretório {0}", folderBrowserDialog.SelectedPath), "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 

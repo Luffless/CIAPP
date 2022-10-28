@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
+using System.Text.Json;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
@@ -105,6 +106,7 @@ namespace CIAPP
                 HorasCumpridasFrequencia.Visible = false;
                 IncluirFrequencia.Visible = false;
                 RemoverFrequencia.Visible = false;
+                ImportarFrequencia.Visible = false;
                 Salvar.Visible = false;
 
                 ListViewAtividade.Dock = DockStyle.Fill;
@@ -343,6 +345,44 @@ namespace CIAPP
 
             ListViewFrequencia.Items.RemoveAt(ListViewFrequencia.SelectedIndices[0]);
             HorasCumpridas.Text = AtualizaHorasCumpridas().ToString();
+        }
+
+        private void Importar_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog open = new OpenFileDialog
+            {
+                Filter = "JSON Files (*.json)|*.json"
+            };
+            if (open.ShowDialog() == DialogResult.OK)
+            {
+                if (new FileInfo(open.FileName).Length == 0)
+                {
+                    MessageBox.Show("O arquivo selecionado está vazio!", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                List<Frequencia> frequenciaList;
+
+                using (StreamReader reader = new StreamReader(open.FileName))
+                {
+                    string json = reader.ReadToEnd();
+
+                    EncryptDecrypt encryptTest = new EncryptDecrypt();
+                    string jsonDescrypted = encryptTest.Decrypt(json);
+
+                    try
+                    {
+                        frequenciaList = JsonSerializer.Deserialize<List<Frequencia>>(jsonDescrypted);
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Arquivo JSON inválido!", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+                }
+
+                //deletar e inserir as frequências no processo
+            }
         }
 
         private int AtualizaHorasCumpridas()
