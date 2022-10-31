@@ -56,7 +56,7 @@ public class ValidationProcesso
         return true;
     }
 
-    public bool CpfEntrada(string cpf)
+    public bool CpfEntrada(int idProcesso, string cpf)
     {
         if (string.IsNullOrWhiteSpace(cpf))
         {
@@ -70,7 +70,7 @@ public class ValidationProcesso
             return false;
         }
 
-        if (processoDAO.ExisteCpfProcesso(cpf))
+        if (processoDAO.ExisteCpfProcessoDiferente(idProcesso, cpf))
         {
             MessageBox.Show("O CPF do prestador informado já existe em outro processo!", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             return false;

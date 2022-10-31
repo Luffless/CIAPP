@@ -44,6 +44,7 @@ namespace CIAPP
                 NumeroArtigoPenal.Text = processo.NumeroArtigoPenal.ToString();
                 PenaOriginaria.Text = processo.PenaOriginaria;
                 HorasCumprir.Text = processo.HorasCumprir.ToString();
+                AcordoPersecucaoPenal.Checked = processo.AcordoPersecucaoPenal;
                 Cpf.Text = processo.Prestador.Cpf;
                 Nome.Text = processo.Prestador.Nome;
                 DataNascimento.Text = processo.Prestador.DataNascimento.ToString();
@@ -197,7 +198,7 @@ namespace CIAPP
         {
             if (!string.IsNullOrWhiteSpace(Cpf.Text))
             {
-                if (!processoDAO.ExisteCpfProcessoDiferente(int.Parse(Id.Text), Cpf.Text))
+                if (!prestadorDAO.ExisteCpf(Cpf.Text))
                 {
                     LimparCamposPrestador();
                     return;
@@ -423,7 +424,7 @@ namespace CIAPP
                 return;
             }
 
-            if (!validacaoProcesso.CpfEntrada(Cpf.Text))
+            if (!validacaoProcesso.CpfEntrada(int.Parse(Id.Text), Cpf.Text))
             {
                 Cpf.Focus();
                 return;

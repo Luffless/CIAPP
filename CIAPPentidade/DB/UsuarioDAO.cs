@@ -3,15 +3,15 @@ using System.Data.SQLite;
 
 public class UsuarioDAO
 {
-    public string RecuperarPorLogin(string loginUsuario)
+    public Usuario RecuperarPorLogin(string loginUsuario)
     {
         using (SQLiteConnection connection = new SQLiteConnection(StringConexao.stringConexao))
         {
-            string sql = @"select nome
+            string sql = @"select *
                              from usuario
                             where login = @login";
 
-            return connection.QuerySingle<string>(sql, param: new { login = loginUsuario });
+            return connection.QuerySingle<Usuario>(sql, param: new { login = loginUsuario });
         }
     }
 
