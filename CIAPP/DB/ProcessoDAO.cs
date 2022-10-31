@@ -172,7 +172,7 @@ public class ProcessoDAO
         return processo;
     }
 
-    public IEnumerable<Processo> RecuperarTodosFiltrado(string nomePrestador, string numeroArtigoPenal)
+    public IEnumerable<Processo> RecuperarTodosFiltrado(string cpfPrestador, string nomePrestador)
     {
         List<Processo> processoList = new List<Processo>();
 
@@ -182,14 +182,14 @@ public class ProcessoDAO
                              from processo, prestador
                             where processo.id_prestador = prestador.id";
 
-            if (!string.IsNullOrWhiteSpace(nomePrestador))
+            if (!string.IsNullOrWhiteSpace(cpfPrestador))
             {
-                sql += " and upper(prestador.nome) like upper(CONCAT('%', @nomeprestador, '%'))";
+                sql += " and prestador.cpf like CONCAT('%', @cpf, '%')";
             }
 
-            if (!string.IsNullOrWhiteSpace(numeroArtigoPenal))
+            if (!string.IsNullOrWhiteSpace(nomePrestador))
             {
-                sql += " and processo.numeroartigopenal = @numeroartigopenal";
+                sql += " and upper(prestador.nome) like upper(CONCAT('%', @nome, '%'))";
             }
 
             sql += " order by processo.id";
@@ -203,8 +203,8 @@ public class ProcessoDAO
                            splitOn: "Cpf",
                            param: new
                            {
-                               nomeprestador = nomePrestador,
-                               numeroartigopenal = numeroArtigoPenal
+                               cpf = cpfPrestador,
+                               nome = nomePrestador
                            });
 
             for (int i = 0; i < processoList.Count; i++)
@@ -262,7 +262,7 @@ public class ProcessoDAO
                            processoRegistro.Prestador = prestador;
                            return processoRegistro;
                        },
-                       splitOn: "Cpf",
+                       splitOn: "Id",
                        param: new
                        {
                            id = idProcesso

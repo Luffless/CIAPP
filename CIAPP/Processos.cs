@@ -45,7 +45,7 @@ namespace CIAPP
         {
             int horasCumpridas;
             ListView.Items.Clear();
-            List<Processo> itemList = (List<Processo>)processoDAO.RecuperarTodosFiltrado(NomePrestadorFiltro.Text, NumeroArtigoPenalFiltro.Text);
+            List<Processo> itemList = (List<Processo>)processoDAO.RecuperarTodosFiltrado(CpfFiltro.Text, NomeFiltro.Text);
 
             for (int i = 0; i < itemList.Count; i++)
             {
