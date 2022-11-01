@@ -125,6 +125,12 @@
     <Compile Include="Model\Prestador.cs" />
     <Compile Include="Model\Processo.cs" />
     <Compile Include="Model\Usuario.cs" />
+    <Compile Include="ProcessoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProcessoForm.Designer.cs">
+      <DependentUpon>ProcessoForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Processos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -139,6 +145,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MenuPrincipal.resx">
       <DependentUpon>MenuPrincipal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProcessoForm.resx">
+      <DependentUpon>ProcessoForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Processos.resx">
       <DependentUpon>Processos.cs</DependentUpon>
