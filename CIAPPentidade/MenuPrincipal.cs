@@ -70,6 +70,7 @@ namespace CIAPPentidade
             //BtnProcessos.BackColor = Color.FromArgb(25, 25, 112);
             //BtnRelatorios.BackColor = Color.FromArgb(45, 45, 48);
             //AbrirFormInPainel(new Relatorios(this));
+            MessageBox.Show("Esta funcionalidade ainda não está implementada!", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
     }
 }
