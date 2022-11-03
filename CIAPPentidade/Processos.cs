@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Text.Json;
@@ -8,6 +9,7 @@ namespace CIAPPentidade
 {
     public partial class Processos : Form
     {
+        private readonly ProcessoDAO processoDAO = new ProcessoDAO();
         private readonly MenuPrincipal formMenuPrincipal;
 
         public Processos(MenuPrincipal form)
@@ -42,27 +44,27 @@ namespace CIAPPentidade
         {
             int horasCumpridas;
             ListView.Items.Clear();
-            //List<Processo> itemList = (List<Processo>)processoDAO.RecuperarTodosFiltrado(CpfFiltro.Text, NomeFiltro.Text);
+            List<Processo> itemList = (List<Processo>)processoDAO.RecuperarTodosFiltrado(CpfFiltro.Text, NomeFiltro.Text);
 
-            //for (int i = 0; i < itemList.Count; i++)
-            //{
-            //    horasCumpridas = 0;
+            for (int i = 0; i < itemList.Count; i++)
+            {
+                horasCumpridas = 0;
 
-            //    for (int j = 0; j < itemList[i].FrequenciaList.Count; j++)
-            //    {
-            //        horasCumpridas += itemList[i].FrequenciaList[j].HorasCumpridas;
-            //    }
+                for (int j = 0; j < itemList[i].FrequenciaList.Count; j++)
+                {
+                    horasCumpridas += itemList[i].FrequenciaList[j].HorasCumpridas;
+                }
 
-            //    ListViewItem listItem = new ListViewItem(itemList[i].Id.ToString())
-            //    {
-            //        Font = new Font(ListView.Font, FontStyle.Regular)
-            //    };
-            //    listItem.SubItems.Add(new ListViewItem.ListViewSubItem(listItem, itemList[i].Prestador.Cpf));
-            //    listItem.SubItems.Add(new ListViewItem.ListViewSubItem(listItem, itemList[i].Prestador.Nome));         
-            //    listItem.SubItems.Add(new ListViewItem.ListViewSubItem(listItem, itemList[i].HorasCumprir.ToString()));
-            //    listItem.SubItems.Add(new ListViewItem.ListViewSubItem(listItem, horasCumpridas.ToString()));
-            //    ListView.Items.Add(listItem);
-            //}
+                ListViewItem listItem = new ListViewItem(itemList[i].Id.ToString())
+                {
+                    Font = new Font(ListView.Font, FontStyle.Regular)
+                };
+                listItem.SubItems.Add(new ListViewItem.ListViewSubItem(listItem, itemList[i].Prestador.Cpf));
+                listItem.SubItems.Add(new ListViewItem.ListViewSubItem(listItem, itemList[i].Prestador.Nome));         
+                listItem.SubItems.Add(new ListViewItem.ListViewSubItem(listItem, itemList[i].HorasCumprir.ToString()));
+                listItem.SubItems.Add(new ListViewItem.ListViewSubItem(listItem, horasCumpridas.ToString()));
+                ListView.Items.Add(listItem);
+            }
         }
 
         private void Pesquisar_Click(object sender, EventArgs e)
@@ -77,10 +79,10 @@ namespace CIAPPentidade
                 return;
             }
 
-            //ListViewItem item = ListView.SelectedItems[0];
-            //ProcessoForm form = new ProcessoForm("Editar");
-            //form.Id.Text = item.SubItems[0].Text;
-            //form.ShowDialog();
+            ListViewItem item = ListView.SelectedItems[0];
+            ProcessoForm form = new ProcessoForm("Editar");
+            form.Id.Text = item.SubItems[0].Text;
+            form.ShowDialog();
             CarregarRegistros();
         }
 
@@ -95,7 +97,8 @@ namespace CIAPPentidade
 
             if (MessageBox.Show("Confirma excluir este registro?", "Selecione a opção", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                //processoDAO.Delete(int.Parse(item.SubItems[0].Text));
+                Processo processo = processoDAO.RecuperarPorId(int.Parse(item.SubItems[0].Text));
+                processoDAO.Delete(processo);
                 CarregarRegistros();
             }
         }
@@ -134,7 +137,9 @@ namespace CIAPPentidade
                     }
                 }
 
-                //deletar e inserir o processo
+                processoDAO.Delete(processo);
+                processoDAO.Insert(processo);
+                CarregarRegistros();
             }
         }
 
@@ -145,10 +150,10 @@ namespace CIAPPentidade
                 return;
             }
 
-            //ListViewItem item = ListView.SelectedItems[0];
-            //ProcessoForm form = new ProcessoForm("Detalhes");
-            //form.Id.Text = item.SubItems[0].Text;
-            //form.ShowDialog();
+            ListViewItem item = ListView.SelectedItems[0];
+            ProcessoForm form = new ProcessoForm("Detalhes");
+            form.Id.Text = item.SubItems[0].Text;
+            form.ShowDialog();
         }
 
         private void DoubleClick_Click(object sender, EventArgs e)

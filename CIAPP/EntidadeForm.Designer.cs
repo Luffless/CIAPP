@@ -353,6 +353,7 @@
             // 
             this.Telefone.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Telefone.Location = new System.Drawing.Point(120, 96);
+            this.Telefone.MaxLength = 9;
             this.Telefone.Name = "Telefone";
             this.Telefone.Size = new System.Drawing.Size(100, 26);
             this.Telefone.TabIndex = 4;

@@ -771,7 +771,7 @@
             this.ImportarFrequencia.ForeColor = System.Drawing.Color.White;
             this.ImportarFrequencia.Image = ((System.Drawing.Image)(resources.GetObject("ImportarFrequencia.Image")));
             this.ImportarFrequencia.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.ImportarFrequencia.Location = new System.Drawing.Point(517, 118);
+            this.ImportarFrequencia.Location = new System.Drawing.Point(517, 184);
             this.ImportarFrequencia.Name = "ImportarFrequencia";
             this.ImportarFrequencia.Size = new System.Drawing.Size(160, 40);
             this.ImportarFrequencia.TabIndex = 30;

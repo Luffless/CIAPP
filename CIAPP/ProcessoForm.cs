@@ -382,7 +382,21 @@ namespace CIAPP
                     }
                 }
 
-                //deletar e inserir as frequências no processo
+                ListViewFrequencia.Items.Clear();
+
+                for (int i = 0; i < frequenciaList.Count; i++)
+                {
+                    ListViewItem listItem = new ListViewItem(frequenciaList[i].DataFrequencia.Date.ToString("dd/MM/yyyy"))
+                    {
+                        Font = new Font(ListViewFrequencia.Font, FontStyle.Regular)
+                    };
+                    listItem.SubItems.Add(new ListViewItem.ListViewSubItem(listItem, frequenciaList[i].HorasCumpridas.ToString()));
+                    listItem.SubItems.Add(new ListViewItem.ListViewSubItem(listItem, frequenciaList[i].Observacao));
+
+                    ListViewFrequencia.Items.Add(listItem);
+                }
+
+                HorasCumpridas.Text = AtualizaHorasCumpridas().ToString();
             }
         }
 
