@@ -158,6 +158,7 @@
             this.Detalhes.TabIndex = 38;
             this.Detalhes.Text = "DETALHES";
             this.Detalhes.UseVisualStyleBackColor = false;
+            this.Detalhes.Click += new System.EventHandler(this.Detalhes_Click);
             // 
             // Importar
             // 

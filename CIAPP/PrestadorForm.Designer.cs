@@ -74,6 +74,7 @@
             this.ListViewDoenca = new System.Windows.Forms.ListView();
             this.Foto = new System.Windows.Forms.PictureBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.Selecionar = new System.Windows.Forms.Button();
             this.Id = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.Nome = new System.Windows.Forms.TextBox();
@@ -107,7 +108,6 @@
             this.RendaFamiliar = new System.Windows.Forms.TextBox();
             this.label21 = new System.Windows.Forms.Label();
             this.Cpf = new System.Windows.Forms.TextBox();
-            this.Selecionar = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -718,6 +718,24 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Foto";
             // 
+            // Selecionar
+            // 
+            this.Selecionar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.Selecionar.BackColor = System.Drawing.Color.MidnightBlue;
+            this.Selecionar.FlatAppearance.BorderSize = 0;
+            this.Selecionar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.Selecionar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Selecionar.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Selecionar.ForeColor = System.Drawing.Color.White;
+            this.Selecionar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.Selecionar.Location = new System.Drawing.Point(6, 281);
+            this.Selecionar.Name = "Selecionar";
+            this.Selecionar.Size = new System.Drawing.Size(160, 40);
+            this.Selecionar.TabIndex = 18;
+            this.Selecionar.Text = "Selecionar";
+            this.Selecionar.UseVisualStyleBackColor = false;
+            this.Selecionar.Click += new System.EventHandler(this.Selecionar_Click);
+            // 
             // Id
             // 
             this.Id.Enabled = false;
@@ -967,6 +985,7 @@
             // 
             this.Telefone.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Telefone.Location = new System.Drawing.Point(272, 156);
+            this.Telefone.MaxLength = 9;
             this.Telefone.Name = "Telefone";
             this.Telefone.Size = new System.Drawing.Size(100, 26);
             this.Telefone.TabIndex = 8;
@@ -1102,24 +1121,6 @@
             this.Cpf.Size = new System.Drawing.Size(186, 26);
             this.Cpf.TabIndex = 2;
             this.Cpf.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OnKeyDown);
-            // 
-            // Selecionar
-            // 
-            this.Selecionar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.Selecionar.BackColor = System.Drawing.Color.MidnightBlue;
-            this.Selecionar.FlatAppearance.BorderSize = 0;
-            this.Selecionar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            this.Selecionar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Selecionar.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Selecionar.ForeColor = System.Drawing.Color.White;
-            this.Selecionar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Selecionar.Location = new System.Drawing.Point(6, 281);
-            this.Selecionar.Name = "Selecionar";
-            this.Selecionar.Size = new System.Drawing.Size(160, 40);
-            this.Selecionar.TabIndex = 18;
-            this.Selecionar.Text = "Selecionar";
-            this.Selecionar.UseVisualStyleBackColor = false;
-            this.Selecionar.Click += new System.EventHandler(this.Selecionar_Click);
             // 
             // PrestadorForm
             // 
