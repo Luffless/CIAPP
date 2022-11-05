@@ -397,6 +397,8 @@ namespace CIAPP
                 }
 
                 HorasCumpridas.Text = AtualizaHorasCumpridas().ToString();
+
+                MessageBox.Show("Arquivo JSON carregado com sucesso!", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
