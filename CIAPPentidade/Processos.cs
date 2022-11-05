@@ -72,7 +72,7 @@ namespace CIAPPentidade
             CarregarRegistros();
         }
 
-        private void Editar_Click(object sender, EventArgs e)
+        private void Frequencia_Click(object sender, EventArgs e)
         {
             if (!VerificaList())
             {
@@ -140,6 +140,8 @@ namespace CIAPPentidade
                 processoDAO.Delete(processo);
                 processoDAO.Insert(processo);
                 CarregarRegistros();
+
+                MessageBox.Show("Arquivo JSON carregado com sucesso!", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 

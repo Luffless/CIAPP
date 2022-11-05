@@ -34,7 +34,7 @@
             this.Pesquisar = new System.Windows.Forms.Button();
             this.ListView = new System.Windows.Forms.ListView();
             this.Excluir = new System.Windows.Forms.Button();
-            this.Editar = new System.Windows.Forms.Button();
+            this.Frequencia = new System.Windows.Forms.Button();
             this.Detalhes = new System.Windows.Forms.Button();
             this.Importar = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -122,24 +122,24 @@
             this.Excluir.UseVisualStyleBackColor = false;
             this.Excluir.Click += new System.EventHandler(this.Excluir_Click);
             // 
-            // Editar
+            // Frequencia
             // 
-            this.Editar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.Editar.BackColor = System.Drawing.Color.MidnightBlue;
-            this.Editar.FlatAppearance.BorderSize = 0;
-            this.Editar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            this.Editar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Editar.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Editar.ForeColor = System.Drawing.Color.White;
-            this.Editar.Image = ((System.Drawing.Image)(resources.GetObject("Editar.Image")));
-            this.Editar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Editar.Location = new System.Drawing.Point(858, 108);
-            this.Editar.Name = "Editar";
-            this.Editar.Size = new System.Drawing.Size(180, 40);
-            this.Editar.TabIndex = 39;
-            this.Editar.Text = "EDITAR";
-            this.Editar.UseVisualStyleBackColor = false;
-            this.Editar.Click += new System.EventHandler(this.Editar_Click);
+            this.Frequencia.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.Frequencia.BackColor = System.Drawing.Color.MidnightBlue;
+            this.Frequencia.FlatAppearance.BorderSize = 0;
+            this.Frequencia.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.Frequencia.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Frequencia.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Frequencia.ForeColor = System.Drawing.Color.White;
+            this.Frequencia.Image = ((System.Drawing.Image)(resources.GetObject("Frequencia.Image")));
+            this.Frequencia.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.Frequencia.Location = new System.Drawing.Point(858, 108);
+            this.Frequencia.Name = "Frequencia";
+            this.Frequencia.Size = new System.Drawing.Size(180, 40);
+            this.Frequencia.TabIndex = 39;
+            this.Frequencia.Text = "FREQUÊNCIA";
+            this.Frequencia.UseVisualStyleBackColor = false;
+            this.Frequencia.Click += new System.EventHandler(this.Frequencia_Click);
             // 
             // Detalhes
             // 
@@ -237,7 +237,7 @@
             this.ClientSize = new System.Drawing.Size(1050, 600);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.Excluir);
-            this.Controls.Add(this.Editar);
+            this.Controls.Add(this.Frequencia);
             this.Controls.Add(this.Detalhes);
             this.Controls.Add(this.Importar);
             this.Controls.Add(this.ListView);
@@ -262,7 +262,7 @@
         private System.Windows.Forms.Button Pesquisar;
         private System.Windows.Forms.ListView ListView;
         private System.Windows.Forms.Button Excluir;
-        private System.Windows.Forms.Button Editar;
+        private System.Windows.Forms.Button Frequencia;
         private System.Windows.Forms.Button Detalhes;
         private System.Windows.Forms.Button Importar;
         private System.Windows.Forms.GroupBox groupBox1;
