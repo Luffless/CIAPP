@@ -34,14 +34,15 @@
             this.Editar = new System.Windows.Forms.Button();
             this.Novo = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.CnpjFiltro = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.RazaoSocialFiltro = new System.Windows.Forms.TextBox();
             this.BtnFechar = new System.Windows.Forms.Label();
             this.Detalhes = new System.Windows.Forms.Button();
             this.ListView = new System.Windows.Forms.ListView();
             this.Pesquisar = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
-            this.CnpjFiltro = new System.Windows.Forms.TextBox();
+            this.Relatorio = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -128,6 +129,23 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Filtros";
             // 
+            // CnpjFiltro
+            // 
+            this.CnpjFiltro.Location = new System.Drawing.Point(67, 23);
+            this.CnpjFiltro.MaxLength = 18;
+            this.CnpjFiltro.Name = "CnpjFiltro";
+            this.CnpjFiltro.Size = new System.Drawing.Size(281, 26);
+            this.CnpjFiltro.TabIndex = 9;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(9, 26);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(52, 20);
+            this.label3.TabIndex = 11;
+            this.label3.Text = "CNPJ:";
+            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -171,7 +189,7 @@
             this.Detalhes.ForeColor = System.Drawing.Color.White;
             this.Detalhes.Image = ((System.Drawing.Image)(resources.GetObject("Detalhes.Image")));
             this.Detalhes.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Detalhes.Location = new System.Drawing.Point(858, 267);
+            this.Detalhes.Location = new System.Drawing.Point(858, 313);
             this.Detalhes.Name = "Detalhes";
             this.Detalhes.Size = new System.Drawing.Size(180, 40);
             this.Detalhes.TabIndex = 18;
@@ -212,22 +230,24 @@
             this.Pesquisar.UseVisualStyleBackColor = false;
             this.Pesquisar.Click += new System.EventHandler(this.Pesquisar_Click);
             // 
-            // label3
+            // Relatorio
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(9, 26);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(52, 20);
-            this.label3.TabIndex = 11;
-            this.label3.Text = "CNPJ:";
-            // 
-            // CnpjFiltro
-            // 
-            this.CnpjFiltro.Location = new System.Drawing.Point(67, 23);
-            this.CnpjFiltro.MaxLength = 18;
-            this.CnpjFiltro.Name = "CnpjFiltro";
-            this.CnpjFiltro.Size = new System.Drawing.Size(281, 26);
-            this.CnpjFiltro.TabIndex = 9;
+            this.Relatorio.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.Relatorio.BackColor = System.Drawing.Color.MidnightBlue;
+            this.Relatorio.FlatAppearance.BorderSize = 0;
+            this.Relatorio.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.Relatorio.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Relatorio.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Relatorio.ForeColor = System.Drawing.Color.White;
+            this.Relatorio.Image = ((System.Drawing.Image)(resources.GetObject("Relatorio.Image")));
+            this.Relatorio.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.Relatorio.Location = new System.Drawing.Point(858, 267);
+            this.Relatorio.Name = "Relatorio";
+            this.Relatorio.Size = new System.Drawing.Size(180, 40);
+            this.Relatorio.TabIndex = 21;
+            this.Relatorio.Text = "RELATÓRIO";
+            this.Relatorio.UseVisualStyleBackColor = false;
+            this.Relatorio.Click += new System.EventHandler(this.Relatorio_Click);
             // 
             // Entidades
             // 
@@ -235,6 +255,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(1050, 600);
+            this.Controls.Add(this.Relatorio);
             this.Controls.Add(this.Pesquisar);
             this.Controls.Add(this.ListView);
             this.Controls.Add(this.Detalhes);
@@ -270,5 +291,6 @@
         private System.Windows.Forms.Button Pesquisar;
         private System.Windows.Forms.TextBox CnpjFiltro;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button Relatorio;
     }
 }

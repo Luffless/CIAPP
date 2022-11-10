@@ -260,9 +260,9 @@
     <Content Include="Assets\im_incluir_registro.png" />
     <Content Include="Assets\im_login.png" />
     <Content Include="Assets\im_logo.png" />
+    <Content Include="Assets\im_pdf.png" />
     <Content Include="Assets\im_pesquisar.png" />
     <Content Include="Assets\im_processos.png" />
-    <Content Include="Assets\im_relatorios.png" />
     <Content Include="Assets\im_sanduiche.png" />
     <Content Include="Assets\im_police.png" />
     <Content Include="Assets\im_prestadores.png" />

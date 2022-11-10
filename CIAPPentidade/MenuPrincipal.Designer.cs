@@ -34,8 +34,6 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.BtnSlide = new System.Windows.Forms.PictureBox();
             this.Painel = new System.Windows.Forms.Panel();
-            this.BarraTitulo = new System.Windows.Forms.Panel();
-            this.UsuarioLogado = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.CpfFiltro = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -48,13 +46,16 @@
             this.ListView = new System.Windows.Forms.ListView();
             this.Pesquisar = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.BarraTitulo = new System.Windows.Forms.Panel();
+            this.UsuarioLogado = new System.Windows.Forms.Label();
+            this.Relatorio = new System.Windows.Forms.Button();
             this.MenuVertical.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BtnSlide)).BeginInit();
             this.Painel.SuspendLayout();
-            this.BarraTitulo.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.BarraTitulo.SuspendLayout();
             this.SuspendLayout();
             // 
             // MenuVertical
@@ -103,6 +104,7 @@
             // Painel
             // 
             this.Painel.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.Painel.Controls.Add(this.Relatorio);
             this.Painel.Controls.Add(this.groupBox1);
             this.Painel.Controls.Add(this.Excluir);
             this.Painel.Controls.Add(this.Frequencia);
@@ -116,27 +118,6 @@
             this.Painel.Name = "Painel";
             this.Painel.Size = new System.Drawing.Size(1050, 600);
             this.Painel.TabIndex = 2;
-            // 
-            // BarraTitulo
-            // 
-            this.BarraTitulo.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.BarraTitulo.Controls.Add(this.UsuarioLogado);
-            this.BarraTitulo.Controls.Add(this.BtnSlide);
-            this.BarraTitulo.Dock = System.Windows.Forms.DockStyle.Top;
-            this.BarraTitulo.Location = new System.Drawing.Point(250, 0);
-            this.BarraTitulo.Name = "BarraTitulo";
-            this.BarraTitulo.Size = new System.Drawing.Size(1050, 50);
-            this.BarraTitulo.TabIndex = 1;
-            // 
-            // UsuarioLogado
-            // 
-            this.UsuarioLogado.AutoSize = true;
-            this.UsuarioLogado.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.UsuarioLogado.Location = new System.Drawing.Point(47, 15);
-            this.UsuarioLogado.Name = "UsuarioLogado";
-            this.UsuarioLogado.Size = new System.Drawing.Size(125, 19);
-            this.UsuarioLogado.TabIndex = 1;
-            this.UsuarioLogado.Text = "UsuarioLogado";
             // 
             // groupBox1
             // 
@@ -237,7 +218,7 @@
             this.Detalhes.ForeColor = System.Drawing.Color.White;
             this.Detalhes.Image = ((System.Drawing.Image)(resources.GetObject("Detalhes.Image")));
             this.Detalhes.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Detalhes.Location = new System.Drawing.Point(861, 269);
+            this.Detalhes.Location = new System.Drawing.Point(861, 315);
             this.Detalhes.Name = "Detalhes";
             this.Detalhes.Size = new System.Drawing.Size(180, 40);
             this.Detalhes.TabIndex = 46;
@@ -307,6 +288,46 @@
             this.label1.TabIndex = 42;
             this.label1.Text = "PROCESSOS";
             // 
+            // BarraTitulo
+            // 
+            this.BarraTitulo.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.BarraTitulo.Controls.Add(this.UsuarioLogado);
+            this.BarraTitulo.Controls.Add(this.BtnSlide);
+            this.BarraTitulo.Dock = System.Windows.Forms.DockStyle.Top;
+            this.BarraTitulo.Location = new System.Drawing.Point(250, 0);
+            this.BarraTitulo.Name = "BarraTitulo";
+            this.BarraTitulo.Size = new System.Drawing.Size(1050, 50);
+            this.BarraTitulo.TabIndex = 1;
+            // 
+            // UsuarioLogado
+            // 
+            this.UsuarioLogado.AutoSize = true;
+            this.UsuarioLogado.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.UsuarioLogado.Location = new System.Drawing.Point(47, 15);
+            this.UsuarioLogado.Name = "UsuarioLogado";
+            this.UsuarioLogado.Size = new System.Drawing.Size(125, 19);
+            this.UsuarioLogado.TabIndex = 1;
+            this.UsuarioLogado.Text = "UsuarioLogado";
+            // 
+            // Relatorio
+            // 
+            this.Relatorio.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.Relatorio.BackColor = System.Drawing.Color.MidnightBlue;
+            this.Relatorio.FlatAppearance.BorderSize = 0;
+            this.Relatorio.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.Relatorio.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Relatorio.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Relatorio.ForeColor = System.Drawing.Color.White;
+            this.Relatorio.Image = ((System.Drawing.Image)(resources.GetObject("Relatorio.Image")));
+            this.Relatorio.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.Relatorio.Location = new System.Drawing.Point(861, 269);
+            this.Relatorio.Name = "Relatorio";
+            this.Relatorio.Size = new System.Drawing.Size(180, 40);
+            this.Relatorio.TabIndex = 50;
+            this.Relatorio.Text = "RELATÓRIO";
+            this.Relatorio.UseVisualStyleBackColor = false;
+            this.Relatorio.Click += new System.EventHandler(this.Relatorio_Click);
+            // 
             // MenuPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -327,10 +348,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.BtnSlide)).EndInit();
             this.Painel.ResumeLayout(false);
             this.Painel.PerformLayout();
-            this.BarraTitulo.ResumeLayout(false);
-            this.BarraTitulo.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.BarraTitulo.ResumeLayout(false);
+            this.BarraTitulo.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -356,5 +377,6 @@
         private System.Windows.Forms.ListView ListView;
         private System.Windows.Forms.Button Pesquisar;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button Relatorio;
     }
 }
