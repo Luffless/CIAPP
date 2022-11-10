@@ -96,6 +96,16 @@ namespace CIAPP
             }
         }
 
+        private void Relatorio_Click(object sender, EventArgs e)
+        {
+            if (!VerificaList())
+            {
+                return;
+            }
+
+            //Criar o crystal report
+        }
+
         private void Detalhes_Click(object sender, EventArgs e)
         {
             if (!VerificaList())
