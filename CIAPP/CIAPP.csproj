@@ -151,12 +151,6 @@
     <Compile Include="Processos.Designer.cs">
       <DependentUpon>Processos.cs</DependentUpon>
     </Compile>
-    <Compile Include="Relatorios.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Relatorios.Designer.cs">
-      <DependentUpon>Relatorios.cs</DependentUpon>
-    </Compile>
     <Compile Include="UsuarioForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -221,9 +215,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Processos.resx">
       <DependentUpon>Processos.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Relatorios.resx">
-      <DependentUpon>Relatorios.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UsuarioForm.resx">
       <DependentUpon>UsuarioForm.cs</DependentUpon>
