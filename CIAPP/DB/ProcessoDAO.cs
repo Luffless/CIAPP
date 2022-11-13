@@ -256,13 +256,14 @@ public class ProcessoDAO
                      where processo.id_prestador = prestador.id
                        and processo.id = @id";
 
-            processo = connection.Query<Processo, Prestador, Processo>(sql,
-                       (processoRegistro, prestador) =>
+            processo = connection.Query<Processo, Prestador, Endereco, Processo>(sql,
+                       (processoRegistro, prestador, endereco) =>
                        {
                            processoRegistro.Prestador = prestador;
+                           processoRegistro.Prestador.Endereco = endereco;
                            return processoRegistro;
                        },
-                       splitOn: "Id",
+                       splitOn: "Id, Logradouro",
                        param: new
                        {
                            id = idProcesso
