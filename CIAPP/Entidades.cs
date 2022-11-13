@@ -1,6 +1,8 @@
-﻿using System;
+﻿using CrystalDecisions.CrystalReports.Engine;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 
 namespace CIAPP
@@ -103,7 +105,54 @@ namespace CIAPP
                 return;
             }
 
-            //Criar o crystal report
+            PrintDialog printDialog = new PrintDialog();
+            if (printDialog.ShowDialog() == DialogResult.OK)
+            {
+                ListViewItem item = ListView.SelectedItems[0];
+                Entidade entidade = entidadeDAO.RecuperarPorId(int.Parse(item.SubItems[0].Text));
+
+                ReportDocument reportDocument = new ReportDocument();
+                reportDocument.Load(Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..\\..\\")) + "\\Report\\ReportEntidade.rpt");
+
+                reportDocument.SetParameterValue("Cnpj", entidade.Cnpj);
+                reportDocument.SetParameterValue("RazaoSocial", entidade.RazaoSocial);
+                reportDocument.SetParameterValue("Telefone", entidade.Telefone);
+                reportDocument.SetParameterValue("Email", entidade.Email);
+                reportDocument.SetParameterValue("DataCredenciamento", entidade.DataCredenciamento);
+                if (entidade.DataDescredenciamento == Convert.ToDateTime("01/01/0001").Date)
+                {
+                    reportDocument.SetParameterValue("DataDescredenciamento", " ");
+                }
+                else
+                {
+                    reportDocument.SetParameterValue("DataDescredenciamento", entidade.DataDescredenciamento);
+                }
+                if (string.IsNullOrWhiteSpace(entidade.Observacao))
+                {
+                    reportDocument.SetParameterValue("Observacao", " ");
+                }
+                else
+                {
+                    reportDocument.SetParameterValue("Observacao", entidade.Observacao);
+                }
+                reportDocument.SetParameterValue("Logradouro", entidade.Endereco.Logradouro);
+                reportDocument.SetParameterValue("Numero", entidade.Endereco.Numero);
+                if (string.IsNullOrWhiteSpace(entidade.Endereco.Complemento))
+                {
+                    reportDocument.SetParameterValue("Complemento", " ");
+                }
+                else
+                {
+                    reportDocument.SetParameterValue("Complemento", entidade.Endereco.Complemento);
+                }
+                reportDocument.SetParameterValue("Bairro", entidade.Endereco.Bairro);
+                reportDocument.SetParameterValue("Municipio", entidade.Endereco.Municipio);
+                reportDocument.SetParameterValue("Cep", entidade.Endereco.Cep);
+                reportDocument.SetParameterValue("Estado", entidade.Endereco.Estado);
+
+                reportDocument.PrintOptions.PrinterName = printDialog.PrinterSettings.PrinterName;
+                reportDocument.PrintToPrinter(printDialog.PrinterSettings.Copies, printDialog.PrinterSettings.Collate, printDialog.PrinterSettings.FromPage, printDialog.PrinterSettings.ToPage);
+            }
         }
 
         private void Detalhes_Click(object sender, EventArgs e)

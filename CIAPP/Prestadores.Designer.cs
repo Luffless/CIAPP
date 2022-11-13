@@ -42,7 +42,6 @@
             this.Editar = new System.Windows.Forms.Button();
             this.Novo = new System.Windows.Forms.Button();
             this.ListView = new System.Windows.Forms.ListView();
-            this.Relatorio = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -149,7 +148,7 @@
             this.Detalhes.ForeColor = System.Drawing.Color.White;
             this.Detalhes.Image = ((System.Drawing.Image)(resources.GetObject("Detalhes.Image")));
             this.Detalhes.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Detalhes.Location = new System.Drawing.Point(858, 313);
+            this.Detalhes.Location = new System.Drawing.Point(858, 267);
             this.Detalhes.Name = "Detalhes";
             this.Detalhes.Size = new System.Drawing.Size(180, 40);
             this.Detalhes.TabIndex = 24;
@@ -230,32 +229,12 @@
             this.ListView.View = System.Windows.Forms.View.Details;
             this.ListView.DoubleClick += new System.EventHandler(this.DoubleClick_Click);
             // 
-            // Relatorio
-            // 
-            this.Relatorio.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.Relatorio.BackColor = System.Drawing.Color.MidnightBlue;
-            this.Relatorio.FlatAppearance.BorderSize = 0;
-            this.Relatorio.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            this.Relatorio.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Relatorio.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Relatorio.ForeColor = System.Drawing.Color.White;
-            this.Relatorio.Image = ((System.Drawing.Image)(resources.GetObject("Relatorio.Image")));
-            this.Relatorio.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Relatorio.Location = new System.Drawing.Point(858, 267);
-            this.Relatorio.Name = "Relatorio";
-            this.Relatorio.Size = new System.Drawing.Size(180, 40);
-            this.Relatorio.TabIndex = 27;
-            this.Relatorio.Text = "RELATÓRIO";
-            this.Relatorio.UseVisualStyleBackColor = false;
-            this.Relatorio.Click += new System.EventHandler(this.Relatorio_Click);
-            // 
             // Prestadores
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(1050, 600);
-            this.Controls.Add(this.Relatorio);
             this.Controls.Add(this.ListView);
             this.Controls.Add(this.Pesquisar);
             this.Controls.Add(this.Detalhes);
@@ -291,6 +270,5 @@
         private System.Windows.Forms.ListView ListView;
         private System.Windows.Forms.TextBox CpfFiltro;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button Relatorio;
     }
 }

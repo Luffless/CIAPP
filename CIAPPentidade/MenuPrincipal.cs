@@ -1,6 +1,8 @@
-﻿using System;
+﻿using CrystalDecisions.CrystalReports.Engine;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Text.Json;
 using System.Windows.Forms;
@@ -166,7 +168,96 @@ namespace CIAPPentidade
                 return;
             }
 
-            //Criar o crystal report
+            PrintDialog printDialog = new PrintDialog();
+            if (printDialog.ShowDialog() == DialogResult.OK)
+            {
+                int horasCumpridas = 0;
+
+                ListViewItem item = ListView.SelectedItems[0];
+                Processo processo = processoDAO.RecuperarPorId(int.Parse(item.SubItems[0].Text));
+
+                ReportDocument reportDocument = new ReportDocument();
+                reportDocument.Load(Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..\\..\\")) + "\\Report\\ReportProcesso.rpt");
+
+                reportDocument.SetParameterValue("VaraOrigem", processo.VaraOrigem);
+                reportDocument.SetParameterValue("NumeroArtigoPenal", processo.NumeroArtigoPenal);
+                reportDocument.SetParameterValue("PenaOriginaria", processo.PenaOriginaria);
+                reportDocument.SetParameterValue("HorasCumprir", processo.HorasCumprir);
+                for (int i = 0; i < processo.FrequenciaList.Count; i++)
+                {
+                    horasCumpridas += processo.FrequenciaList[i].HorasCumpridas;
+                }
+                reportDocument.SetParameterValue("HorasCumpridas", horasCumpridas);
+                if (processo.AcordoPersecucaoPenal)
+                {
+                    reportDocument.SetParameterValue("AcordoPersecucaoPenal", "Sim");
+                }
+                else
+                {
+                    reportDocument.SetParameterValue("AcordoPersecucaoPenal", "Não");
+                }
+                reportDocument.SetParameterValue("Cpf", processo.Prestador.Cpf);
+                reportDocument.SetParameterValue("Nome", processo.Prestador.Nome);
+                reportDocument.SetParameterValue("DataNascimento", processo.Prestador.DataNascimento);
+                reportDocument.SetParameterValue("Naturalidade", processo.Prestador.Naturalidade);
+                reportDocument.SetParameterValue("EstadoCivil", processo.Prestador.EstadoCivil);
+                reportDocument.SetParameterValue("Telefone", processo.Prestador.Telefone);
+                reportDocument.SetParameterValue("Etnia", processo.Prestador.Etnia);
+                reportDocument.SetParameterValue("Sexo", processo.Prestador.Sexo);
+                reportDocument.SetParameterValue("Profissao", processo.Prestador.Profissao);
+                reportDocument.SetParameterValue("RendaFamiliar", processo.Prestador.RendaFamiliar.ToString("0.00", CultureInfo.InvariantCulture));
+                reportDocument.SetParameterValue("Religiao", processo.Prestador.Religiao);
+                reportDocument.SetParameterValue("GrauInstrucao", processo.Prestador.GrauInstrucao);
+                if (processo.Prestador.RecebeBeneficio)
+                {
+                    reportDocument.SetParameterValue("RecebeBeneficio", "Sim");
+                }
+                else
+                {
+                    reportDocument.SetParameterValue("RecebeBeneficio", "Não");
+                }
+                if (processo.Prestador.UsaAlcool)
+                {
+                    reportDocument.SetParameterValue("UsaAlcool", "Sim");
+                }
+                else
+                {
+                    reportDocument.SetParameterValue("UsaAlcool", "Não");
+                }
+                if (processo.Prestador.UsaDrogas)
+                {
+                    reportDocument.SetParameterValue("UsaDrogas", "Sim");
+                }
+                else
+                {
+                    reportDocument.SetParameterValue("UsaDrogas", "Não");
+                }
+                if (string.IsNullOrWhiteSpace(processo.Prestador.Observacao))
+                {
+                    reportDocument.SetParameterValue("Observacao", " ");
+                }
+                else
+                {
+                    reportDocument.SetParameterValue("Observacao", processo.Prestador.Observacao);
+                }
+                reportDocument.SetParameterValue("Logradouro", processo.Prestador.Endereco.Logradouro);
+                reportDocument.SetParameterValue("Numero", processo.Prestador.Endereco.Numero);
+                if (string.IsNullOrWhiteSpace(processo.Prestador.Endereco.Complemento))
+                {
+                    reportDocument.SetParameterValue("Complemento", " ");
+                }
+                else
+                {
+                    reportDocument.SetParameterValue("Complemento", processo.Prestador.Endereco.Complemento);
+                }
+                reportDocument.SetParameterValue("Bairro", processo.Prestador.Endereco.Bairro);
+                reportDocument.SetParameterValue("Municipio", processo.Prestador.Endereco.Municipio);
+                reportDocument.SetParameterValue("Cep", processo.Prestador.Endereco.Cep);
+                reportDocument.SetParameterValue("Estado", processo.Prestador.Endereco.Estado);
+
+                reportDocument.PrintOptions.PrinterName = printDialog.PrinterSettings.PrinterName;
+                reportDocument.PrintToPrinter(printDialog.PrinterSettings.Copies, printDialog.PrinterSettings.Collate, printDialog.PrinterSettings.FromPage, printDialog.PrinterSettings.ToPage);
+            }
         }
 
         private void Detalhes_Click(object sender, EventArgs e)
