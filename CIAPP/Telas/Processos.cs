@@ -7,51 +7,38 @@ using System.IO;
 using System.Text.Json;
 using System.Windows.Forms;
 
-namespace CIAPPentidade
+namespace CIAPP
 {
-    public partial class MenuPrincipal : Form
+    public partial class Processos : Form
     {
-        private readonly string loginUsuarioLogado;
         private readonly ProcessoDAO processoDAO = new ProcessoDAO();
-        private readonly UsuarioDAO usuarioDAO = new UsuarioDAO();
+        private readonly PrestadorDAO prestadorDAO = new PrestadorDAO();
+        private readonly MenuPrincipal formMenuPrincipal;
 
-        public MenuPrincipal(string usuarioLogado)
+        public Processos(MenuPrincipal form)
         {
             InitializeComponent();
-            loginUsuarioLogado = usuarioLogado;
+            formMenuPrincipal = form;
         }
 
-        private void MenuPrincipal_Load(object sender, EventArgs e)
+        private void BtnFechar_Click(object sender, EventArgs e)
         {
-            Usuario usuario = usuarioDAO.RecuperarPorLogin(loginUsuarioLogado);
-            UsuarioLogado.Text = usuario.Nome;
+            formMenuPrincipal.BtnProcessos.BackColor = Color.FromArgb(25, 25, 112);
+            Close();
+        }
+
+        private void Processos_Load(object sender, EventArgs e)
+        {
             AdicionaColunas();
             CarregarRegistros();
-        }
-
-        private void BtnSlide_Click(object sender, EventArgs e)
-        {
-            if (MenuVertical.Width == 250)
-            {
-                MenuVertical.Width = 60;
-            }
-            else
-            {
-                MenuVertical.Width = 250;
-            }
-        }
-
-        private void Close(object sender, FormClosedEventArgs e)
-        {
-            Application.Exit();
         }
 
         private void AdicionaColunas()
         {
             ListView.Font = new Font(ListView.Font, FontStyle.Bold);
             ListView.Columns.Add("ID", 30);
-            ListView.Columns.Add("CPF", 165);
-            ListView.Columns.Add("Nome", 375);
+            ListView.Columns.Add("Prestador", 375);
+            ListView.Columns.Add("Número Artigo Penal", 165);
             ListView.Columns.Add("Horas a cumprir", 135);
             ListView.Columns.Add("Horas cumpridas", 135);
         }
@@ -75,8 +62,8 @@ namespace CIAPPentidade
                 {
                     Font = new Font(ListView.Font, FontStyle.Regular)
                 };
-                listItem.SubItems.Add(new ListViewItem.ListViewSubItem(listItem, itemList[i].Prestador.Cpf));
                 listItem.SubItems.Add(new ListViewItem.ListViewSubItem(listItem, itemList[i].Prestador.Nome));
+                listItem.SubItems.Add(new ListViewItem.ListViewSubItem(listItem, itemList[i].NumeroArtigoPenal.ToString()));
                 listItem.SubItems.Add(new ListViewItem.ListViewSubItem(listItem, itemList[i].HorasCumprir.ToString()));
                 listItem.SubItems.Add(new ListViewItem.ListViewSubItem(listItem, horasCumpridas.ToString()));
                 ListView.Items.Add(listItem);
@@ -88,7 +75,13 @@ namespace CIAPPentidade
             CarregarRegistros();
         }
 
-        private void Frequencia_Click(object sender, EventArgs e)
+        private void Novo_Click(object sender, EventArgs e)
+        {
+            new ProcessoForm("Incluir").ShowDialog();
+            CarregarRegistros();
+        }
+
+        private void Editar_Click(object sender, EventArgs e)
         {
             if (!VerificaList())
             {
@@ -113,51 +106,44 @@ namespace CIAPPentidade
 
             if (MessageBox.Show("Confirma excluir este registro?", "Selecione a opção", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                Processo processo = processoDAO.RecuperarPorId(int.Parse(item.SubItems[0].Text));
-                processoDAO.Delete(processo);
+                processoDAO.Delete(int.Parse(item.SubItems[0].Text));
                 CarregarRegistros();
             }
         }
 
-        private void Importar_Click(object sender, EventArgs e)
+        private void Exportar_Click(object sender, EventArgs e)
         {
-            OpenFileDialog open = new OpenFileDialog
+            if (!VerificaList())
             {
-                Filter = "JSON Files (*.json)|*.json"
+                return;
+            }
+
+            FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog
+            {
+                ShowNewFolderButton = false,
+                Description = "Selecione o diretório que você deseja usar para salvar o arquivo."
             };
-            if (open.ShowDialog() == DialogResult.OK)
+            if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
             {
-                if (new FileInfo(open.FileName).Length == 0)
+                ListViewItem item = ListView.SelectedItems[0];
+                Processo processo = processoDAO.RecuperarPorId(int.Parse(item.SubItems[0].Text));
+                Prestador prestador = prestadorDAO.RecuperarPorId(processo.Prestador.Id);
+                processo.Prestador = prestador;
+
+                string json = JsonSerializer.Serialize(processo);
+                EncryptDecrypt encryptTest = new EncryptDecrypt();
+                string base64EncryptStringAes = encryptTest.Encrypt(json);
+
+                folderBrowserDialog.SelectedPath += @"\InformacoesPrestador" + processo.Prestador.Id + ".json";
+
+                if (File.Exists(folderBrowserDialog.SelectedPath))
                 {
-                    MessageBox.Show("O arquivo selecionado está vazio!", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
+                    File.Delete(folderBrowserDialog.SelectedPath);
                 }
 
-                Processo processo;
+                File.WriteAllText(folderBrowserDialog.SelectedPath, base64EncryptStringAes);
 
-                using (StreamReader reader = new StreamReader(open.FileName))
-                {
-                    string json = reader.ReadToEnd();
-
-                    EncryptDecrypt encryptTest = new EncryptDecrypt();
-                    string jsonDescrypted = encryptTest.Decrypt(json);
-
-                    try
-                    {
-                        processo = JsonSerializer.Deserialize<Processo>(jsonDescrypted);
-                    }
-                    catch
-                    {
-                        MessageBox.Show("Arquivo JSON inválido!", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        return;
-                    }
-                }
-
-                processoDAO.Delete(processo);
-                processoDAO.Insert(processo);
-                CarregarRegistros();
-
-                MessageBox.Show("Arquivo JSON carregado com sucesso!", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(string.Format("Arquivo salvo no diretório {0}", folderBrowserDialog.SelectedPath), "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -199,6 +185,7 @@ namespace CIAPPentidade
                 reportDocument.SetParameterValue("Cpf", processo.Prestador.Cpf);
                 reportDocument.SetParameterValue("Nome", processo.Prestador.Nome);
                 reportDocument.SetParameterValue("DataNascimento", processo.Prestador.DataNascimento);
+                reportDocument.SetParameterValue("Idade", CalculaIdade(processo.Prestador.DataNascimento));
                 reportDocument.SetParameterValue("Naturalidade", processo.Prestador.Naturalidade);
                 reportDocument.SetParameterValue("EstadoCivil", processo.Prestador.EstadoCivil);
                 reportDocument.SetParameterValue("Telefone", processo.Prestador.Telefone);
@@ -258,6 +245,18 @@ namespace CIAPPentidade
                 reportDocument.PrintOptions.PrinterName = printDialog.PrinterSettings.PrinterName;
                 reportDocument.PrintToPrinter(printDialog.PrinterSettings.Copies, printDialog.PrinterSettings.Collate, printDialog.PrinterSettings.FromPage, printDialog.PrinterSettings.ToPage);
             }
+        }
+
+        private int CalculaIdade(DateTime dataNascimento)
+        {
+            int idade = DateTime.Now.Year - dataNascimento.Year;
+
+            if (DateTime.Now.Month < dataNascimento.Month || (DateTime.Now.Month == dataNascimento.Month && DateTime.Now.Day < dataNascimento.Day))
+            {
+                idade--;
+            }
+
+            return idade;
         }
 
         private void Detalhes_Click(object sender, EventArgs e)
