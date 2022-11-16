@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CIAPP {
+namespace CIAPP.Report {
     using System;
     using System.ComponentModel;
     using CrystalDecisions.Shared;
@@ -41,7 +41,7 @@ namespace CIAPP {
         
         public override string FullResourceName {
             get {
-                return "CIAPP.ReportProcesso.rpt";
+                return "CIAPP.Report.ReportProcesso.rpt";
             }
             set {
                 // Do nothing
@@ -317,6 +317,14 @@ namespace CIAPP {
         public CrystalDecisions.Shared.IParameterField Parameter_Estado {
             get {
                 return this.DataDefinition.ParameterFields[28];
+            }
+        }
+        
+        [Browsable(false)]
+        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public CrystalDecisions.Shared.IParameterField Parameter_Idade {
+            get {
+                return this.DataDefinition.ParameterFields[29];
             }
         }
     }
