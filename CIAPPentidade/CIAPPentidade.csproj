@@ -107,16 +107,16 @@
     <Compile Include="DB\ProcessoDAO.cs" />
     <Compile Include="DB\StringConexao.cs" />
     <Compile Include="DB\UsuarioDAO.cs" />
-    <Compile Include="Telas\LoginScreen.cs">
+    <Compile Include="Interfaces\LoginScreen.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Telas\LoginScreen.Designer.cs">
+    <Compile Include="Interfaces\LoginScreen.Designer.cs">
       <DependentUpon>LoginScreen.cs</DependentUpon>
     </Compile>
-    <Compile Include="Telas\MenuPrincipal.cs">
+    <Compile Include="Interfaces\MenuPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Telas\MenuPrincipal.Designer.cs">
+    <Compile Include="Interfaces\MenuPrincipal.Designer.cs">
       <DependentUpon>MenuPrincipal.cs</DependentUpon>
     </Compile>
     <Compile Include="Model\Atividade.cs" />
@@ -129,16 +129,16 @@
     <Compile Include="Model\Prestador.cs" />
     <Compile Include="Model\Processo.cs" />
     <Compile Include="Model\Usuario.cs" />
-    <Compile Include="Telas\Observacao.cs">
+    <Compile Include="Interfaces\Observacao.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Telas\Observacao.Designer.cs">
+    <Compile Include="Interfaces\Observacao.Designer.cs">
       <DependentUpon>Observacao.cs</DependentUpon>
     </Compile>
-    <Compile Include="Telas\ProcessoForm.cs">
+    <Compile Include="Interfaces\ProcessoForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Telas\ProcessoForm.Designer.cs">
+    <Compile Include="Interfaces\ProcessoForm.Designer.cs">
       <DependentUpon>ProcessoForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
@@ -151,16 +151,16 @@
     </Compile>
     <Compile Include="Validation\ValidationFrequencia.cs" />
     <Compile Include="Validation\ValidationLogin.cs" />
-    <EmbeddedResource Include="Telas\LoginScreen.resx">
+    <EmbeddedResource Include="Interfaces\LoginScreen.resx">
       <DependentUpon>LoginScreen.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Telas\MenuPrincipal.resx">
+    <EmbeddedResource Include="Interfaces\MenuPrincipal.resx">
       <DependentUpon>MenuPrincipal.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Telas\Observacao.resx">
+    <EmbeddedResource Include="Interfaces\Observacao.resx">
       <DependentUpon>Observacao.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Telas\ProcessoForm.resx">
+    <EmbeddedResource Include="Interfaces\ProcessoForm.resx">
       <DependentUpon>ProcessoForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
