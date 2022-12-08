@@ -110,16 +110,16 @@
     <Compile Include="DB\ProcessoDAO.cs" />
     <Compile Include="DB\StringConexao.cs" />
     <Compile Include="DB\UsuarioDAO.cs" />
-    <Compile Include="Telas\EntidadeForm.cs">
+    <Compile Include="Interfaces\EntidadeForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Telas\EntidadeForm.Designer.cs">
+    <Compile Include="Interfaces\EntidadeForm.Designer.cs">
       <DependentUpon>EntidadeForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Telas\Entidades.cs">
+    <Compile Include="Interfaces\Entidades.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Telas\Entidades.Designer.cs">
+    <Compile Include="Interfaces\Entidades.Designer.cs">
       <DependentUpon>Entidades.cs</DependentUpon>
     </Compile>
     <Compile Include="Model\Atividade.cs" />
@@ -130,34 +130,34 @@
     <Compile Include="Model\Parentesco.cs" />
     <Compile Include="Model\Prestador.cs" />
     <Compile Include="Model\Processo.cs" />
-    <Compile Include="Telas\Observacao.cs">
+    <Compile Include="Interfaces\Observacao.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Telas\Observacao.Designer.cs">
+    <Compile Include="Interfaces\Observacao.Designer.cs">
       <DependentUpon>Observacao.cs</DependentUpon>
     </Compile>
-    <Compile Include="Telas\Prestadores.cs">
+    <Compile Include="Interfaces\Prestadores.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Telas\Prestadores.Designer.cs">
+    <Compile Include="Interfaces\Prestadores.Designer.cs">
       <DependentUpon>Prestadores.cs</DependentUpon>
     </Compile>
-    <Compile Include="Telas\PrestadorForm.cs">
+    <Compile Include="Interfaces\PrestadorForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Telas\PrestadorForm.Designer.cs">
+    <Compile Include="Interfaces\PrestadorForm.Designer.cs">
       <DependentUpon>PrestadorForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Telas\ProcessoForm.cs">
+    <Compile Include="Interfaces\ProcessoForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Telas\ProcessoForm.Designer.cs">
+    <Compile Include="Interfaces\ProcessoForm.Designer.cs">
       <DependentUpon>ProcessoForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Telas\Processos.cs">
+    <Compile Include="Interfaces\Processos.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Telas\Processos.Designer.cs">
+    <Compile Include="Interfaces\Processos.Designer.cs">
       <DependentUpon>Processos.cs</DependentUpon>
     </Compile>
     <Compile Include="Report\ReportEntidade.cs">
@@ -172,31 +172,31 @@
       <DependentUpon>ReportProcesso.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Telas\UsuarioForm.cs">
+    <Compile Include="Interfaces\UsuarioForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Telas\UsuarioForm.Designer.cs">
+    <Compile Include="Interfaces\UsuarioForm.Designer.cs">
       <DependentUpon>UsuarioForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Model\Endereco.cs" />
     <Compile Include="Model\Entidade.cs" />
     <Compile Include="Model\Usuario.cs" />
-    <Compile Include="Telas\Usuarios.cs">
+    <Compile Include="Interfaces\Usuarios.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Telas\Usuarios.Designer.cs">
+    <Compile Include="Interfaces\Usuarios.Designer.cs">
       <DependentUpon>Usuarios.cs</DependentUpon>
     </Compile>
-    <Compile Include="Telas\LoginScreen.cs">
+    <Compile Include="Interfaces\LoginScreen.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Telas\LoginScreen.Designer.cs">
+    <Compile Include="Interfaces\LoginScreen.Designer.cs">
       <DependentUpon>LoginScreen.cs</DependentUpon>
     </Compile>
-    <Compile Include="Telas\MenuPrincipal.cs">
+    <Compile Include="Interfaces\MenuPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Telas\MenuPrincipal.Designer.cs">
+    <Compile Include="Interfaces\MenuPrincipal.Designer.cs">
       <DependentUpon>MenuPrincipal.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
@@ -213,28 +213,28 @@
     <Compile Include="Validation\ValidationPrestador.cs" />
     <Compile Include="Validation\ValidationProcesso.cs" />
     <Compile Include="Validation\ValidationUsuario.cs" />
-    <EmbeddedResource Include="Telas\EntidadeForm.resx">
+    <EmbeddedResource Include="Interfaces\EntidadeForm.resx">
       <DependentUpon>EntidadeForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Telas\Entidades.resx">
+    <EmbeddedResource Include="Interfaces\Entidades.resx">
       <DependentUpon>Entidades.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Telas\LoginScreen.resx">
+    <EmbeddedResource Include="Interfaces\LoginScreen.resx">
       <DependentUpon>LoginScreen.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Telas\Observacao.resx">
+    <EmbeddedResource Include="Interfaces\Observacao.resx">
       <DependentUpon>Observacao.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Telas\Prestadores.resx">
+    <EmbeddedResource Include="Interfaces\Prestadores.resx">
       <DependentUpon>Prestadores.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Telas\PrestadorForm.resx">
+    <EmbeddedResource Include="Interfaces\PrestadorForm.resx">
       <DependentUpon>PrestadorForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Telas\ProcessoForm.resx">
+    <EmbeddedResource Include="Interfaces\ProcessoForm.resx">
       <DependentUpon>ProcessoForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Telas\Processos.resx">
+    <EmbeddedResource Include="Interfaces\Processos.resx">
       <DependentUpon>Processos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Report\ReportEntidade.rpt">
@@ -245,10 +245,10 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>ReportProcesso.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Telas\UsuarioForm.resx">
+    <EmbeddedResource Include="Interfaces\UsuarioForm.resx">
       <DependentUpon>UsuarioForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Telas\MenuPrincipal.resx">
+    <EmbeddedResource Include="Interfaces\MenuPrincipal.resx">
       <DependentUpon>MenuPrincipal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -260,7 +260,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Telas\Usuarios.resx">
+    <EmbeddedResource Include="Interfaces\Usuarios.resx">
       <DependentUpon>Usuarios.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
